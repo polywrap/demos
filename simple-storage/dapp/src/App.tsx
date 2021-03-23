@@ -80,10 +80,11 @@ function App() {
             Web3API Demo:
             <br/>
             {link("https://app.ens.domains/name/api.simplestorage.eth", () => (
-              <>api.simplestorage.eth"</>
+              <>api.simplestorage.eth</>
             ))}
+            &nbsp;->&nbsp;
             {link("https://bafybeihsk2ivvcrye7bqtdukxjtmfevfxgidebqqopoqdfpucbgzyy2edu.ipfs.dweb.link/", () => (
-              <>&nbsp;(IPFS)</>
+              <>IPFS</>
             ))}
           </h3>
           <br/>
@@ -110,7 +111,7 @@ function App() {
               {syntax.value(() => <>&nbsp;&nbsp;&nbsp;&nbsp;uri: </>)}
               {syntax.string(() => <>"w3://ens/api.simplestorage.eth"</>)},<br/>
               {syntax.value(() => <>&nbsp;&nbsp;&nbsp;&nbsp;query: </>)}
-              {syntax.string(() => <>{"\"mutation { deployContract }\""}</>)}
+              {syntax.string(() => <>{"\"mutation { deployContract }\""}</>)}<br/>
               {")}"}
             </div>
             <br/>
