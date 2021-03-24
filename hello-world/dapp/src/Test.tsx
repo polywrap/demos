@@ -2,14 +2,13 @@ import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
-import { useWeb3ApiQuery, createWeb3ApiRoot } from "@web3api/react";
-import { Uri, UriRedirect } from "@web3api/client-js";
-import { EnsPlugin } from "@web3api/ens-plugin-js";
-import { EthereumPlugin } from "@web3api/ethereum-plugin-js";
-import { IpfsPlugin } from "@web3api/ipfs-plugin-js";
+import { useWeb3ApiQuery, Web3ApiProvider, createWeb3ApiProvider } from "@web3api/react";
+import { UriRedirect } from "@web3api/client-js";
+import { ensPlugin } from "@web3api/ens-plugin-js";
+import { ethereumPlugin } from "@web3api/ethereum-plugin-js";
+import { ipfsPlugin } from "@web3api/ipfs-plugin-js";
 
-const SimpleStorageProvider = createWeb3ApiRoot("simpleStorage");
-// const OneInchProvider = createWeb3ApiRoot("ta");
+const SimpleStorageProvider = createWeb3ApiProvider("simpleStorage");
 
 const ActionComponent = () => {
   useEffect(() => {
@@ -27,14 +26,14 @@ const ActionComponent = () => {
     loading: loadingDeploy,
     errors: deployContractErrors,
   } = useWeb3ApiQuery({
-    key: "simpleStorage",
-    uri: new Uri("ens/api.simplestorage.eth"),
+    provider: "simpleStorage",
+    uri: "ens/api.simplestorage.eth",
     query: `mutation { deployContract }`,
   });
 
   const { execute: setData, loading: loadingSetData } = useWeb3ApiQuery({
-    key: "simpleStorage",
-    uri: new Uri("ens/api.simplestorage.eth"),
+    provider: "simpleStorage",
+    uri: "ens/api.simplestorage.eth",
     query: `mutation {
       setData(options: {
         address: "${deployData?.deployContract}"
@@ -44,8 +43,8 @@ const ActionComponent = () => {
   });
 
   const { execute: getStorageData } = useWeb3ApiQuery({
-    key: "simpleStorage",
-    uri: new Uri("ens/api.simplestorage.eth"),
+    provider: "simpleStorage",
+    uri: "ens/api.simplestorage.eth",
     query: `query {
       getData(
         address: "${deployData?.deployContract}"
@@ -96,39 +95,31 @@ function Test() {
 
   const redirects: UriRedirect[] = [
     {
-      from: new Uri("w3://ens/ethereum.web3api.eth"),
-      to: {
-        factory: () => new EthereumPlugin({ provider: ethereum }),
-        manifest: EthereumPlugin.manifest(),
-      },
+      from: "w3://ens/ethereum.web3api.eth",
+      to: ethereumPlugin({ provider: ethereum }),
     },
     {
-      from: new Uri("w3://ens/ipfs.web3api.eth"),
-      to: {
-        factory: () => new IpfsPlugin({ provider: "https://ipfs.io" }),
-        manifest: IpfsPlugin.manifest(),
-      },
+      from: "w3://ens/ipfs.web3api.eth",
+      to: ipfsPlugin({ provider: "https://ipfs.io" }),
     },
     {
-      from: new Uri("w3://ens/ens.web3api.eth"),
-      to: {
-        factory: () => new EnsPlugin({}),
-        manifest: EnsPlugin.manifest(),
-      },
+      from: "w3://ens/ens.web3api.eth",
+      to: ensPlugin({})
     },
   ];
 
+  console.log("Test Render")
+
   return (
+    <>
     <SimpleStorageProvider redirects={redirects}>
-      {/* <OneInchProvider redirects={redirects}> */}
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <ActionComponent />
-        </header>
-      </div>
-      {/* </OneInchProvider> */}
+      <img src={logo} className="App-logo" alt="logo" />
+      <ActionComponent />
     </SimpleStorageProvider>
+    <Web3ApiProvider redirects={redirects}>
+      <div>hello</div>
+    </Web3ApiProvider>
+    </>
   );
 }
 

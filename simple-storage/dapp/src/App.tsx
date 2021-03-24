@@ -66,6 +66,14 @@ function App() {
 
   return (
     <div className="App">
+      <div className="nav">
+        {link(
+          "https://github.com/Web3-API/specification/blob/main/spec/intro/1_Introduction.md#impact",
+          () => (
+            <>Why Web3API</>
+          )
+        )}
+      </div>
       <header className="App-body">
         {link("https://web3api.dev/", () => (
           <Lottie
