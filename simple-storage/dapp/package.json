@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@web3api/client-js": "0.0.1-prealpha.7",
+    "@web3api/core-js": "0.0.1-prealpha.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-lottie": "1.2.3",
