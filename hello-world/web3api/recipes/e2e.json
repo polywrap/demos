@@ -1,0 +1,11 @@
+[
+  {
+    "api": "ens/helloworld.eth"
+  },
+  {
+    "query": "./logMessage.graphql",
+    "variables": {
+      "message": "Hello World From Web3API!"
+    }
+  }
+]
