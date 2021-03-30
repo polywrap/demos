@@ -1,0 +1,7 @@
+type Query {
+  getData(id: String!): String!
+}
+
+type Mutation {
+  setData(id: String!, data: Bytes!): SampleResult!
+}
