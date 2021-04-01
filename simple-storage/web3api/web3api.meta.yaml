@@ -1,5 +1,6 @@
 name: SimpleStorage (ETH)
-description: SimpleStorage Web3API Using Ethereum
+subtext: SimpleStorage Web3API On Ethereum
+description: A "SimpleStorage" Web3API that uses Ethereum as its backing blockchain.
 icon: ./meta/imgs/web3api.svg
 banner: ./meta/imgs/web3api-banner.svg
 links:
