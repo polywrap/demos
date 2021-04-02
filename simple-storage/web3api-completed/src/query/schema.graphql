@@ -1,0 +1,23 @@
+#import { Query } into Ethereum from "w3://ens/ethereum.web3api.eth"
+#import { Query } into Ipfs from "w3://ens/ipfs.web3api.eth"
+
+type Query {
+  getData(options: GetDataOptions!): GetDataResult!
+  getIpfsData(options: GetIpfsDataOptions!): GetIpfsDataResult!
+}
+
+type GetIpfsDataOptions {
+  address: String!
+}
+
+type GetIpfsDataResult {
+  value: UInt32!
+}
+
+type GetDataOptions {
+  address: String!
+}
+
+type GetDataResult {
+  value: UInt32!
+}
