@@ -9,7 +9,7 @@ type Mutation {
 
 type SetIpfsDataOptions {
   address: String!
-  data: String!
+  data: Bytes!
 }
 
 type SetIpfsDataResult {
