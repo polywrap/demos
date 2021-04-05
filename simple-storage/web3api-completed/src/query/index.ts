@@ -1,21 +1,24 @@
 import { Ethereum_Query, Ipfs_Query } from './w3/imported';
 import {
   Input_getData,
-  GetDataResult,
   Input_getIpfsData,
-  GetIpfsDataResult,
 } from './w3';
 
-export function getData(input: Input_getData): GetDataResult {
+export function getData(input: Input_getData): u32 {
   const res = Ethereum_Query.callView({
-    address: input.options.address,
+    address: input.address,
     method: 'function get() view returns (uint256)',
     args: [],
   });
   return U32.parseInt(res);
 }
 
-export function getIpfsData(input: Input_getIpfsData): GetIpfsDataResult {
-  const res = Ipfs_Query.getFile({ path: input.options.address });
-  return;
+export function getIpfsData(input: Input_getIpfsData): ArrayBuffer {
+  const hash = Ethereum_Query.callView({
+    address: input.address,
+    method: 'function getHash() view returns (bytes)',
+    args: [],
+  });
+
+  return Ipfs_Query.catFile({ cid: hash });
 }
