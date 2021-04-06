@@ -5,8 +5,10 @@ import { ipfsPlugin } from "@web3api/ipfs-plugin-js";
 
 export async function setupWeb3ApiClient(): Promise<Web3ApiClient> {
   const ethereum = (window as any).ethereum;
-  if (ethereum && ethereum.enable) {
-    await ethereum.enable();
+  if (ethereum) {
+    await ethereum.request({ method: "eth_requestAccounts" });
+  } else {
+    throw Error("Please install Metamask.");
   }
 
   const redirects: UriRedirect[] = [

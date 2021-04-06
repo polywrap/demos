@@ -92,6 +92,11 @@ const ActionComponent = () => {
 
 function Test() {
   const ethereum = (window as any).ethereum;
+  if (ethereum) {
+    ethereum.request({ method: "eth_requestAccounts" });
+  } else {
+    throw Error("Please install Metamask.");
+  }
 
   const redirects: UriRedirect[] = [
     {
