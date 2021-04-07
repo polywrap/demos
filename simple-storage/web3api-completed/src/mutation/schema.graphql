@@ -2,27 +2,24 @@
 #import { Mutation } into Ipfs from "w3://ens/ipfs.web3api.eth"
 
 type Mutation {
-  setData(options: SetDataOptions!): SetDataResult!
-  setIpfsData(options: SetIpfsDataOptions!): SetIpfsDataResult!
+  setData(
+    address: String!
+    value: UInt32!
+  ): String!
+
   deployContract: String!
+
+  setIpfsData(
+    options: SetIpfsDataOptions!
+  ): SetIpfsDataResult!
 }
 
 type SetIpfsDataOptions {
   address: String!
-  data: Bytes!
+  data: String!
 }
 
 type SetIpfsDataResult {
   ipfsHash: String!
   txReceipt: String!
-}
-
-type SetDataOptions {
-  address: String!
-  value: UInt32!
-}
-
-type SetDataResult {
-  txReceipt: String!
-  value: UInt32!
 }

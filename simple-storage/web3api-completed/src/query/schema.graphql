@@ -2,7 +2,11 @@
 #import { Query } into Ipfs from "w3://ens/ipfs.web3api.eth"
 
 type Query {
-  getData(address: String!): UInt32!
-  getIpfsData(address: String!): Bytes!
-}
+  getData(
+    address: String!
+  ): Int!
 
+  getIpfsData(
+    address: String!
+  ): String!
+}

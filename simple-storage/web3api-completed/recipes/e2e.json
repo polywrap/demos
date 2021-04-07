@@ -28,5 +28,18 @@
   {
     "query": "./get.graphql",
     "variables": { "address": "$SimpleStorageAddr" }
+  },
+  {
+    "query": "./setIpfs.graphql",
+    "variables": {
+      "address": "$SimpleStorageAddr",
+      "data": "Hello from IPFS!"
+    }
+  },
+  {
+    "query": "./getIpfs.graphql",
+    "variables": {
+      "address": "$SimpleStorageAddr"
+    }
   }
 ]

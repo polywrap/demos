@@ -1,12 +1,11 @@
-// SPDX-License-Identifier: MIT
 pragma solidity 0.8.3;
 
 contract SimpleStorage {
   uint256 data;
-  bytes hash;
+  string ipfsHash;
 
   event DataSet(address from, uint256 data);
-  event HashSet(address from, bytes hash);
+  event HashSet(address from, string ipfsHash);
 
   function set(uint256 x) public {
     data = x;
@@ -17,12 +16,12 @@ contract SimpleStorage {
     return data;
   }
 
-  function setHash(bytes memory x) public {
-    hash = x;
+  function setHash(string calldata x) public {
+    ipfsHash = x;
     emit HashSet(msg.sender, x);
   }
 
-  function getHash() public view returns (bytes memory) {
-    return hash;
+  function getHash() public view returns (string memory) {
+    return ipfsHash;
   }
 }

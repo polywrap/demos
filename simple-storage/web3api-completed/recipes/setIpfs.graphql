@@ -1,0 +1,11 @@
+mutation { 
+  setIpfsData(
+    options: {
+      address: $address
+      data: $data
+    }
+  ) {
+    ipfsHash
+    txReceipt
+  }
+}
