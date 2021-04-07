@@ -1,0 +1,25 @@
+#import { Mutation } into Ethereum from "w3://ens/ethereum.web3api.eth"
+#import { Mutation } into Ipfs from "w3://ens/ipfs.web3api.eth"
+
+type Mutation {
+  setData(
+    address: String!
+    value: UInt32!
+  ): String!
+
+  deployContract: String!
+
+  setIpfsData(
+    options: SetIpfsDataOptions!
+  ): SetIpfsDataResult!
+}
+
+type SetIpfsDataOptions {
+  address: String!
+  data: String!
+}
+
+type SetIpfsDataResult {
+  ipfsHash: String!
+  txReceipt: String!
+}
