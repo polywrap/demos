@@ -123,8 +123,24 @@ function App() {
               {syntax.value(() => <>&nbsp;&nbsp;&nbsp;&nbsp;uri: </>)}
               {syntax.string(() => <>"w3://ens/rinkeby/api.simplestorage.eth"</>)},<br/>
               {syntax.value(() => <>&nbsp;&nbsp;&nbsp;&nbsp;query: </>)}
-              {syntax.string(() => <>{"\"mutation { deployContract }\""}</>)}<br/>
-              {")}"}
+              {syntax.string(() => <>{"`mutation {"}</>)}<br/>
+              {syntax.string(() => <>{tab()}{tab()}{"deployContract("}</>)}<br/>
+              {syntax.string(() => <>
+                {tab()}{tab()}{tab()}{"connection: {"}<br/>
+                {syntax.string(() => <>
+                  {tab()}{tab()}{tab()}{tab()}{"networkNameOrChainId: "}{syntax.variable(() => <>
+                    {"\"rinkeby\""}
+                  </>)}<br/>
+                  {tab()}{tab()}{tab()}{"}"}<br/>
+                </>)}
+              </>)}
+              {syntax.string(() => <>
+                {tab()}{tab()}{")"}
+              </>)}<br/>
+              {syntax.string(() => <>
+                {tab()}{"}`"}
+              </>)}<br/>
+              {"})"}
             </div>
             <br/>
           </> :
@@ -174,7 +190,7 @@ function App() {
               {syntax.string(() => <>"w3://ens/rinkeby/api.simplestorage.eth"</>)},<br/>
               {syntax.value(() => <>{tab()}query: </>)}
               {syntax.string(() => <>{"`mutation {"}</>)}<br/>
-              {syntax.string(() => <>{tab()}{tab()}{"setData(options: {"}</>)}<br/>
+              {syntax.string(() => <>{tab()}{tab()}{"setData("}</>)}<br/>
               {syntax.string(() => <>
                 {tab()}{tab()}{tab()}{"address: "}{syntax.variable(() => <>
                   "{contract.substr(0, 7)}..."</>
@@ -186,7 +202,16 @@ function App() {
                 </>)}<br/>
               </>)}
               {syntax.string(() => <>
-                {tab()}{tab()}{"})"}
+                {tab()}{tab()}{tab()}{"connection: {"}<br/>
+                {syntax.string(() => <>
+                  {tab()}{tab()}{tab()}{tab()}{"networkNameOrChainId: "}{syntax.variable(() => <>
+                    {"\"rinkeby\""}
+                  </>)}<br/>
+                  {tab()}{tab()}{tab()}{"}"}<br/>
+                </>)}
+              </>)}
+              {syntax.string(() => <>
+                {tab()}{tab()}{")"}
               </>)}<br/>
               {syntax.string(() => <>
                 {tab()}{"}`"}
