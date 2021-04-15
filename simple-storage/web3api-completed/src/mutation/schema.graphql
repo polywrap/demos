@@ -1,16 +1,20 @@
-#import { Mutation } into Ethereum from "w3://ens/ethereum.web3api.eth"
+#import { Mutation, Connection } into Ethereum from "w3://ens/ethereum.web3api.eth"
 #import { Mutation } into Ipfs from "w3://ens/ipfs.web3api.eth"
 
 type Mutation {
   setData(
     address: String!
     value: UInt32!
+    connection: Ethereum_Connection
   ): String!
 
-  deployContract: String!
+  deployContract(
+    connection: Ethereum_Connection
+  ): String!
 
   setIpfsData(
     options: SetIpfsDataOptions!
+    connection: Ethereum_Connection
   ): SetIpfsDataResult!
 }
 

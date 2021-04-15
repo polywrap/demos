@@ -2,6 +2,7 @@ import {
   Ethereum_Mutation,
   Ipfs_Mutation,
   Input_setData,
+  Input_deployContract,
   Input_setIpfsData,
   SetIpfsDataResult,
 } from "./w3";
@@ -11,14 +12,17 @@ export function setData(input: Input_setData): string {
   return Ethereum_Mutation.sendTransaction({
     address: input.address,
     method: "function set(uint256 value)",
-    args: [input.value.toString()]
+    args: [input.value.toString()],
+    connection: input.connection
   });
 }
 
-export function deployContract(): string {
+export function deployContract(input: Input_deployContract): string {
   return Ethereum_Mutation.deployContract({
     abi,
-    bytecode
+    bytecode,
+    args: null,
+    connection: input.connection
   });
 }
 
@@ -33,6 +37,7 @@ export function setIpfsData(input: Input_setIpfsData): SetIpfsDataResult {
     address: input.options.address,
     method: 'function setHash(string value)',
     args: [ipfsHash],
+    connection: input.connection
   });
 
   // 3. Return the result

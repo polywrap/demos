@@ -6,17 +6,21 @@ import { Web3ApiClient } from "@web3api/client-js";
 import { setupWeb3ApiClient } from "./web3api/setupClient";
 import {
   setData,
-  SetDataResult,
   deployContract
 } from "./web3api/simplestorage";
 import Web3ApiAnimation from "./lottie/Web3API_Icon_Cycle.json";
+
+interface Set {
+  txReceipt: string;
+  value: number;
+}
 
 function App() {
   const [client, setClient] = React.useState<Web3ApiClient | undefined>(undefined);
   const [contract, setContract] = React.useState<string | undefined>(undefined);
   const [value, setValue] = React.useState<number>(0);
-  const [sets, setSets] = React.useState<SetDataResult[]>([]);
-  const addSet = (set: SetDataResult) => setSets([...sets, set]);
+  const [sets, setSets] = React.useState<Set[]>([]);
+  const addSet = (set: Set) => setSets([...sets, set]);
 
   const [inputValue, setInputValue] = React.useState<number>(0);
 
@@ -117,7 +121,7 @@ function App() {
               {syntax.prop(() => <>query</>)}
               {"({"}<br/>
               {syntax.value(() => <>&nbsp;&nbsp;&nbsp;&nbsp;uri: </>)}
-              {syntax.string(() => <>"w3://ens/api.simplestorage.eth"</>)},<br/>
+              {syntax.string(() => <>"w3://ens/rinkeby/api.simplestorage.eth"</>)},<br/>
               {syntax.value(() => <>&nbsp;&nbsp;&nbsp;&nbsp;query: </>)}
               {syntax.string(() => <>{"\"mutation { deployContract }\""}</>)}<br/>
               {")}"}
@@ -152,8 +156,11 @@ function App() {
               inputValue,
               await getClient()
             ).then((result) => {
-              addSet(result);
-              setValue(result.value);
+              addSet({
+                txReceipt: result,
+                value: inputValue
+              });
+              setValue(inputValue);
             }).catch(err =>
               console.error(err)
             )
@@ -164,7 +171,7 @@ function App() {
               {syntax.class(() => <>Web3Api</>)}.
               {syntax.prop(() => <>query</>)}{"({"}<br/>
               {syntax.value(() => <>{tab()}uri: </>)}
-              {syntax.string(() => <>"w3://ens/api.simplestorage.eth"</>)},<br/>
+              {syntax.string(() => <>"w3://ens/rinkeby/api.simplestorage.eth"</>)},<br/>
               {syntax.value(() => <>{tab()}query: </>)}
               {syntax.string(() => <>{"`mutation {"}</>)}<br/>
               {syntax.string(() => <>{tab()}{tab()}{"setData(options: {"}</>)}<br/>

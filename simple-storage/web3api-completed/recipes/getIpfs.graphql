@@ -1,5 +1,8 @@
 query { 
   getIpfsData(
     address: $address
+    connection: {
+      networkNameOrChainId: $network
+    }
   )
 }

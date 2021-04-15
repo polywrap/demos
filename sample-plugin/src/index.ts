@@ -1,12 +1,12 @@
-import { mutation, query } from './resolvers';
-import { manifest } from './manifest';
+import { mutation, query } from "./resolvers";
+import { manifest } from "./manifest";
 
 import {
   Plugin,
   PluginFactory,
   PluginManifest,
   PluginModules,
-} from '@web3api/core-js';
+} from "@web3api/core-js";
 
 export interface SamplePluginConfig {
   defaultValue: string;
@@ -28,16 +28,12 @@ export class SamplePlugin extends Plugin {
     };
   }
 
-  /* eslint-disable @typescript-eslint/no-unused-vars */
-  public async getData(id: string): Promise<string> {
-    // Todo: Add query processing part here
-    return this._config.defaultValue;
+  public async sampleQuery(data: string): Promise<string> {
+    return data + this._config.defaultValue;
   }
 
-  /* eslint-disable @typescript-eslint/no-unused-vars */
-  public async setData(id: string, data: Uint8Array): Promise<string> {
-    // Todo: Add mutation processing part here
-    return this._config.defaultValue;
+  public sampleMutation(data: Uint8Array): boolean {
+    return data.length > 0;
   }
 }
 
@@ -49,4 +45,5 @@ export const samplePlugin: PluginFactory<SamplePluginConfig> = (
     manifest: SamplePlugin.manifest(),
   };
 };
+
 export const plugin = samplePlugin;

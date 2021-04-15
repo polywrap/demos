@@ -14,7 +14,13 @@ export async function setupWeb3ApiClient(): Promise<Web3ApiClient> {
   const redirects: UriRedirect[] = [
     {
       from: "w3://ens/ethereum.web3api.eth",
-      to: ethereumPlugin({ provider: ethereum }),
+      to: ethereumPlugin({
+        networks: {
+          rinkeby: {
+            provider: ethereum
+          }
+        }
+      }),
     },
     {
       from: "w3://ens/ipfs.web3api.eth",

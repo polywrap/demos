@@ -1,6 +1,6 @@
 [
   {
-    "api": "ens/helloworld.eth"
+    "api": "ens/testnet/helloworld.eth"
   },
   {
     "query": "./logMessage.graphql",

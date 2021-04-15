@@ -1,11 +1,9 @@
-mutation {
+mutation SetData($address: String!, $value: Int!) {
   setData(
-    options: {
-      address: $address
-      value: $value
+    address: $address
+    value: $value
+    connection: {
+      networkNameOrChainId: $network
     }
-  ) {
-    value
-    txReceipt
-  }
+  )
 }

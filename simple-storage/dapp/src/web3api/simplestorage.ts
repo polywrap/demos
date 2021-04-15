@@ -1,26 +1,24 @@
 import { Web3ApiClient } from "@web3api/client-js";
 
-export const uri = "ens/api.simplestorage.eth";
-
-export interface SetDataResult {
-  txReceipt: string,
-  value: number
-};
+export const uri = "ens/rinkeby/api.simplestorage.eth";
 
 export async function setData(
   contract: string,
   value: number,
   client: Web3ApiClient
-): Promise<SetDataResult> {
+): Promise<string> {
   const { data, errors } = await client.query<{
-    setData: SetDataResult
+    setData: string
   }>({
     uri,
     query: `mutation {
-      setData(options: {
+      setData(
         address: "${contract}"
         value: ${value}
-      })
+        connection: {
+          networkNameOrChainId: "rinkeby"
+        }
+      )
     }`
   });
 
@@ -38,7 +36,13 @@ export async function deployContract(
     deployContract: string
   }>({
     uri,
-    query: `mutation { deployContract }`
+    query: `mutation {
+      deployContract(
+        connection: {
+          networkNameOrChainId: "rinkeby"
+        }
+      )
+    }`
   });
 
   if (errors || !data) {

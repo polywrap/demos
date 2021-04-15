@@ -4,6 +4,9 @@ mutation {
       address: $address
       data: $data
     }
+    connection: {
+      networkNameOrChainId: $network
+    }
   ) {
     ipfsHash
     txReceipt

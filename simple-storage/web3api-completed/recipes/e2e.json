@@ -1,45 +1,58 @@
 [
   {
-    "api": "ens/simplestorage.eth",
+    "api": "ens/testnet/simplestorage.eth",
     "constants": "./constants.json"
   },
   {
     "query": "./get.graphql",
-    "variables": { "address": "$SimpleStorageAddr" }
+    "variables": {
+      "address": "$SimpleStorageAddr",
+      "network": "testnet"
+    }
   },
   {
     "query": "./set.graphql",
     "variables": {
       "address": "$SimpleStorageAddr",
-      "value": 5
+      "value": 5,
+      "network": "testnet"
     }
   },
   {
     "query": "./get.graphql",
-    "variables": { "address": "$SimpleStorageAddr" }
+    "variables": {
+      "address": "$SimpleStorageAddr",
+      "network": "testnet"
+    }
   },
   {
     "query": "./set.graphql",
     "variables": {
       "address": "$SimpleStorageAddr",
-      "value": 569
+      "value": 569,
+      "network": "testnet"
     }
   },
   {
     "query": "./get.graphql",
-    "variables": { "address": "$SimpleStorageAddr" }
+    "variables": {
+      "address": "$SimpleStorageAddr",
+      "network": "testnet"
+    }
   },
   {
     "query": "./setIpfs.graphql",
     "variables": {
       "address": "$SimpleStorageAddr",
-      "data": "Hello from IPFS!"
+      "data": "Hello from IPFS!",
+      "network": "testnet"
     }
   },
   {
     "query": "./getIpfs.graphql",
     "variables": {
-      "address": "$SimpleStorageAddr"
+      "address": "$SimpleStorageAddr",
+      "network": "testnet"
     }
   }
 ]

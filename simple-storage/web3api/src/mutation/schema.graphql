@@ -1,19 +1,13 @@
-#import { Mutation } into Ethereum from "w3://ens/ethereum.web3api.eth"
+#import { Mutation, Connection } into Ethereum from "w3://ens/ethereum.web3api.eth"
 
 type Mutation {
   setData(
-    options: SetDataOptions!
-  ): SetDataResult!
+    address: String!
+    value: UInt32!
+    connection: Ethereum_Connection
+  ): String!
 
-  deployContract: String!
-}
-
-type SetDataOptions {
-  address: String!
-  value: UInt32!
-}
-
-type SetDataResult {
-  txReceipt: String!
-  value: UInt32!
+  deployContract(
+    connection: Ethereum_Connection
+  ): String!
 }
