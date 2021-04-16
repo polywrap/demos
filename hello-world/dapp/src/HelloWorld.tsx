@@ -58,30 +58,7 @@ export const HelloWorld: React.FC = () => {
           Checkout Our Documentation
         </a>
       </div>
-      <div style={{ width: "100%", height: "100px" }}/>
-      <div className="footer__container">
-        <a
-          className="footer__link"
-          href="https://github.com/Web3-API/demos/tree/main/hello-world/web3api"
-          target="_blank"
-        >
-          Source Code
-        </a>
-        <a
-          className="footer__link"
-          href="https://app.ens.domains/name/helloworld.web3api.eth"
-          target="_blank"
-        >
-          ENS Domain
-        </a>
-        <a
-          className="footer__link"
-          href="https://bafybeig7r7vm6vg7fkv4u57p6pj3t3a7li56zeiiu6nn7sx5lrlacy7lpi.ipfs.dweb.link/"
-          target="_blank"
-        >
-          IPFS Package
-        </a>
-      </div>
+      <div style={{ width: "100%", height: "30px" }}/>
     </>
   );
 }
