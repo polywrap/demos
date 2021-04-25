@@ -27,38 +27,48 @@ export const HelloWorld: React.FC = () => {
 
   return (
     <>
-      <div className="main__heading">"Hello World"<br/>from Web3API!</div>
-      <div className="main__text">
-        Test the "Hello World" Web3API by:<br/>
-          1. type into the input below<br/>
-          2. click the submit button<br/>
-          3. view the output in <a
-            className="main__link"
+      <div className="hello">
+        <div className="hello__heading">"Hello World" from Web3API!</div>
+        <div className="hello__text">
+          <strong>Test the "Hello World" Web3API by:</strong>
+          <br />
+          1. typing into the input below
+          <br />
+          2. clicking the submit button
+          <br />
+          3. viewing the output in{" "}
+          <a
+            className="hello__link"
             href="https://webmasters.stackexchange.com/a/77337"
             target="_blank"
           >
             the console
-          </a><br/>
+          </a>
+          <br />
+        </div>
+        <div onSubmit={logMsgHandler} className="hello__form">
+          <input
+            className="hello__input"
+            onChange={(event) => onChangeHandler(event)}
+          />
+          <button type="submit" className="hello__btn" onClick={logMsgHandler}>
+            Submit
+          </button>
+        </div>
+        <br />
+        <div className="hello__text">
+          Want to build your own Web3API?
+          <br />
+          <a
+            className="hello__link"
+            href="https://docs.web3api.dev/"
+            target="_blank"
+          >
+            Checkout our documentation
+          </a>
+        </div>
+        <div style={{ width: "100%", height: "30px" }} />
       </div>
-      <input
-        className="main__input"
-        onChange={(event) => onChangeHandler(event)}
-      />
-      <button className="main__btn" onClick={logMsgHandler}>
-        Submit
-      </button>
-      <br/>
-      <div className="main__text">
-        Want to build your own Web3API?<br/>
-        <a
-          className="main__link"
-          href="https://docs.web3api.dev/"
-          target="_blank"
-        >
-          Checkout Our Documentation
-        </a>
-      </div>
-      <div style={{ width: "100%", height: "30px" }}/>
     </>
   );
-}
+};
