@@ -1,6 +1,5 @@
 /* Header component */
 .header {
-  position: absolute;
   top: 0;
   width: 100%;
   height: 2.5rem;
@@ -21,30 +20,23 @@
 /* Container for Lottie logo and HelloWorld components */
 .main {
   display: flex;
-  width: 60%;
   margin: 0 auto;
-  justify-content: center;
+  width: 1200px;
   align-items: center;
+  justify-content: center;
   min-height: 100vh;
 }
 
 /* HelloWorld component */
 .hello {
-  margin-left: 5rem;
-  justify-content: center;
-  align-items: center;
-}
-
-.hello__logo {
-  max-width: 15rem;
-  margin-bottom: 5rem;
+  max-width: 100%;
 }
 
 .hello__heading {
-  font-size: 2.25rem;
+  font-size: 2rem;
   margin-top: 2rem;
-  font-weight: 700;
   margin-bottom: 20px;
+  font-weight: 700;
   color: white;
 }
 
@@ -64,7 +56,7 @@
 }
 
 .hello__form {
-  align-items: center;
+  margin: 0 auto;
 }
 
 .hello__input {
@@ -76,6 +68,7 @@
   border-radius: 4px;
   margin: 2.5rem 2rem 2.5rem 0;
   padding: 1rem;
+  max-width: 75%;
   min-width: 0;
   background: none;
   box-sizing: content-box;
@@ -91,7 +84,6 @@
   padding: 5px 15px;
   font-weight: 500;
   line-height: 2.75;
-  min-width: 64px;
   cursor: pointer;
   border-radius: 4px;
   text-transform: uppercase;
@@ -108,25 +100,35 @@
   background-color: #60c093;
 }
 
-@media screen and (max-width: 600px) {
-  .hello {
-    margin-left: 0;
+@media screen and (max-width: 1300px) {
+  .main {
+    width: auto;
+    flex-direction: column;
+    margin: auto 0;
   }
 
   .hello__heading {
-    font-size: 1.5rem;
+    text-align: center;
+    font-size: 1.8rem;
   }
 
   .hello__text {
-    font-size: 18px;
+    text-align: center;
+  }
+
+  .hello__form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
   }
 
   .hello__input {
-    width: 320px;
+    margin: 1.5rem 0 1rem 0;
   }
 
-  .hello__link {
-    font-size: 18px;
+  .hello__btn {
+    margin-bottom: 2rem;
   }
 }
 

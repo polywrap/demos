@@ -52,6 +52,7 @@ export const HelloWorld: React.FC = () => {
           </a>
           <br />
         </div>
+        <br />
         <form
           onSubmit={(event) => logMsgHandler(event)}
           className="hello__form"
@@ -65,7 +66,6 @@ export const HelloWorld: React.FC = () => {
           </button>
           <ToastContainer />
         </form>
-        <br />
         <div className="hello__text">
           Want to build your own Web3API?
           <br />
@@ -77,7 +77,6 @@ export const HelloWorld: React.FC = () => {
             Checkout our documentation
           </a>
         </div>
-        <div style={{ width: "100%", height: "30px" }} />
       </div>
     </>
   );

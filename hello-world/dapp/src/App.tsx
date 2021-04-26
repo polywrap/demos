@@ -20,8 +20,9 @@ export const App: React.FC = () => {
         <Lottie
           options={logoLottieOptions}
           isClickToPauseDisabled={true}
-          height={"350px"}
-          width={"350px"}
+          height={"320px"}
+          width={"320px"}
+          style={{ width: "50%", height: "auto", maxWidth: "320px" }}
         />
         <HelloWorld />
       </div>
