@@ -129,3 +129,10 @@
     font-size: 18px;
   }
 }
+
+.Toastify__toast {
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  background-color: #60c093;
+}

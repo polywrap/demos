@@ -1,5 +1,7 @@
 import React from "react";
 import { useWeb3ApiQuery } from "@web3api/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const HelloWorld: React.FC = () => {
   const [message, setMessage] = React.useState("");
@@ -15,7 +17,11 @@ export const HelloWorld: React.FC = () => {
 
   const { execute } = useWeb3ApiQuery(query);
 
-  const logMsgHandler = async (): Promise<any> => {
+  const notify = () => toast("Take a look at your console!");
+
+  const logMsgHandler = async (event: any): Promise<any> => {
+    event.preventDefault();
+    notify();
     console.info(`Sending Query: ${JSON.stringify(query, null, 2)}`);
     const result = await execute();
     console.info(`Query Result: ${JSON.stringify(result, null, 2)}`);
@@ -46,15 +52,19 @@ export const HelloWorld: React.FC = () => {
           </a>
           <br />
         </div>
-        <div onSubmit={logMsgHandler} className="hello__form">
+        <form
+          onSubmit={(event) => logMsgHandler(event)}
+          className="hello__form"
+        >
           <input
             className="hello__input"
             onChange={(event) => onChangeHandler(event)}
           />
-          <button type="submit" className="hello__btn" onClick={logMsgHandler}>
+          <button type="submit" className="hello__btn">
             Submit
           </button>
-        </div>
+          <ToastContainer />
+        </form>
         <br />
         <div className="hello__text">
           Want to build your own Web3API?
