@@ -2,6 +2,12 @@
 
 In the project directory, you can run:
 
+### `nvm install && nvm use`
+Install and use the proper version of node.
+
+### `yarn`
+Install all dependencies.
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />
@@ -13,4 +19,3 @@ You will also see any lint errors in the console.
 ## Learn More
 
 To learn more about Web3API, visit our [documentation page](https://docs.web3api.dev/).
-
