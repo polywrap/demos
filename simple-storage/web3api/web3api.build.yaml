@@ -1,0 +1,9 @@
+docker:
+  name: simple-stroage-build-env
+  imageOrDockerfile: ./Dockerfile
+env:
+  include:
+    - ./src/**/*
+    - ./scripts/**/*
+    - ./package.json
+    - ./.nvmrc
