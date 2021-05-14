@@ -1,0 +1,22 @@
+name: SimpleStorage (ETH)
+subtext: SimpleStorage Web3API On Ethereum
+description: A "SimpleStorage" Web3API that uses Ethereum as its backing blockchain.
+icon: ./meta/imgs/web3api.svg
+banner: ./meta/imgs/web3api-banner.svg
+links:
+  - name: GitHub
+    icon: ./meta/imgs/github.svg
+    url: https://github.com/Web3-API/demos/tree/main/simple-storage/web3api
+  - name: Website
+    icon: ./meta/imgs/web3api.svg
+    url: https://web3api.dev
+queries:
+  - name: Deploy Storage Contract
+    description: Deploy the SimpleStorage contract onto Ethereum.
+    query: ./meta/queries/deploy.graphql
+  - name: Get Storage Value
+    description: Get the storage value within an existing SimpleStorage contract on Ethereum.
+    query: ./meta/queries/get.graphql
+  - name: Set Storage Value
+    description: Set the storage value within an existing SimpleStorage contract on Ethereum.
+    query: ./meta/queries/set.graphql
