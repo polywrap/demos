@@ -1,0 +1,47 @@
+name: Simple-Storage-Web3API
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  Simple-Storage-Web3API:
+    name: Simple-Storage-Web3API
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Read .nvmrc
+        run: cd ./simple-storage/web3api-completed && echo ::set-output name=NVMRC::$(cat .nvmrc)
+        id: nvm
+
+      - name: Setup Node.js
+        uses: actions/setup-node@master
+        with:
+          node-version: '${{ steps.nvm.outputs.NVMRC }}'
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: cd ./simple-storage/web3api-completed && echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: cd ./simple-storage/web3api-completed && yarn install --nonInteractive --frozen-lockfile --prefer-offline
+
+      - name: Update Web3API dependencies
+        run: >
+          cd ./simple-storage/web3api-completed &&
+          yarn remove @web3api/cli @web3api/ethereum-plugin-js @web3api/wasm-as &&
+          yarn add -D @web3api/cli @web3api/ethereum-plugin-js @web3api/wasm-as
+
+      - name: Build
+        run: cd ./simple-storage/web3api-completed && yarn build
+
+      - name: Test
+        run: cd ./simple-storage/web3api-completed && yarn test
