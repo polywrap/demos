@@ -1,6 +1,6 @@
 name: Sample-Plugin
 
-on: [push, pull_request, workflow_dispatch]
+on: [push, pull_request]
 
 jobs:
   Sample-Plugin:
@@ -33,13 +33,6 @@ jobs:
 
       - name: Install dependencies
         run: cd ./sample-plugin && yarn install --nonInteractive --frozen-lockfile --prefer-offline
-
-      - name: Update Web3API dependencies
-        run: >
-          cd ./sample-plugin &&
-          yarn remove @web3api/core-js @web3api/client-js &&
-          yarn add @web3api/core-js &&
-          yarn add -D @web3api/client-js
 
       - name: Build
         run: cd ./sample-plugin && yarn build

@@ -1,6 +1,6 @@
 name: Simple-Storage-Web3API
 
-on: [push, pull_request, workflow_dispatch]
+on: [push, pull_request]
 
 jobs:
   Simple-Storage-Web3API:
@@ -33,12 +33,6 @@ jobs:
 
       - name: Install dependencies
         run: cd ./simple-storage/web3api-completed && yarn install --nonInteractive --frozen-lockfile --prefer-offline
-
-      - name: Update Web3API dependencies
-        run: >
-          cd ./simple-storage/web3api-completed &&
-          yarn remove @web3api/cli @web3api/ethereum-plugin-js @web3api/wasm-as &&
-          yarn add -D @web3api/cli @web3api/ethereum-plugin-js @web3api/wasm-as
 
       - name: Build
         run: cd ./simple-storage/web3api-completed && yarn build
