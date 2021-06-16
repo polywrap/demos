@@ -1,5 +1,5 @@
 {
-  "name": "templates-plugin-typescript",
+  "name": "sample-plugin-demo",
   "description": "Web3API Plugin Typescript Template",
   "private": true,
   "version": "0.0.1-prealpha.20",
