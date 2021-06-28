@@ -9,12 +9,14 @@ import {
 import { abi, bytecode } from "../contracts/SimpleStorage";
 
 export function setData(input: Input_setData): string {
-  return Ethereum_Mutation.sendTransaction({
+  const res = Ethereum_Mutation.callContractMethodAndWait({
     address: input.address,
     method: "function set(uint256 value)",
     args: [input.value.toString()],
     connection: input.connection
   });
+
+  return res.transactionHash;
 }
 
 export function deployContract(input: Input_deployContract): string {
@@ -33,7 +35,7 @@ export function setIpfsData(input: Input_setIpfsData): SetIpfsDataResult {
   });
 
   // 2. Add the data's IPFS hash to SimpleStorage using `setHash(...)`
-  const txReceipt = Ethereum_Mutation.sendTransaction({
+  const txReceipt = Ethereum_Mutation.callContractMethodAndWait({
     address: input.options.address,
     method: 'function setHash(string value)',
     args: [ipfsHash],
@@ -43,6 +45,6 @@ export function setIpfsData(input: Input_setIpfsData): SetIpfsDataResult {
   // 3. Return the result
   return {
     ipfsHash,
-    txReceipt,
+    txReceipt: txReceipt.transactionHash,
   };
 }
