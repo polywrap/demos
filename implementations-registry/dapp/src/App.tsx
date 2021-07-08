@@ -6,7 +6,7 @@ import { getImplementations } from './web3api/implementationsRegistry';
 import { speak } from './web3api/testInterface';
 
 function App() {
-  const [interfaceUri, setInterfaceUri] = useState('');
+  const [interfaceUri, setInterfaceUri] = useState('polyinterface.eth');
   const [client, setClient] = React.useState<Web3ApiClient | undefined>(undefined);
   const [implementationsList, setImplementationsList] = useState<string[]>([
     'test1.eth',
@@ -31,8 +31,8 @@ function App() {
     })();
   }, []);
   
-  const implementationElements = implementationsList.map((implementation) =>
-    <div>
+  const implementationElements = implementationsList.map((implementation, i) =>
+    <div key={i}>
       <div>{implementation}</div>
       <div>
         <button 
@@ -78,6 +78,25 @@ function App() {
 
         <div>
           {implementationElements}
+        </div>
+
+        <div>
+          <button onClick={async () =>
+              {
+                for(const implementation of implementationsList) {
+                  speak(
+                    implementation,
+                    client!
+                  ).then((result) => {
+                    console.log(result);
+                  }).catch(err =>
+                    console.error(err)
+                  )
+                }
+              }
+            }>
+              All speak
+          </button>
         </div>
       </header>
     </div>
