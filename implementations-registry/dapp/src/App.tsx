@@ -1,23 +1,84 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import { Web3ApiClient } from '@web3api/client-js';
+import { setupWeb3ApiClient } from './web3api/setupClient';
+import { getImplementations } from './web3api/implementationsRegistry';
+import { speak } from './web3api/testInterface';
 
 function App() {
+  const [interfaceUri, setInterfaceUri] = useState('');
+  const [client, setClient] = React.useState<Web3ApiClient | undefined>(undefined);
+  const [implementationsList, setImplementationsList] = useState<string[]>([
+    'test1.eth',
+    'test2.eth'
+  ]);
+
+  const getClient = async () => {
+    if (client) {
+      return client;
+    }
+
+    const newClient = await setupWeb3ApiClient();
+    setClient(newClient);
+    console.log(newClient);
+
+    return newClient;
+  }
+
+  useEffect(() => {
+    (async () => {
+      await getClient();
+    })();
+  }, []);
+  
+  const implementationElements = implementationsList.map((implementation) =>
+    <div>
+      <div>{implementation}</div>
+      <div>
+        <button 
+          onClick={async () =>
+            speak(
+              implementation,
+              client!
+            ).then((result) => {
+              console.log(result);
+            }).catch(err =>
+              console.error(err)
+            )
+          }>
+          Speak
+        </button>
+      </div>
+    </div>
+  );
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>
+          <input 
+            type="text"
+            value={interfaceUri}
+            onChange={e => setInterfaceUri(e.target.value)}
+          />
+
+          <button onClick={async () =>
+              getImplementations(
+                interfaceUri,
+                client!
+              ).then((result) => {
+                setImplementationsList(result);
+              }).catch(err =>
+                console.error(err)
+              )
+            }>
+              Find implementations
+          </button>
+        </div>
+
+        <div>
+          {implementationElements}
+        </div>
       </header>
     </div>
   );
