@@ -36,13 +36,14 @@
 }
 
 .card {
-  min-width: 180px;
+  max-width: 200px;
   margin: 1rem;
   border-radius: 2px;
   border: 1px solid #babcbf;
   background: #452358;
   box-shadow: #d2d2f9 3px 3px 0px 0px;
   padding: 10px;
+  font-size: 20px;
 }
 
 button {
@@ -74,4 +75,8 @@ input {
   padding: 0.5rem 2rem 0.5rem 0.5rem;
   border-radius: 0.25em;
   font-size: 18px;
+}
+
+.component-title {
+  margin: 20px;
 }

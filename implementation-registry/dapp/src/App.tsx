@@ -10,6 +10,10 @@ function App() {
     <div className="App">
     
       <Web3ApiProvider>
+        <div>
+          <h3>Interface Implementations</h3>
+        </div>
+
         <VersionRegistryComponent />
         
         <ImplementationRegistryComponent />

@@ -10,9 +10,14 @@ export default function VersionRegistryComponent() {
   return (
     <div className="VersionRegistryComponent">
       <div>
+        <h4 className="component-title">Version Registry</h4>
+      </div>
+
+      <div>
         <input 
             type="text"
             value={apiToRegister}
+            placeholder="ENS domain..."
             onChange={e => setApiToRegister(e.target.value)}
           />
 

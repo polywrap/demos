@@ -11,14 +11,20 @@ export default function ImplementationRegistryComponent() {
   return (
     <div className="ImplementationRegistryComponent">
       <div>
+        <h4 className="component-title">Implementation Registry</h4>
+      </div>
+      
+      <div>
         <input 
             type="text"
             value={interfaceToRegister}
+            placeholder="Interface domain..."
             onChange={e => setInterfaceToRegister(e.target.value)}
           />
         <input 
             type="text"
             value={implementationToRegister}
+            placeholder="Implementation domain..."
             onChange={e => setImplementationToRegister(e.target.value)}
           />
 
@@ -33,7 +39,7 @@ export default function ImplementationRegistryComponent() {
               console.error(err)
             )
           }>
-            Register implementation
+            Register API implementation
         </button>
       </div>
     </div>
