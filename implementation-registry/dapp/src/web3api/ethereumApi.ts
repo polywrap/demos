@@ -1,6 +1,6 @@
 import { Web3ApiClient } from "@web3api/client-js";
 
-export const callView = async (
+export const callContractView = async (
   client: Web3ApiClient,
   address: string,
   method: string,
@@ -42,4 +42,40 @@ export const callView = async (
   throw Error(
     `Ethereum.callContractView returned nothing.\nData: ${data}\nErrors: ${errors}`
   );
+};
+
+export const callContractMethod = async (
+  client: Web3ApiClient,
+  address: string,
+  method: string,
+  args: string[],
+  networkNameOrChainId?: string
+): Promise<void> => {
+  const { data, errors } = await client.query<{
+    callContractStatic: string
+  }>({
+    uri: "w3://ens/ethereum.web3api.eth",
+    query: `mutation {
+      callContractMethod(
+        address: $address,
+        method: $method,
+        args: $args,
+        connection: $connection
+      )
+    }`,
+    variables: {
+      address,
+      method,
+      args,
+      connection: networkNameOrChainId
+        ? {
+            networkNameOrChainId,
+          }
+        : undefined,
+    },
+  });
+
+  if (errors && errors.length) {
+    throw errors;
+  }
 };

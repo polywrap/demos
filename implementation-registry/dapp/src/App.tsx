@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './App.scss';
 import { Web3ApiClient } from '@web3api/client-js';
 import { setupWeb3ApiClient } from './web3api/setupClient';
-import { getImplementations } from './web3api/implementationsRegistry';
+import { getImplementations, registerImplementation } from './web3api/implementationRegistry';
 import { speak } from './web3api/testInterface';
+import { registerAPI } from './web3api/versionRegistry';
 
 function App() {
   const [interfaceUri, setInterfaceUri] = useState('polyinterface.eth');
@@ -12,6 +13,12 @@ function App() {
     'test1.eth',
     'test2.eth'
   ]);
+
+  const [apiToRegister, setApiToRegister] = useState('');
+
+  const [interfaceToRegister, setInterfaceToRegister] = useState('');
+  const [implementationToRegister, setImplementationToRegister] = useState('');
+
 
   const getClient = async () => {
     if (client) {
@@ -54,6 +61,54 @@ function App() {
 
   return (
     <div className="App">
+      <div>
+        <input 
+            type="text"
+            value={apiToRegister}
+            onChange={e => setApiToRegister(e.target.value)}
+          />
+
+        <button onClick={async () =>
+            registerAPI(
+              apiToRegister,
+              client!
+            ).then(() => {
+              console.log(`Registered ${apiToRegister}`);
+            }).catch(err =>
+              console.error(err)
+            )
+          }>
+            Register API
+        </button>
+      </div>
+
+      <div>
+        <input 
+            type="text"
+            value={interfaceToRegister}
+            onChange={e => setInterfaceToRegister(e.target.value)}
+          />
+        <input 
+            type="text"
+            value={implementationToRegister}
+            onChange={e => setImplementationToRegister(e.target.value)}
+          />
+
+        <button onClick={async () =>
+            registerImplementation(
+              interfaceToRegister,
+              implementationToRegister,
+              client!
+            ).then(() => {
+              console.log(`Registered ${implementationToRegister} as implementation of ${interfaceToRegister}.`);
+            }).catch((err: any)=>
+              console.error(err)
+            )
+          }>
+            Register implementation
+        </button>
+      </div>
+     
       <div>
         <input 
           type="text"
