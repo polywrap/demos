@@ -1,4 +1,4 @@
-import { Web3ApiClient } from "@web3api/client-js";
+import { Uri, Web3ApiClient } from "@web3api/client-js";
 
 export async function speak(
   uri: string,
@@ -7,10 +7,13 @@ export async function speak(
   const { data, errors } = await client.query<{
     speak: string
   }>({
-    uri: uri,
+    uri: `ens/rinkeby/${uri}`,
     query: `query {
-      speak()
-    }`
+      speak(arg: $arg)
+    }`,
+    variables: {
+      arg: "Hello"
+    }
   });
 
   if (errors || !data) {

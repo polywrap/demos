@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+import './App.scss';
 import { Web3ApiClient } from '@web3api/client-js';
 import { setupWeb3ApiClient } from './web3api/setupClient';
 import { getImplementations } from './web3api/implementationsRegistry';
@@ -32,7 +32,7 @@ function App() {
   }, []);
   
   const implementationElements = implementationsList.map((implementation, i) =>
-    <div key={i}>
+    <div key={i} className="card">
       <div>{implementation}</div>
       <div>
         <button 
@@ -54,51 +54,49 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <div>
-          <input 
-            type="text"
-            value={interfaceUri}
-            onChange={e => setInterfaceUri(e.target.value)}
-          />
+      <div>
+        <input 
+          type="text"
+          value={interfaceUri}
+          onChange={e => setInterfaceUri(e.target.value)}
+        />
 
-          <button onClick={async () =>
-              getImplementations(
-                interfaceUri,
-                client!
-              ).then((result) => {
-                setImplementationsList(result);
-              }).catch(err =>
-                console.error(err)
-              )
-            }>
-              Find implementations
-          </button>
-        </div>
+        <button onClick={async () =>
+            getImplementations(
+              interfaceUri,
+              client!
+            ).then((result) => {
+              setImplementationsList(result);
+            }).catch(err =>
+              console.error(err)
+            )
+          }>
+            Find implementations
+        </button>
+      </div>
 
-        <div>
-          {implementationElements}
-        </div>
+      <div>
+        {implementationElements}
+      </div>
 
-        <div>
-          <button onClick={async () =>
-              {
-                for(const implementation of implementationsList) {
-                  speak(
-                    implementation,
-                    client!
-                  ).then((result) => {
-                    console.log(result);
-                  }).catch(err =>
-                    console.error(err)
-                  )
-                }
+      <div>
+        <button onClick={async () =>
+            {
+              for(const implementation of implementationsList) {
+                speak(
+                  implementation,
+                  client!
+                ).then((result) => {
+                  console.log(result);
+                }).catch(err =>
+                  console.error(err)
+                )
               }
-            }>
-              All speak
-          </button>
-        </div>
-      </header>
+            }
+          }>
+            All speak
+        </button>
+      </div>
     </div>
   );
 }
