@@ -2525,7 +2525,7 @@
     "@typescript-eslint/types" "4.15.2"
     eslint-visitor-keys "^2.0.0"
 
-"@web3api/client-js@^0.0.1-prealpha.28":
+"@web3api/client-js@0.0.1-prealpha.28":
   version "0.0.1-prealpha.28"
   resolved "https://registry.yarnpkg.com/@web3api/client-js/-/client-js-0.0.1-prealpha.28.tgz#6abd9be3a366f4af58c409215e73e8601d4bffb2"
   integrity sha512-qVSKJlzgTgaEq2iug7aFKl7grOSMHs0SDQNOYZDMwZQMKT9xeTjM0Rn+7Pq6CEL+jWeO5QFBzrXljL0OknQUKw==
@@ -2598,6 +2598,14 @@
   version "0.0.1-prealpha.28"
   resolved "https://registry.yarnpkg.com/@web3api/manifest-schemas/-/manifest-schemas-0.0.1-prealpha.28.tgz#c138119a4569041e1441a0d5265485c3a4db38fc"
   integrity sha512-3p1Mb+YnxNAjTPU/ZV0S3Mr66qWiLLlXTB1Sui0WG9/sx/6NPHftuLFvuxNScvRjIixZwuvsR57zBx7tRpm8Uw==
+
+"@web3api/react@^0.0.1-prealpha.28":
+  version "0.0.1-prealpha.28"
+  resolved "https://registry.yarnpkg.com/@web3api/react/-/react-0.0.1-prealpha.28.tgz#6ba5eaffe9808b32937599c10b2f390673b7bb27"
+  integrity sha512-JjS2/k9+6j9LWiucF9k14pPbxL3jM6vjTZDDaT16VTlxlgTCwVYarH6otmB4vca728BW2NFQKSLnkxS3hgnc1A==
+  dependencies:
+    "@web3api/client-js" "0.0.1-prealpha.28"
+    "@web3api/core-js" "0.0.1-prealpha.28"
 
 "@web3api/schema-parse@0.0.1-prealpha.28":
   version "0.0.1-prealpha.28"
