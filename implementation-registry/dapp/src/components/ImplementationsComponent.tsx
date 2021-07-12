@@ -1,11 +1,14 @@
+import './ImplementationsComponent.scss';
 import React, { useEffect, useState } from 'react';
 import { Web3ApiProvider, useWeb3ApiClient, createWeb3ApiProvider } from "@web3api/react";
 import { getImplementations } from '../web3api/implementationRegistry';
 import { speak } from '../web3api/testInterface';
+import Loader from "react-loader-spinner";
 
 export default function ImplementationsComponent() {
   const client = useWeb3ApiClient();
   
+  const [areImplementationsLoading, setAreImplementationsLoading] = useState(false);
   const [interfaceUri, setInterfaceUri] = useState('polyinterface.eth');
   const [implementationsList, setImplementationsList] = useState<string[]>([]);
 
@@ -30,6 +33,17 @@ export default function ImplementationsComponent() {
     </div>
   );
 
+  const implementations = areImplementationsLoading 
+    ? (
+      <Loader
+        type="TailSpin"
+        color="#00BFFF"
+        height={50}
+        width={50}
+      />
+    )
+    : implementationElements;
+
   return (
     <div className="ImplementationsComponent">
       <div>
@@ -43,7 +57,9 @@ export default function ImplementationsComponent() {
           onChange={e => setInterfaceUri(e.target.value)}
         />
 
-        <button onClick={async () =>
+        <button onClick={async () => {
+            setAreImplementationsLoading(true);
+        
             getImplementations(
               interfaceUri,
               client
@@ -51,14 +67,17 @@ export default function ImplementationsComponent() {
               setImplementationsList(result);
             }).catch(err =>
               console.error(err)
-            )
+            ).finally(() => {
+              setAreImplementationsLoading(false);
+            })
+          }
           }>
             Find implementations
         </button>
       </div>
 
-      <div>
-        {implementationElements}
+      <div className="implementations">
+        {implementations}
       </div>
 
       <div>

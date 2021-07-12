@@ -1,9 +1,11 @@
 import { useWeb3ApiClient } from '@web3api/react';
 import React, { useState } from 'react';
 import { registerAPI } from '../web3api/versionRegistry';
+import { useToasts } from 'react-toast-notifications';
 
 export default function VersionRegistryComponent() {
   const client = useWeb3ApiClient();
+  const { addToast, removeToast } = useToasts();
   
   const [apiToRegister, setApiToRegister] = useState('');
 
@@ -21,15 +23,28 @@ export default function VersionRegistryComponent() {
             onChange={e => setApiToRegister(e.target.value)}
           />
 
-        <button onClick={async () =>
+        <button onClick={async () => {
+            addToast('Waiting for transaction to complete...', { appearance: 'info', id: 'registerAPI', autoDismiss: false });
+            
             registerAPI(
               apiToRegister,
               client!
             ).then(() => {
               console.log(`Registered ${apiToRegister}`);
-            }).catch((err: any) =>
-              console.error(err)
-            )
+            }).catch((errors: { message: string}[]) => {
+              for(const error of errors) {
+                if(error.message.includes('API is already registered')) {
+                  addToast('API is already registered', { appearance: 'error', autoDismiss: true })
+                } else if(error.message.includes('Resolver not set')) {
+                  addToast('ENS Resolver not set', { appearance: 'error', autoDismiss: true })
+                } else {
+                  addToast(error.message, { appearance: 'error', autoDismiss: true })
+                }
+              }
+            }).finally(() => {
+              removeToast('registerAPI');
+            });
+          }
           }>
             Register API
         </button>

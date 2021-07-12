@@ -20,7 +20,7 @@ export async function registerImplementation(
   implementationUri: string,
   client: Web3ApiClient
 ): Promise<void> {
-  return ethereumApi.callContractMethod(
+  return ethereumApi.callContractMethodAndWait(
     client,
     process.env.REACT_APP_POLYWRAP_IMPLEMENTATION_REGISTRY_ADDRESS_RINKEBY!,
     `function registerImplementation(bytes32, string calldata) public`,

@@ -52,11 +52,47 @@ export const callContractMethod = async (
   networkNameOrChainId?: string
 ): Promise<void> => {
   const { data, errors } = await client.query<{
-    callContractStatic: string
+    callContractMethod: string
   }>({
     uri: "w3://ens/ethereum.web3api.eth",
     query: `mutation {
       callContractMethod(
+        address: $address,
+        method: $method,
+        args: $args,
+        connection: $connection
+      )
+    }`,
+    variables: {
+      address,
+      method,
+      args,
+      connection: networkNameOrChainId
+        ? {
+            networkNameOrChainId,
+          }
+        : undefined,
+    },
+  });
+
+  if (errors && errors.length) {
+    throw errors;
+  }
+};
+
+export const callContractMethodAndWait = async (
+  client: Web3ApiClient,
+  address: string,
+  method: string,
+  args: string[],
+  networkNameOrChainId?: string
+): Promise<void> => {
+  const { data, errors } = await client.query<{
+    callContractMethodAndWait: string
+  }>({
+    uri: "w3://ens/ethereum.web3api.eth",
+    query: `mutation {
+      callContractMethodAndWait(
         address: $address,
         method: $method,
         args: $args,

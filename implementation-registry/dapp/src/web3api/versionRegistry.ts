@@ -6,7 +6,7 @@ export async function registerAPI(
   uri: string,
   client: Web3ApiClient
 ): Promise<void> {
-  return ethereumApi.callContractMethod(
+  return ethereumApi.callContractMethodAndWait(
     client,
     process.env.REACT_APP_POLYWRAP_VERSION_REGISTRY_ADDRESS_RINKEBY!,
     `function registerAPI(bytes32) public`,
