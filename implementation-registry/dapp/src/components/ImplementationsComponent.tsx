@@ -20,9 +20,9 @@ export default function ImplementationsComponent() {
               client!
             ).then((result) => {
               console.log(result);
-            }).catch(err =>
-              console.error(err)
-            )
+            }).catch(err => {
+              console.error(err);
+            })
           }>
           Speak
         </button>

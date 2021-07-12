@@ -7,13 +7,10 @@ export async function speak(
   const { data, errors } = await client.query<{
     speak: string
   }>({
-    uri: `ens/rinkeby/${uri}`,
+    uri: `w3://ens/rinkeby/${uri}`,
     query: `query {
-      speak(arg: $arg)
-    }`,
-    variables: {
-      arg: "Hello"
-    }
+      speak(arg: "Hello")
+    }`
   });
 
   if (errors || !data) {

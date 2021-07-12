@@ -2566,7 +2566,7 @@
     "@web3api/core-js" "0.0.1-prealpha.28"
     ethers "5.0.7"
 
-"@web3api/ethereum-plugin-js@0.0.1-prealpha.28":
+"@web3api/ethereum-plugin-js@0.0.1-prealpha.28", "@web3api/ethereum-plugin-js@^0.0.1-prealpha.28":
   version "0.0.1-prealpha.28"
   resolved "https://registry.yarnpkg.com/@web3api/ethereum-plugin-js/-/ethereum-plugin-js-0.0.1-prealpha.28.tgz#102f250d6789ebc7e56888fa7ffe56834d0e29f0"
   integrity sha512-QlLoqsjynDFg7N9SdaLbxpmaAlTtCQsNOpVz/gdXWSmmJe55/SSGCdQ/2DtLY38IWwsH7pXSXJUYWd/Xunhb2g==
