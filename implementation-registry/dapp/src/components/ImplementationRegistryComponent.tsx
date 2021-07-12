@@ -10,17 +10,6 @@ export default function ImplementationRegistryComponent() {
   const [interfaceToRegister, setInterfaceToRegister] = useState('');
   const [implementationToRegister, setImplementationToRegister] = useState('');
 
-  // const implementations = areImplementationsLoading 
-  //   ? (
-  //     <Loader
-  //       type="TailSpin"
-  //       color="#00BFFF"
-  //       height={50}
-  //       width={50}
-  //     />
-  //   )
-  //   : implementationElements;
-
   return (
     <div className="ImplementationRegistryComponent">
       <div>
@@ -54,7 +43,7 @@ export default function ImplementationRegistryComponent() {
               console.error(err)
             ).finally(() => {
               removeToast('registerImplementation');
-            })
+            });
           }
           }>
             Register API implementation
