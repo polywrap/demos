@@ -30,6 +30,7 @@ export default function ImplementationsComponent() {
             }).catch((errors: { message: string }[]) => {
               for(const error of errors) {
                 addToast(error.message, { appearance: 'error', autoDismiss: true })
+                console.error(error);
               }
             }).finally(() => {
               removeToast('speak');

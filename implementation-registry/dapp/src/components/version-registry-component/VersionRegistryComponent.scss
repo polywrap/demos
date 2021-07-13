@@ -2,8 +2,24 @@
   h4 {
     margin-top: 5px;
   }
-  
+
   .register-api {
     margin-left: 10px;
+  }
+
+  .api-to-register {
+    margin-bottom: 20px;
+  }
+
+  .empty-api-registered-container {
+    margin-top: 40px;
+  }
+
+  .api-registered-message {
+    color: orangered;
+  }
+
+  .api-not-registered-message {
+    color: yellowgreen;
   }
 }

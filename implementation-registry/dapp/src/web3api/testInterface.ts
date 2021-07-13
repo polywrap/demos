@@ -1,4 +1,4 @@
-import { Uri, Web3ApiClient } from "@web3api/client-js";
+import { Web3ApiClient } from "@web3api/client-js";
 
 export async function speak(
   uri: string,
