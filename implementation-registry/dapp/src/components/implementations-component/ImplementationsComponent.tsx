@@ -1,31 +1,40 @@
 import './ImplementationsComponent.scss';
 import React, { useEffect, useState } from 'react';
 import { Web3ApiProvider, useWeb3ApiClient, createWeb3ApiProvider } from "@web3api/react";
-import { getImplementations } from '../web3api/implementationRegistry';
-import { speak } from '../web3api/testInterface';
+import { getImplementations } from '../../web3api/implementationRegistry';
+import { speak } from '../../web3api/testInterface';
 import Loader from "react-loader-spinner";
+import { useToasts } from 'react-toast-notifications';
 
 export default function ImplementationsComponent() {
   const client = useWeb3ApiClient();
+  const { addToast, removeToast } = useToasts();
   
   const [areImplementationsLoading, setAreImplementationsLoading] = useState(false);
   const [interfaceUri, setInterfaceUri] = useState('polyinterface.eth');
   const [implementationsList, setImplementationsList] = useState<string[]>([]);
 
   const implementationElements = implementationsList.map((implementation, i) =>
-    <div key={i} className="card">
-      <div>{implementation}</div>
-      <div>
+    <div key={i} className="implementation">
+      <div className="title">{implementation}</div>
+      <div className="body">
         <button 
-          onClick={async () =>
+          onClick={async () => {
+            addToast('Waiting for Polywrap API to respond...', { appearance: 'info', id: 'speak', autoDismiss: false });
+
             speak(
               implementation,
               client!
             ).then((result) => {
-              console.log(result);
-            }).catch(err => {
-              console.error(err);
-            })
+              addToast(result, { appearance: 'success', autoDismiss: true });
+            }).catch((errors: { message: string }[]) => {
+              for(const error of errors) {
+                addToast(error.message, { appearance: 'error', autoDismiss: true })
+              }
+            }).finally(() => {
+              removeToast('speak');
+            });
+          }
           }>
           Speak
         </button>
@@ -35,17 +44,23 @@ export default function ImplementationsComponent() {
 
   const implementations = areImplementationsLoading 
     ? (
-      <Loader
-        type="TailSpin"
-        color="#00BFFF"
-        height={50}
-        width={50}
-      />
+      <div className="implementations-loading">
+        <Loader
+          type="TailSpin"
+          color="#00BFFF"
+          height={50}
+          width={50}
+        />
+      </div>
     )
-    : implementationElements;
+    : (
+      <div className="implementations">
+        {implementationElements}
+      </div>
+    );
 
   return (
-    <div className="ImplementationsComponent">
+    <div className="ImplementationsComponent widget">
       <div>
         <h4 className="component-title">Find Implementations</h4>
       </div>
@@ -57,7 +72,7 @@ export default function ImplementationsComponent() {
           onChange={e => setInterfaceUri(e.target.value)}
         />
 
-        <button onClick={async () => {
+        <button className="find-implementations" onClick={async () => {
             setAreImplementationsLoading(true);
         
             getImplementations(
@@ -76,9 +91,7 @@ export default function ImplementationsComponent() {
         </button>
       </div>
 
-      <div className="implementations">
-        {implementations}
-      </div>
+      {implementations}
 
       <div>
         <button onClick={async () =>

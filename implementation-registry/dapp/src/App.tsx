@@ -1,12 +1,12 @@
 import './App.scss';
-import ImplementationsComponent from './components/ImplementationsComponent';
-import VersionRegistryComponent from './components/VersionRegistryComponent';
-import ImplementationRegistryComponent from './components/ImplementationRegistryComponent';
 import { Web3ApiProvider } from "@web3api/react";
 import { useEffect } from 'react';
 import { ethereumPlugin } from "@web3api/ethereum-plugin-js";
 import React from 'react';
 import { ToastProvider } from 'react-toast-notifications';
+import VersionRegistryComponent from './components/version-registry-component/VersionRegistryComponent';
+import ImplementationsComponent from './components/implementations-component/ImplementationsComponent';
+import ImplementationRegistryComponent from './components/implementations-registry-component/ImplementationRegistryComponent';
 
 function App() {
   const ethereum = (window as any).ethereum;
@@ -44,11 +44,17 @@ function App() {
             <h3>Interface Implementations</h3>
           </div>
 
-          <VersionRegistryComponent />
+          <div className="widget-container">
+            <div className="registry-container">
+              <VersionRegistryComponent />
+              <ImplementationRegistryComponent />
+            </div>
+           
+            <div className="implementations-container">
+              <ImplementationsComponent />    
+            </div>
+          </div>
           
-          <ImplementationRegistryComponent />
-          
-          <ImplementationsComponent />    
         </Web3ApiProvider>
       </ToastProvider>
     

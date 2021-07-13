@@ -1,6 +1,7 @@
+import "./ImplementationRegistryComponent.scss";
 import { useWeb3ApiClient } from '@web3api/react';
 import React, { useEffect, useState } from 'react';
-import { registerImplementation } from '../web3api/implementationRegistry';
+import { registerImplementation } from '../../web3api/implementationRegistry';
 import { useToasts } from 'react-toast-notifications';
 
 export default function ImplementationRegistryComponent() {
@@ -11,7 +12,7 @@ export default function ImplementationRegistryComponent() {
   const [implementationToRegister, setImplementationToRegister] = useState('');
 
   return (
-    <div className="ImplementationRegistryComponent">
+    <div className="ImplementationRegistryComponent widget">
       <div>
         <h4 className="component-title">Implementation Registry</h4>
       </div>
@@ -25,12 +26,13 @@ export default function ImplementationRegistryComponent() {
           />
         <input 
             type="text"
+            className="implementation-domain"
             value={implementationToRegister}
             placeholder="Implementation domain..."
             onChange={e => setImplementationToRegister(e.target.value)}
           />
 
-        <button onClick={async () => {
+        <button className="register-implementation" onClick={async () => {
             addToast('Waiting for transaction to complete...', { appearance: 'info', id: 'registerImplementation', autoDismiss: false });
             
             registerImplementation(

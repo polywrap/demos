@@ -1,6 +1,7 @@
+import "./VersionRegistryComponent.scss";
 import { useWeb3ApiClient } from '@web3api/react';
 import React, { useState } from 'react';
-import { registerAPI } from '../web3api/versionRegistry';
+import { registerAPI } from '../../web3api/versionRegistry';
 import { useToasts } from 'react-toast-notifications';
 
 export default function VersionRegistryComponent() {
@@ -10,7 +11,7 @@ export default function VersionRegistryComponent() {
   const [apiToRegister, setApiToRegister] = useState('');
 
   return (
-    <div className="VersionRegistryComponent">
+    <div className="VersionRegistryComponent widget">
       <div>
         <h4 className="component-title">Version Registry</h4>
       </div>
@@ -23,7 +24,7 @@ export default function VersionRegistryComponent() {
             onChange={e => setApiToRegister(e.target.value)}
           />
 
-        <button onClick={async () => {
+        <button className="register-api" onClick={async () => {
             addToast('Waiting for transaction to complete...', { appearance: 'info', id: 'registerAPI', autoDismiss: false });
             
             registerAPI(

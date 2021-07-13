@@ -13,3 +13,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.widget {
+  background: linear-gradient(
+    50deg,
+    rgba(106, 106, 193, 0.2) 20%, 
+    rgba(107, 145, 216, 0.2) 60%,
+    rgba(191, 210, 253, 0.2) 100%
+  ); 
+
+  padding: 15px;
+
+  border: 1px solid rgb(242, 242, 242);
+  border-radius: 13px;
+  box-shadow: rgb(255, 171, 124) 1px 1px 0px 0px;
+}
+
+::placeholder {
+  color: #ffffff;
+}
