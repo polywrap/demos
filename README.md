@@ -2,7 +2,7 @@
 
 > Checkout Polywrap's documentation [here](https://docs.polywrap.io)!
 
-Each demo below showcases different aspects of Web3API. Please see the demo READMEs for further instructions on how to build and run them locally.
+Each demo below showcases different aspects of Polywrap. Please see the demo READMEs for further instructions on how to build and run them locally.
 
 | Demo                               | Status                                                |
 | ---------------------------------- | ----------------------------------------------------- |
