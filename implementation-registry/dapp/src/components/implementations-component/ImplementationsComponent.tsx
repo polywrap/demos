@@ -61,7 +61,7 @@ export default function ImplementationsComponent() {
     );
 
   return (
-    <div className="ImplementationsComponent widget">
+    <div className="ImplementationsComponent">
       <div>
         <h4 className="component-title">Find Implementations</h4>
       </div>
