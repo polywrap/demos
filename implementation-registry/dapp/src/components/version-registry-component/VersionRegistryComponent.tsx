@@ -17,7 +17,6 @@ export default function VersionRegistryComponent() {
 
   const checkIfApiRegisteredDebounced = useConstant(() => {
     const checkIfApiRegistered = async (domain: string) => {
-      console.log('1');
       if(!domain || !domain.endsWith('.eth')) {
         setIsApiRegistered(undefined);
         return;
@@ -36,7 +35,7 @@ export default function VersionRegistryComponent() {
 
     return AwesomeDebouncePromise(
       checkIfApiRegistered,
-      5000
+      350
     );
   })
   
