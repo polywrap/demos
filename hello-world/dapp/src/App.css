@@ -27,6 +27,12 @@
   min-height: 85vh;
 }
 
+/* Logo */
+.main__logo {
+  width: 200px;
+  padding: 3rem;
+}
+
 /* HelloWorld component */
 .hello {
   max-width: 100%;
@@ -37,22 +43,22 @@
   margin-top: 2rem;
   margin-bottom: 20px;
   font-weight: 700;
-  color: white;
+  color: #4ed29e;
 }
 
 .hello__text {
   max-width: 40rem;
-  color: #529dad;
+  color: white;
   line-height: 1.8;
   font-weight: 400;
-  font-size: 22px;
+  font-size: 15px;
 }
 
 .hello__link {
-  font-size: 22px;
+  font-size: 15px;
   font-weight: 600;
   margin-top: 2rem;
-  color: #60c093;
+  color: #4ed29e;
 }
 
 .hello__form {
@@ -61,7 +67,7 @@
 
 .hello__input {
   font: inherit;
-  color: #60c093;
+  color: #4ed29e;
   width: 400px;
   border: 3px solid #529dad;
   outline: none;
@@ -79,7 +85,7 @@
 
 .hello__btn {
   font-size: 0.875rem;
-  color: #60c093;
+  color: #4ed29e;
   border: 1px solid #529dad;
   padding: 5px 15px;
   font-weight: 500;

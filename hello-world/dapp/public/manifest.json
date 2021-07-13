@@ -1,6 +1,6 @@
 {
-  "short_name": "Web3API HelloWorld Demo",
-  "name": "Web3API HelloWorld Demo",
+  "short_name": "Polywrap HelloWorld Demo",
+  "name": "Polywrap HelloWorld Demo",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
