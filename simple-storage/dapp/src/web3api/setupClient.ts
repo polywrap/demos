@@ -1,4 +1,4 @@
-import { Web3ApiClient, UriRedirect } from "@web3api/client-js";
+import { Web3ApiClient, PluginRegistration } from "@web3api/client-js";
 import { ensPlugin } from "@web3api/ens-plugin-js";
 import { ethereumPlugin } from "@web3api/ethereum-plugin-js";
 import { ipfsPlugin } from "@web3api/ipfs-plugin-js";
@@ -11,10 +11,10 @@ export async function setupWeb3ApiClient(): Promise<Web3ApiClient> {
     throw Error("Please install Metamask.");
   }
 
-  const redirects: UriRedirect[] = [
+  const plugins: PluginRegistration[] = [
     {
-      from: "w3://ens/ethereum.web3api.eth",
-      to: ethereumPlugin({
+      uri: "w3://ens/ethereum.web3api.eth",
+      plugin: ethereumPlugin({
         networks: {
           rinkeby: {
             provider: ethereum
@@ -23,14 +23,14 @@ export async function setupWeb3ApiClient(): Promise<Web3ApiClient> {
       }),
     },
     {
-      from: "w3://ens/ipfs.web3api.eth",
-      to: ipfsPlugin({ provider: "https://ipfs.io" }),
+      uri: "w3://ens/ipfs.web3api.eth",
+      plugin: ipfsPlugin({ provider: "https://ipfs.io" }),
     },
     {
-      from: "w3://ens/ens.web3api.eth",
-      to: ensPlugin({}),
+      uri: "w3://ens/ens.web3api.eth",
+      plugin: ensPlugin({}),
     }
   ];
 
-  return new Web3ApiClient({ redirects });
+  return new Web3ApiClient({ plugins });
 }
