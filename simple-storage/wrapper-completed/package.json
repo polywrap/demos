@@ -1,6 +1,6 @@
 {
   "name": "templates-api-assemblyscript",
-  "description": "Web3API Assemblyscript Template",
+  "description": "Polywrap Assemblyscript Template",
   "private": true,
   "version": "0.0.1-prealpha.30",
   "scripts": {
