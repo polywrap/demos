@@ -9,7 +9,6 @@
     "url": "https://github.com/polywrap/monorepo.git"
   },
   "dependencies": {
-    "@metamask/detect-provider": "^1.2.0",
     "@web3api/client-js": "0.0.1-prealpha.30",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
