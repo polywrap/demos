@@ -15,7 +15,7 @@ export default function ImplementationsComponent() {
   const [implementationsList, setImplementationsList] = useState<string[]>([]);
 
   const implementationElements = implementationsList.map((implementation, i) =>
-    <div key={i} className="implementation">
+    <div key={implementation} className="implementation">
       <div className="title">{implementation}</div>
       <div className="body">
         <button 
