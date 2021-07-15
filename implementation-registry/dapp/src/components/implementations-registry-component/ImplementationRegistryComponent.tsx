@@ -48,7 +48,7 @@ export default function ImplementationRegistryComponent() {
             });
           }
           }>
-            Register API implementation
+            Register implementation
         </button>
       </div>
     </div>

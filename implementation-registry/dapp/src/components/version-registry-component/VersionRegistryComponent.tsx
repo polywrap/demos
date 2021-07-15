@@ -43,8 +43,8 @@ export default function VersionRegistryComponent() {
     ? 
      isApiRegistered !== undefined && apiToRegister
       ? isApiRegistered
-        ? <span className="api-registered-message">API is already registered</span>
-        : <span className="api-not-registered-message">API is not yet registered</span>
+        ? <span className="api-registered-message">Package is already registered</span>
+        : <span className="api-not-registered-message">Package is not yet registered</span>
       : <div className="empty-api-registered-container"></div>
     : (
       <Loader
@@ -82,8 +82,8 @@ export default function VersionRegistryComponent() {
               addToast(`Registered ${apiToRegister}`, { appearance: 'success', autoDismiss: true })
             }).catch((errors: { message: string}[]) => {
               for(const error of errors) {
-                if(error.message.includes('API is already registered')) {
-                  addToast('API is already registered', { appearance: 'error', autoDismiss: true })
+                if(error.message.includes('Package is already registered')) {
+                  addToast('Package is already registered', { appearance: 'error', autoDismiss: true })
                 } else if(error.message.includes('Resolver not set')) {
                   addToast('ENS Resolver not set', { appearance: 'error', autoDismiss: true })
                 } else if(error.message.includes('execution reverted')) {
@@ -99,7 +99,7 @@ export default function VersionRegistryComponent() {
             });
           }
           }>
-            Register API
+            Register package
         </button>
       </div>
       

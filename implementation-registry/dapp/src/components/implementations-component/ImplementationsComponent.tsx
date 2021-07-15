@@ -11,7 +11,7 @@ export default function ImplementationsComponent() {
   const { addToast, removeToast } = useToasts();
   
   const [areImplementationsLoading, setAreImplementationsLoading] = useState(false);
-  const [interfaceUri, setInterfaceUri] = useState('polyinterface.eth');
+  const [interfaceUri, setInterfaceUri] = useState('');
   const [implementationsList, setImplementationsList] = useState<string[]>([]);
 
   const implementationElements = implementationsList.map((implementation, i) =>
@@ -20,7 +20,7 @@ export default function ImplementationsComponent() {
       <div className="body">
         <button 
           onClick={async () => {
-            addToast('Waiting for Polywrap API to respond...', { appearance: 'info', id: 'speak', autoDismiss: false });
+            addToast('Waiting for the package to respond...', { appearance: 'info', id: 'speak', autoDismiss: false });
 
             speak(
               implementation,
@@ -69,6 +69,7 @@ export default function ImplementationsComponent() {
       <div>
         <input 
           type="text"
+          placeholder="Interface domain..."
           value={interfaceUri}
           onChange={e => setInterfaceUri(e.target.value)}
         />
