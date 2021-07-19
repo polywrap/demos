@@ -1,6 +1,6 @@
 {
   "name": "hello-world-demo",
-  "description": "Web3API Hello World Demo",
+  "description": "Polywrap Hello World Demo",
   "private": true,
   "version": "1.0.0",
   "scripts": {
@@ -11,7 +11,7 @@
     "test": "npx w3 query ./recipes/e2e.json"
   },
   "devDependencies": {
-    "@web3api/cli": "0.0.1-prealpha.26",
-    "@web3api/wasm-as": "0.0.1-prealpha.26"
+    "@web3api/cli": "0.0.1-prealpha.30",
+    "@web3api/wasm-as": "0.0.1-prealpha.30"
   }
 }

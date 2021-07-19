@@ -1,6 +1,6 @@
 {
-  "short_name": "Web3API",
-  "name": "Web3API SimpleStorage Demo",
+  "short_name": "Polywrap",
+  "name": "Polywrap SimpleStorage Demo",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
