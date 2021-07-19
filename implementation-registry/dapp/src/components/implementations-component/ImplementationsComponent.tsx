@@ -16,8 +16,8 @@ export default function ImplementationsComponent() {
 
   const implementationElements = implementationsList.map((implementation, i) =>
     <div key={implementation} className="implementation">
-      <div className="title">{implementation}</div>
-      <div className="body">
+      <div className="implementation-title">{implementation}</div>
+      <div className="implementation-body">
         <button 
           onClick={async () => {
             addToast('Waiting for the package to respond...', { appearance: 'info', id: 'speak', autoDismiss: false });
@@ -91,12 +91,8 @@ export default function ImplementationsComponent() {
           }>
             Find implementations
         </button>
-      </div>
 
-      {implementations}
-
-      <div>
-        <button onClick={async () =>
+        <button className="all-speak-btn" onClick={async () =>
             {
               for(const implementation of implementationsList) {
                 speak(
@@ -113,6 +109,9 @@ export default function ImplementationsComponent() {
             All speak
         </button>
       </div>
+
+      {implementations}
+
     </div>
   );
 };

@@ -23,18 +23,22 @@
       margin: 1rem;
       border-radius: 2px;
       border: 1px solid #babcbf;
-      background: #452358;
+      background: #1c5043;
       box-shadow: #d2d2f9 2px 2px 0px 0px;
       padding: 15px;
       font-size: 20px;
 
-      .title {
+      .implementation-title {
         margin-bottom: 10px;
       }
     }
   }
 
   .find-implementations {
+    margin-left: 10px;
+  }
+
+  .all-speak-btn {
     margin-left: 10px;
   }
 }

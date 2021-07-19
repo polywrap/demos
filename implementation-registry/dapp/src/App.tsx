@@ -7,6 +7,7 @@ import { ToastProvider } from 'react-toast-notifications';
 import VersionRegistryComponent from './components/version-registry-component/VersionRegistryComponent';
 import ImplementationsComponent from './components/implementations-component/ImplementationsComponent';
 import ImplementationRegistryComponent from './components/implementations-registry-component/ImplementationRegistryComponent';
+import Logo from './logo.png';
 
 function App() {
   const ethereum = (window as any).ethereum;
@@ -41,7 +42,8 @@ function App() {
       <ToastProvider>
         <Web3ApiProvider plugins={redirects}>
           <div>
-            <h3>Interface Implementations</h3>
+            <img src={Logo} className='main__logo' />
+            <h3 className="title">Interface Implementations</h3>
           </div>
 
           <div className="widget-container">
@@ -54,7 +56,6 @@ function App() {
               <ImplementationsComponent />    
             </div>
           </div>
-          
         </Web3ApiProvider>
       </ToastProvider>
     
