@@ -2,7 +2,7 @@
   "name": "@web3api/demo-simple-storage-dapp",
   "description": "Polywrap SimpleStorage dApp Demo",
   "private": true,
-  "version": "0.0.1-prealpha.30",
+  "version": "0.0.1-prealpha.44",
   "license": "MIT",
   "repository": {
     "type": "git",
