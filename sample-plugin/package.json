@@ -2,7 +2,7 @@
   "name": "templates-plugin-typescript",
   "description": "Polywrap Plugin Typescript Template",
   "private": true,
-  "version": "0.0.1-prealpha.30",
+  "version": "0.0.1-prealpha.44",
   "main": "build/index.js",
   "scripts": {
     "build": "rimraf ./build && tsc --project tsconfig.json",
