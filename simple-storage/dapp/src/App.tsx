@@ -72,7 +72,7 @@ function App() {
           {link(
             'https://bafybeihsk2ivvcrye7bqtdukxjtmfevfxgidebqqopoqdfpucbgzyy2edu.ipfs.dweb.link/',
             () => (
-              <> -> IPFS</>
+              <> -&gt; IPFS</>
             )
           )}
         </h3>

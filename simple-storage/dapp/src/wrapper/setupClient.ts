@@ -1,7 +1,5 @@
 import { Web3ApiClient, PluginRegistration } from '@web3api/client-js';
-import { ensPlugin } from '@web3api/ens-plugin-js';
 import { ethereumPlugin } from '@web3api/ethereum-plugin-js';
-import { ipfsPlugin } from '@web3api/ipfs-plugin-js';
 
 export async function setupWeb3ApiClient(): Promise<Web3ApiClient> {
   const ethereum = (window as any).ethereum;
@@ -21,14 +19,6 @@ export async function setupWeb3ApiClient(): Promise<Web3ApiClient> {
           },
         },
       }),
-    },
-    {
-      uri: 'ens/ipfs.web3api.eth',
-      plugin: ipfsPlugin({ provider: 'https://ipfs.io' }),
-    },
-    {
-      uri: 'ens/ens.web3api.eth',
-      plugin: ensPlugin({}),
     },
   ];
 
