@@ -8,15 +8,3 @@ You can add new functionalities to it by following steps.
    Use the Plugin class in the `index.ts` file to add helpers/methods to handle queries/mutations.
 3. Update the `manifest.ts` file.
 4. Run `yarn build`
-
-# How To Run
-
-## Install Dependencies
-`nvm install && nvm use`  
-`yarn`  
-
-## Build
-`yarn build`  
-
-## Test
-`yarn test`  

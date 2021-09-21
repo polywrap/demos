@@ -11,7 +11,7 @@
     "test": "npx w3 query ./recipes/e2e.json"
   },
   "devDependencies": {
-    "@web3api/cli": "0.0.1-prealpha.30",
-    "@web3api/wasm-as": "0.0.1-prealpha.30"
+    "@web3api/cli": "0.0.1-prealpha.44",
+    "@web3api/wasm-as": "0.0.1-prealpha.44"
   }
 }
