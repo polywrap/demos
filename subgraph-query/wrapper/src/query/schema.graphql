@@ -1,0 +1,9 @@
+#import { Query } into Subgraph from "/ens/graph-node.eth"
+
+type Query {
+  subgraphQuery(
+    subgraphAuthor: String!
+    subgraphName: String!
+    query: String!
+  ): JSON!
+}
