@@ -1,16 +1,12 @@
 import {
   Web3ApiClient,
-  PluginRegistration
+  createWeb3ApiClient
 } from "@web3api/client-js";
 import {
   initTestEnvironment,
   stopTestEnvironment,
   buildAndDeployApi
 } from "@web3api/test-env-js";
-import { graphNodePlugin } from "@web3api/graph-node-plugin-js";
-import { ethereumPlugin } from "@web3api/ethereum-plugin-js";
-import { ipfsPlugin } from "@web3api/ipfs-plugin-js";
-import { ensPlugin } from "@web3api/ens-plugin-js";
 
 jest.setTimeout(360000);
 
@@ -23,64 +19,33 @@ describe("e2e", () => {
     try {
       // Setup the local test environment
       const {
-        cliLogs: {
-          stdout,
-          stderr,
-          exitCode,
-        },
-        results: {
           ipfs,
           ethereum,
           ensAddress,
-        },
       } = await initTestEnvironment();
 
-      // Setup JavaScript plugins
-      const plugins: PluginRegistration[] = [];
-
-      // Create Graph-Node Plugin:
-      // - provider: the hosted subgraph provider
-      plugins.push({
-        uri: "/ens/graph-node.eth",
-        plugin: graphNodePlugin({
-          provider: "https://api.thegraph.com"
-        })
+      // Create the client w/ test env configuration
+      client = await createWeb3ApiClient({
+        ethereum: {
+          networks: {
+            testnet: {
+              provider: ethereum
+            }
+          },
+          defaultNetwork: "testnet"
+        },
+        ipfs: {
+          provider: ipfs,
+          fallbackProviders: ["https://ipfs.io"]
+        },
+        ens: {
+          addresses: {
+            testnet: ensAddress
+          }
+        }
       });
 
-      // Create Test Environment Plugins:
-      plugins.push(
-        {
-          uri: "w3://ens/ethereum.web3api.eth",
-          plugin: ethereumPlugin(
-            {
-            networks: {
-              testnet: {
-                provider: ethereum
-              }
-            },
-            defaultNetwork: "testnet"
-          }),
-        },
-        {
-          uri: "w3://ens/ipfs.web3api.eth",
-          plugin: ipfsPlugin({
-            provider: ipfs,
-            fallbackProviders: ["https://ipfs.io"]
-          })
-        },
-        {
-          uri: "w3://ens/ens.web3api.eth",
-          plugin: ensPlugin({
-            addresses: {
-              testnet: ensAddress
-            }
-          })
-        }
-      );
-
-      // Create the client
-      client = new Web3ApiClient({ plugins });
-
+      // build and deploy the wrapper
       const api = await buildAndDeployApi(
         `${__dirname}/../`,
         ipfs,
@@ -100,12 +65,14 @@ describe("e2e", () => {
 
   it("e2e", async () => {
     const subgraphQueryInput = {
-      author: "tasitlabs",
-      name: "gnosis-safe",
+      author: "ensdomains",
+      name: "ens",
       query: `{
-        contractBasedAccounts {
+        domains(first: 5) {
           id
-          timeCreated
+          name
+          labelName
+          labelhash
         }
       }`
     };
@@ -113,7 +80,7 @@ describe("e2e", () => {
     // Query the polywrapper, which will
     // in turn query the subgraph
     const { data, errors } = await client.query<{
-      // Type the metho's return type (GraphQL JSON == JS string)
+      // Type the method's return type (GraphQL JSON == JS string)
       subgraphQuery: string
     }>({
       uri,
@@ -129,9 +96,9 @@ describe("e2e", () => {
 
     expect(errors).toBeFalsy();
     expect(data).toBeTruthy();
-    expect(data.subgraphQuery).toBeTruthy()
+    expect(data?.subgraphQuery).toBeTruthy()
 
-    const json = JSON.parse(data.subgraphQuery);
+    const json = JSON.parse(data?.subgraphQuery as string);
     console.log(json);
     expect(json).toBeTruthy();
   });

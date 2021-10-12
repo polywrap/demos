@@ -11,16 +11,19 @@ export function subgraphQuery(input: Input_subgraphQuery): JSON.Value {
     query: input.query
   });
 
-  const json = JSON.from(response);
+  const json = JSON.parse(response);
 
   if (!json.isObj) {
     throw new Error(
       "Subgraph response is not an object.\n" +
       `Author: ${input.subgraphAuthor}\n` +
       `Subgraph: ${input.subgraphName}\n` +
-      `Query: ${input.query}`
+      `Query: ${input.query}\n` +
+      `Response: ${response}`
     );
   }
 
-  return json;
+  const obj = json as JSON.Obj;
+
+  return obj.valueOf()["data"];
 }
