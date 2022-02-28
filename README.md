@@ -49,14 +49,14 @@ integration of PolyWrappers for your dApp (decentralized App)
 
 | Example | Runtime/Frameworks | Live |
 |:--------------------------- |:-----| :-----|
-| [Fleek Hello World Dapp  using Nextjs ]() <br/> hello world polywrapper starter template using nextjs | nextjs |    |
-| [Fleek Hello World Dapp  using Gatsby ]() <br/> hello world polywrapper starter template using gatsbyjs | gatsby |    |
-| [Fleek Hello World Dapp  using Create React App ]() <br/> hello world polywrapper starter template using create-react-app | react |    |
+| [Fleek Hello World Dapp  using Nextjs ]() <br/> hello world wrapper starter template using nextjs | nextjs |    |
+| [Fleek Hello World Dapp  using Gatsby ]() <br/> hello world wrapper starter template using gatsbyjs | gatsby |    |
+| [Fleek Hello World Dapp  using Create React App ]() <br/> hello world wrapper starter template using create-react-app | react |    |
 
 
 ## Wrappers  Examples 
 
-Development of new  Polywrapper (API )
+Development of new  wrapper (API )
 
 https://github.com/polywrap/integrations
 
@@ -66,7 +66,7 @@ https://github.com/polywrap/integrations
 ## Community Examples
 Coming Soon
 
-<!-- Defiwrapper is a collection of different DeFi related polywrappers like defi-sdk, coingecko, etc.
+<!-- Defiwrapper is a collection of different DeFi related wrappers like defi-sdk, coingecko, etc.
 
 https://github.com/defiwrapper/defiwrapper --> 
 
