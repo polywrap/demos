@@ -1,4 +1,7 @@
-•  [Website](https://polywrap.io/#/) • [Discord](https://discord.com/invite/bGsqQrNhqd) • [Docs](https://docs.polywrap.io) • [Blog](https://blog.polywrap.io/)  • [Twitter](https://twitter.com/polywrap_io) • [Donate](https://gitcoin.co/grants/1252/web3api) • [Handbook](https://handbook.polywrap.io/)
+![polywrap-banner](https://user-images.githubusercontent.com/12145726/140437007-d2b8c969-df29-4a43-906a-d5400b4394ac.png) 
+•  🌐 [Website](https://polywrap.io/#/) • 💬 [Discord](https://discord.com/invite/bGsqQrNhqd) • 📖 [Docs](https://docs.polywrap.io) • ✍ [Blog](https://blog.polywrap.io/)  • [Twitter](https://twitter.com/polywrap_io) • [Donate](https://gitcoin.co/grants/1252/web3api) • [Handbook](https://handbook.polywrap.io/)
+
+
 
 # Polywrap Demos & Examples
 
@@ -29,11 +32,12 @@ Each demo below showcases different aspects of Polywrap containing a wrapper and
 
 Each demo contains a `README.md`   for further instructions on building and running them locally.
 
-| Demo                               | Status                                                |
-| ---------------------------------- | ----------------------------------------------------- |
-| [Simple Storage](./simple-storage) | Live: [dApp](https://demo.simplestorage.polywrap.io/) |
-| [Hello World](./hello-world)       | Live: [dApp](https://demo.helloworld.polywrap.io/)    |
-| [Sample Plugin](./sample-plugin)   | Running                                               |
+| Demo           | Versions | Status    |
+:--------------------------- |:-----| :-----|
+[Simple Storage](./simple-storage) |  [![npm](https://img.shields.io/npm/v/@web3api/cli.svg?style=for-the-badge)](https://www.npmjs.com/package/@livepeer/chroma) |  Live: [dApp](https://demo.simplestorage.polywrap.io/) |
+| [Hello World](./hello-world)       | |  Live: [dApp](https://demo.helloworld.polywrap.io/)    |
+| [Sample Plugin](./sample-plugin)   |  |Running                                               |
+| Uniswap V2 | | Live: [dApp](https://demo.uniswapv2.polywrap.io/#/swap)
 
 ## Polywrap Dapp & Wrapper Examples
 
@@ -61,10 +65,12 @@ Development of new  wrapper (API )
 https://github.com/polywrap/integrations
 
 
-
-
 ## Community Examples
-Coming Soon
+
+
+|  Example |Author |
+|:--|:--|
+| [Defiwrapper](https://github.com/defiwrapper/defiwrapper) <br> Defiwrapper is a collection of different DeFi related polywrappers like defi-sdk, coingecko, etc. |  [DefiWrapper](https://github.com/defiwrapper) |
 
 <!-- Defiwrapper is a collection of different DeFi related wrappers like defi-sdk, coingecko, etc.
 
