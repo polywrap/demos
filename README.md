@@ -53,9 +53,10 @@ integration of PolyWrappers for your dApp (decentralized App)
 
 | Example | Runtime/Frameworks | Live |
 |:--------------------------- |:-----| :-----|
-| [Vercel Hello World Dapp  using Nextjs ]() <br/> hello world wrapper starter template using nextjs | nextjs |    |
+| [Vercel Hello World Dapp  using Nextjs ]() <br/> hello world wrapper starter template using nextjs | nextjs+typescript |    |
 | Vercel Hello World Dapp  using Gatsby <br/> hello world wrapper starter template using gatsbyjs | gatsby |  Coming Soon  |
-| Vercel Hello World Dapp  using Create React App <br/> hello world wrapper starter template using create-react-app | react |  Coming Soon   |
+| Vercel Hello World Dapp  using Create React App <br/> hello world wrapper starter template using create-react-app | react+typescript |  Coming Soon   |
+| Vercel Hello World Dapp  using Vue <br/> hello world wrapper starter template using vuejs | vue+typescript |  Coming Soon   |
 
 
 ## Wrappers  Examples 
