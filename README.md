@@ -35,9 +35,9 @@ Each demo contains a `README.md`   for further instructions on building and runn
 | Demo           | Versions | Status    |
 :--------------------------- |:-----| :-----|
 [Simple Storage](./simple-storage) |  [![npm](https://img.shields.io/npm/v/@web3api/cli.svg?style=for-the-badge)](https://www.npmjs.com/package/@livepeer/chroma) |  Live: [dApp](https://demo.simplestorage.polywrap.io/) |
-| [Hello World](./hello-world)       | |  Live: [dApp](https://demo.helloworld.polywrap.io/)    |
-| [Sample Plugin](./sample-plugin)   |  |Running                                               |
-| Uniswap V2 | | Live: [dApp](https://demo.uniswapv2.polywrap.io/#/swap)
+| [Hello World](./hello-world)       | [![npm](https://img.shields.io/npm/v/@web3api/cli.svg?style=for-the-badge)](https://www.npmjs.com/package/@livepeer/chroma) |  Live: [dApp](https://demo.helloworld.polywrap.io/)    |
+| [Sample Plugin](./sample-plugin)   | [![npm](https://img.shields.io/npm/v/@web3api/cli.svg?style=for-the-badge)](https://www.npmjs.com/package/@livepeer/chroma)  |Running                                               |
+| Uniswap V2 |  [![npm](https://img.shields.io/npm/v/@web3api/cli.svg?style=for-the-badge)](https://www.npmjs.com/package/@livepeer/chroma) | Live: [dApp](https://demo.uniswapv2.polywrap.io/#/swap)
 
 ## Polywrap Dapp & Wrapper Examples
 
@@ -53,9 +53,9 @@ integration of PolyWrappers for your dApp (decentralized App)
 
 | Example | Runtime/Frameworks | Live |
 |:--------------------------- |:-----| :-----|
-| [Fleek Hello World Dapp  using Nextjs ]() <br/> hello world wrapper starter template using nextjs | nextjs |    |
-| [Fleek Hello World Dapp  using Gatsby ]() <br/> hello world wrapper starter template using gatsbyjs | gatsby |    |
-| [Fleek Hello World Dapp  using Create React App ]() <br/> hello world wrapper starter template using create-react-app | react |    |
+| [Vercel Hello World Dapp  using Nextjs ]() <br/> hello world wrapper starter template using nextjs | nextjs |    |
+| Vercel Hello World Dapp  using Gatsby <br/> hello world wrapper starter template using gatsbyjs | gatsby |  Coming Soon  |
+| Vercel Hello World Dapp  using Create React App <br/> hello world wrapper starter template using create-react-app | react |  Coming Soon   |
 
 
 ## Wrappers  Examples 
@@ -71,8 +71,4 @@ https://github.com/polywrap/integrations
 |  Example |Author |
 |:--|:--|
 | [Defiwrapper](https://github.com/defiwrapper/defiwrapper) <br> Defiwrapper is a collection of different DeFi related polywrappers like defi-sdk, coingecko, etc. |  [DefiWrapper](https://github.com/defiwrapper) |
-
-<!-- Defiwrapper is a collection of different DeFi related wrappers like defi-sdk, coingecko, etc.
-
-https://github.com/defiwrapper/defiwrapper --> 
 
