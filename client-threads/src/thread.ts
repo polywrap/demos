@@ -13,8 +13,23 @@ const dispatchAction = (action: HostAction) => {
 addEventListener(
   "message",
   (event: { data: InvokeEvent }) => {
-    const client = new Web3ApiClient(event.data.client);
-    client.invoke(event.data.invoke)
+    const { invoke, clientModule } = event.data;
+
+    const client = clientModule
+      ? require(clientModule).default as Web3ApiClient
+      : new Web3ApiClient();
+
+    if (clientModule && (!client || typeof client.invoke !== "function")) {
+      dispatchAction({
+        type: "InvokeException",
+        error: new Error(
+          `Unable to load user-configured client module: ${clientModule}`
+        )
+      });
+      return;
+    }
+
+    client.invoke(invoke)
       .then((result) => {
         dispatchAction({
           type: "InvokeResult",

@@ -3,6 +3,7 @@ import {
   ClientThread,
   ThreadStatus
 } from "..";
+import { transpileTypescriptModule } from "./typescript";
 
 jest.setTimeout(360000);
 
@@ -104,5 +105,34 @@ describe("e2e", () => {
     expect(job.getStatus()).toBe(ThreadStatus.TERMINATED);
     expect(job.getResult()).toBeUndefined();
     expect(job.getError()).toBeUndefined();
+  });
+
+  it("Invoke HelloWorld Wrapper W/ Custom Plugin", async () => {
+    const customClientModule = await transpileTypescriptModule(
+      __dirname + "/customClient.ts"
+    );
+    const pool = new ThreadPool({
+      maxThreads: 50,
+      aquireTimeout: 200,
+    });
+    const thread = new ClientThread({
+      pool,
+      clientModule: customClientModule
+    });
+
+    const job = thread.invoke({
+      uri: "ens/helloworld.web3api.eth",
+      module: "query",
+      method: "logMessage",
+      input: {
+        message: "message!"
+      }
+    });
+
+    const result = await job.promise;
+
+    expect(result.error).toBeUndefined();
+    expect(result.result?.data).toBe(true);
+    expect(job.getStatus()).toBe("RESULT");
   });
 });

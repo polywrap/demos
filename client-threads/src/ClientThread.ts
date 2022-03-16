@@ -9,14 +9,13 @@ import {
 } from "./messages";
 
 import {
-  Web3ApiClientConfig,
   InvokeApiOptions,
   InvokeApiResult,
 } from "@web3api/client-js";
 
 interface ClientThreadConfig {
   pool: ThreadPool;
-  config?: Partial<Web3ApiClientConfig>;
+  clientModule?: string;
 }
 
 export class ClientThread {
@@ -25,7 +24,7 @@ export class ClientThread {
   public invoke<TData = unknown>(
     options: InvokeApiOptions
   ): ThreadJob<InvokeApiResult> {
-    const { pool, config } = this._config;
+    const { pool, clientModule } = this._config;
 
     let status: ThreadStatus = ThreadStatus.ACQUIRING_THREAD;
     let terminate: () => void = () => {
@@ -89,7 +88,7 @@ export class ClientThread {
 
         const event: InvokeEvent = {
           type: "Invoke",
-          client: config,
+          clientModule,
           invoke: options,
         };
 

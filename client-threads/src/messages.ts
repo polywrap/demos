@@ -1,5 +1,4 @@
 import {
-  Web3ApiClientConfig,
   InvokeApiOptions,
   InvokeApiResult
 } from "@web3api/client-js";
@@ -10,7 +9,7 @@ export type ThreadEvent =
 
 export interface InvokeEvent {
   readonly type: "Invoke";
-  readonly client?: Partial<Web3ApiClientConfig>;
+  readonly clientModule?: string;
   readonly invoke: InvokeApiOptions;
 }
 
