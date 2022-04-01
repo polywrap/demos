@@ -1,0 +1,21 @@
+format: 0.0.1-prealpha.2
+displayName: Simple Storage
+subtext: Simple Storage on Ethereum
+description: Set and get a value on an Ethereum smart sontract using Polywrap.
+repository: https://github.com/polywrap/demos
+icon: ./meta/icon.svg
+links:
+  - name: dApp
+    url: https://demo.simplestorage.polywrap.io
+  - name: Polywrap
+    url: https://polywrap.io
+queries:
+  - name: Deploy SimpleStorage
+    query: ./meta/deploy.graphql
+    vars: ./meta/deploy.json
+  - name: Set Storage
+    query: ./meta/set.graphql
+    vars: ./meta/set.json
+  - name: Get Stroage
+    query: ./meta/get.graphql
+    vars: ./meta/get.json

@@ -29,6 +29,6 @@ describe("e2e", () => {
     expect(result.errors).toBeFalsy();
     expect(result.data).toBeTruthy();
     expect(result.data?.currentTime).toBeTruthy();
-    expect(typeof result.data?.currentTime).toBe("number");
+    expect(typeof result.data?.currentTime).toBe("string");
   });
 });
