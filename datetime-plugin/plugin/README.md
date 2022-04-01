@@ -1,9 +1,11 @@
-### Sample Plugin
+# How To Run
 
-This is a sample plugin with sample query/mutation.
-You can add new functionalities to it by following steps.
+## Install Dependencies
+`nvm install && nvm use`  
+`yarn`  
 
-1. Add queries/mutations the `schema.graphql` file
-2. Add resolvers for that to the `resolvers.ts` file.
-   Use the Plugin class in the `index.ts` file to add helpers/methods to handle queries/mutations.
-3. Run `yarn build`
+## Build
+`yarn build`  
+
+## Test
+`yarn test`  

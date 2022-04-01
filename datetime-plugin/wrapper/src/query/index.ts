@@ -6,5 +6,5 @@ import {
 } from "@web3api/wasm-as";
 
 export function currentTime(): BigInt {
-  return DateTime_Query.currentTime({});
+  return DateTime_Query.currentTime({}).unwrap();
 }

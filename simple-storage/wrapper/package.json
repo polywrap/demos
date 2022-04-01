@@ -1,8 +1,8 @@
 {
-  "name": "templates-api-assemblyscript",
-  "description": "Polywrap Assemblyscript Template",
+  "name": "polywrap-simple-storage-demo",
+  "description": "Polywrap Assemblyscript SimpleStorage Wrapper",
   "private": true,
-  "version": "0.0.1-prealpha.44",
+  "version": "0.0.1-prealpha.69",
   "scripts": {
     "build": "yarn build:contract && yarn build:web3api",
     "build:web3api": "npx w3 build",
@@ -15,10 +15,10 @@
     "test": "npx w3 query ./recipes/e2e.json"
   },
   "devDependencies": {
-    "@web3api/cli": "0.0.1-prealpha.44",
-    "@web3api/ethereum-plugin-js": "0.0.1-prealpha.44",
-    "@web3api/wasm-as": "0.0.1-prealpha.44",
-    "ethers": "5.0.8",
+    "@web3api/cli": "0.0.1-prealpha.69",
+    "@web3api/ethereum-plugin-js": "0.0.1-prealpha.69",
+    "@web3api/wasm-as": "0.0.1-prealpha.69",
+    "ethers": "5.0.7",
     "js-yaml": "3.14.0",
     "solc": "0.8.3"
   }

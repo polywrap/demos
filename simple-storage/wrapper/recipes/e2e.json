@@ -39,5 +39,20 @@
       "address": "$SimpleStorageAddr",
       "network": "testnet"
     }
+  },
+  {
+    "query": "./setIpfs.graphql",
+    "variables": {
+      "address": "$SimpleStorageAddr",
+      "data": "Hello from IPFS!",
+      "network": "testnet"
+    }
+  },
+  {
+    "query": "./getIpfs.graphql",
+    "variables": {
+      "address": "$SimpleStorageAddr",
+      "network": "testnet"
+    }
   }
 ]

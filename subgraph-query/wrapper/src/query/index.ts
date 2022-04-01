@@ -9,7 +9,7 @@ export function subgraphQuery(input: Input_subgraphQuery): JSON.Value {
     subgraphAuthor: input.subgraphAuthor,
     subgraphName: input.subgraphName,
     query: input.query
-  });
+  }).unwrap();
 
   const json = JSON.parse(response);
 
