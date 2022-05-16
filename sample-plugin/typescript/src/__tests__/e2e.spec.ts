@@ -1,5 +1,5 @@
 import { Web3ApiClient } from "@web3api/client-js";
-import { samplePlugin } from "../";
+import { tsExamplePlugin } from "../";
 
 describe("e2e", () => {
 
@@ -12,7 +12,7 @@ describe("e2e", () => {
       plugins: [
         {
           uri: uri,
-          plugin: samplePlugin({ defaultValue: "foo bar" })
+          plugin: tsExamplePlugin({ defaultValue: "foo bar" })
         }
       ]
     });
