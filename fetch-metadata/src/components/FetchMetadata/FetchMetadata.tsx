@@ -4,6 +4,7 @@ import {ButtonBase, Grid, InputBase, Link, styled, Typography} from "@mui/materi
 import {useWeb3ApiClient} from "@web3api/react";
 import {MetaData} from "../../util/MetaData";
 import {polywrapPalette} from "../../theme";
+import {Uri} from "@web3api/client-js";
 
 const SectionContainer = styled(Grid)(({ theme }) => ({
   width: '100%',
@@ -73,7 +74,7 @@ interface Props {
 export const FetchMetadata: React.FC<Props> = ({ setMetadata }: Props) => {
   const client = useWeb3ApiClient();
 
-  const [uri, setUri] = React.useState('w3://ipfs/QmcFf5GY1EboKGtf1cJQM8BxyPbwk3pVjwt4zVyiYeftSD');
+  const [uri, setUri] = React.useState('');
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
     setUri(event.target.value);
@@ -81,21 +82,44 @@ export const FetchMetadata: React.FC<Props> = ({ setMetadata }: Props) => {
 
   const fetchHandler = async (event: FormEvent<HTMLFormElement>): Promise<any> => {
     event.preventDefault();
-    const metaData: MetaData = await client.getManifest(uri, { type: "meta" });
-    if (metaData.icon) {
-      const imageBuffer: ArrayBuffer = await client.getFile(uri, { path: metaData.icon }) as ArrayBuffer;
-      metaData.iconImage = Buffer.from(imageBuffer).toString("base64");
+    if (!uri) {
+      return;
     }
-    if (metaData.links) {
-      for (const link of metaData.links) {
-        if (!link.icon) {
-          continue;
-        }
-        const imageBuffer: ArrayBuffer = await client.getFile(uri, { path: link.icon }) as ArrayBuffer;
-        link.iconImage = Buffer.from(imageBuffer).toString("base64");
+    if (!Uri.isValidUri(uri)) {
+      setMetadata({
+        format: "0.0.1-prealpha.3",
+        displayName: "Invalid URI",
+        subtext: "Need help? Check out our docs using the link in the header.",
+        __type: "MetaManifest",
+      })
+      return;
+    }
+
+    try {
+      const metaData: MetaData = await client.getManifest(uri, {type: "meta"});
+      if (metaData.icon) {
+        const imageBuffer: ArrayBuffer = await client.getFile(uri, {path: metaData.icon}) as ArrayBuffer;
+        metaData.iconImage = Buffer.from(imageBuffer).toString("base64");
       }
+      if (metaData.links) {
+        for (const link of metaData.links) {
+          if (!link.icon) {
+            continue;
+          }
+          const imageBuffer: ArrayBuffer = await client.getFile(uri, {path: link.icon}) as ArrayBuffer;
+          link.iconImage = Buffer.from(imageBuffer).toString("base64");
+        }
+      }
+      setMetadata(metaData);
     }
-    setMetadata(metaData);
+    catch {
+      setMetadata({
+        format: "0.0.1-prealpha.3",
+        displayName: "Failed to resolve URI",
+        subtext: "Need help? Check out our docs using the link in the header.",
+        __type: "MetaManifest",
+      })
+    }
   };
 
   return (
@@ -118,8 +142,7 @@ export const FetchMetadata: React.FC<Props> = ({ setMetadata }: Props) => {
       <Grid item>
         <UriForm onSubmit={(event) => fetchHandler(event)}>
           <UriInput
-            placeholder='wrapper url'
-            defaultValue={"w3://ipfs/QmcFf5GY1EboKGtf1cJQM8BxyPbwk3pVjwt4zVyiYeftSD"}
+            placeholder='wrap uri'
             onChange={(event) => onChangeHandler(event)}
           />
           <FetchButton type='submit'>Fetch</FetchButton>
