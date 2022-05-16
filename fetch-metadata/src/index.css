@@ -1,0 +1,13 @@
+body {
+  margin: 10px 10px;
+  font-family: 'Arial', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url("assets/polywrap-background-tile.svg");
+  background-size: auto;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
