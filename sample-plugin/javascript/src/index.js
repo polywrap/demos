@@ -1,35 +1,37 @@
-const { manifest } = require("./w3")
-const { query } = require("./query")
-const { mutation } = require("./mutation")
+const Internal = require("./w3")
+const { Query } = require("./query")
+const { Mutation } = require("./mutation")
 
-export class JsExamplePlugin {
-  constructor(opts) {}
+class JsExamplePlugin extends Internal.JsExamplePlugin {
+  constructor(config) {
+    super({
+      query: config
+    })
+  }
 
   static manifest() {
-    return manifest
+    return Internal.manifest
   }
 
   getModules() {
     return {
-      query: query(this),
-      mutation: mutation(this)
+      query: new Query(this._configs.query),
+      mutation: new Mutation(this._configs.mutation)
     }
-  }
-
-  sampleQuery(input) {
-    return input.data + this.config.defaultValue 
-  }
-
-  sampleMutation(input) {
-    return input.data.length > 0
   }
 }
 
-export const jsExamplePlugin = (opts) => {
+const jsExamplePlugin = (opts) => {
   return {
     factory: () => new JsExamplePlugin(opts),
     manifest: JsExamplePlugin.manifest(),
   };
 };
 
-export const plugin = jsExamplePlugin;
+const plugin = jsExamplePlugin;
+
+module.exports = {
+  JsExamplePlugin,
+  jsExamplePlugin,
+  plugin
+}

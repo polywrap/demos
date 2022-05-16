@@ -11,7 +11,7 @@ describe("e2e", () => {
     client = new Web3ApiClient({
       plugins: [
         {
-          uri: uri,
+          uri,
           plugin: tsExamplePlugin({ defaultValue: "foo bar" })
         }
       ]

@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: path.resolve(__dirname, './src/index.js'),
   output: {
     path: path.resolve( __dirname, 'build' ),
@@ -12,17 +12,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts?$/,
+        test: /\.ts/,
         use: 'ts-loader',
         exclude: /node_modules/,
       },
       {
-        test: /\.js$/,
+        test: /\.js/,
         use: 'babel-loader',
         exclude: /node_modules/,
       }
     ],
   },
+  target: "node",
   resolve: {
     extensions: ['.ts', '.js'],
   },
