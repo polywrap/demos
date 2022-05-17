@@ -1,5 +1,4 @@
 import React, {FormEvent} from 'react';
-import "./style.css";
 import {ButtonBase, Grid, InputBase, Link, styled, Typography} from "@mui/material";
 import {useWeb3ApiClient} from "@web3api/react";
 import {MetaData} from "../../util/MetaData";

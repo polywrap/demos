@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import "./style.css";
 import {Grid, styled} from "@mui/material";
 import {FetchMetadata} from "../components/FetchMetadata/FetchMetadata";
 import {DisplayMetadata} from "../components/DisplayMetadata/DisplayMetadata";

@@ -1,5 +1,4 @@
 import React from 'react';
-import "./style.css";
 import {Grid, Link, styled, Typography} from "@mui/material";
 import {MetaData} from "../../util/MetaData";
 import {imgType} from "../../util/image";
