@@ -19,7 +19,6 @@
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@web3api/cli": "latest",
     "rollup": "^2.73.0",
-    "rollup-plugin-import-css": "^3.0.3",
     "rollup-plugin-polyfill-node": "^0.9.0",
     "rollup-plugin-replace": "^2.2.0",
     "rollup-plugin-typescript2": "^0.31.2",
