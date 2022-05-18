@@ -5,7 +5,8 @@ const { Mutation } = require("./mutation")
 class JsExamplePlugin extends Internal.JsExamplePlugin {
   constructor(config) {
     super({
-      query: config
+      query: config,
+      mutation: config
     })
   }
 
