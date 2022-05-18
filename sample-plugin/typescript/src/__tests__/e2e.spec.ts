@@ -12,44 +12,40 @@ describe("e2e", () => {
       plugins: [
         {
           uri,
-          plugin: tsExamplePlugin({ defaultValue: "foo bar" })
+          plugin: tsExamplePlugin({
+            query: { defaultValue: "foo bar" },
+            mutation: { defaultValue: "foo bar" }
+          })
         }
       ]
     });
   });
 
   it("sampleQuery", async () => {
-    const result = await client.query({
+    const result = await client.invoke<string>({
       uri,
-      query: `query {
-        sampleQuery(
-          data: "fuz baz "
-        )
-      }`
+      module: "query",
+      method: "sampleQuery",
+      input: {
+        data: "fuz baz "
+      }
     });
 
-    expect(result.errors).toBeFalsy();
-    expect(result.data).toBeTruthy();
-    expect(result.data?.sampleQuery).toBe("fuz baz foo bar");
+    expect(result.error).toBeFalsy();
+    expect(result.data).toBe("fuz baz foo bar");
   });
 
   it("sampleMutation", async () => {
-    const result = await client.query<{
-      sampleMutation: boolean
-    }>({
+    const result = await client.invoke<boolean>({
       uri,
-      query: `mutation {
-        sampleMutation(
-          data: $data
-        )
-      }`,
-      variables: {
+      module: "mutation",
+      method: "sampleMutation",
+      input: {
         data: new Uint8Array([1, 2, 3, 4, 5])
       }
     });
 
-    expect(result.errors).toBeFalsy();
-    expect(result.data).toBeTruthy();
-    expect(result.data?.sampleMutation).toBe(true);
+    expect(result.error).toBeFalsy();
+    expect(result.data).toBe(true);
   });
 });
