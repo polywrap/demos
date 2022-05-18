@@ -9,19 +9,19 @@
     "codegen": "npx w3 app codegen"
   },
   "dependencies": {
-    "@web3api/client-js": "latest",
-    "serve": "^13.0.2",
-    "toastify-js": "^1.11.2"
+    "@web3api/client-js": "0.0.1-prealpha.79",
+    "serve": "13.0.2",
+    "toastify-js": "1.11.2"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^22.0.0",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@web3api/cli": "latest",
-    "rollup": "^2.73.0",
-    "rollup-plugin-polyfill-node": "^0.9.0",
-    "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-typescript2": "^0.31.2",
-    "typescript": "^4.6.4"
+    "@rollup/plugin-commonjs": "22.0.0",
+    "@rollup/plugin-json": "4.1.0",
+    "@rollup/plugin-node-resolve": "13.3.0",
+    "@web3api/cli": "0.0.1-prealpha.79",
+    "rollup": "2.73.0",
+    "rollup-plugin-polyfill-node": "0.9.0",
+    "rollup-plugin-replace": "2.2.0",
+    "rollup-plugin-typescript2": "0.31.2",
+    "typescript": "4.6.4"
   }
 }
