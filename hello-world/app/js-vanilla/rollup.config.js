@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import typescript from 'rollup-plugin-typescript2';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
+import css from "rollup-plugin-import-css";
 
 export default {
     input: 'src/index.js',
@@ -22,12 +23,15 @@ export default {
         nodeResolve({
             browser: true,
             preferBuiltins: false,
-            extensions: ['.js', '.ts']
+            extensions: ['.js', '.ts', '.css']
         }),
         nodePolyfills(),
         json(),
         typescript({
             rollupCommonJSResolveHack: true
+        }),
+        css({
+            output: 'externalStyle.css'
         })
     ],
   };
