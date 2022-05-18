@@ -4,14 +4,13 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import typescript from 'rollup-plugin-typescript2';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
-import copy from 'rollup-plugin-copy'
 
 export default {
     input: 'src/index.js',
     output: {
-        file: 'public/bundle.js',
+        file: 'public/main.js',
         format: 'umd',
-        name: 'bundle'
+        name: 'main'
     },
     plugins: [
         replace({
@@ -29,11 +28,6 @@ export default {
         json(),
         typescript({
             rollupCommonJSResolveHack: true
-        }),
-        copy({
-            targets: [
-                { src: 'src/index.html', dest: 'public' }
-            ]
         })
     ],
   };

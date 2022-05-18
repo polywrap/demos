@@ -3,9 +3,9 @@ import { Web3ApiClient } from "@web3api/client-js"
 
 function invokeClient() {
   const client = new Web3ApiClient()
-  const result = HelloWorld_Query.logMessage({ message: "sup sup"}, client)
-
-  result.then(t => console.log({ t })).catch(error => console.log({ error }))
+  const message = document.getElementById("message_input").value
+  const result = HelloWorld_Query.logMessage({ message }, client)
+  result.then(result => console.log({ result })).catch(error => console.log({ error }))
 }
 
-document.getElementById('invoke').addEventListener('click', invokeClient)
+document.getElementById('invoke_button').addEventListener('click', invokeClient)
