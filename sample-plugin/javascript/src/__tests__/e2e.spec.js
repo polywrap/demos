@@ -1,9 +1,11 @@
-import { Web3ApiClient } from "@web3api/client-js";
-import { samplePlugin } from "../";
+require("regenerator-runtime")
+
+const { Web3ApiClient } = require("@web3api/client-js");
+const { jsExamplePlugin } = require("../../build");
 
 describe("e2e", () => {
 
-  let client: Web3ApiClient;
+  let client;
   const uri = "ens/sampleplugin.eth";
 
   beforeAll(() => {
@@ -11,8 +13,11 @@ describe("e2e", () => {
     client = new Web3ApiClient({
       plugins: [
         {
-          uri: uri,
-          plugin: samplePlugin({ defaultValue: "foo bar" })
+          uri,
+          plugin: jsExamplePlugin({
+            query: { defaultValue: "foo bar" },
+            mutation: { defaultValue: "foo bar" },
+          }),
         }
       ]
     });
@@ -34,9 +39,7 @@ describe("e2e", () => {
   });
 
   it("sampleMutation", async () => {
-    const result = await client.query<{
-      sampleMutation: boolean
-    }>({
+    const result = await client.query({
       uri,
       query: `mutation {
         sampleMutation(
