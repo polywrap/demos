@@ -1,11 +1,6 @@
-const { PluginModule } = require("@web3api/core-js");
+const { Module } = require("./w3");
 
-class Mutation extends PluginModule {
-    
-  constructor(config) {
-    super(config)
-  }
-
+class Mutation extends Module {
   sampleMutation(input) {
     return input.data.length > 0
   }

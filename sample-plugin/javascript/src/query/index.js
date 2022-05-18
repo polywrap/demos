@@ -1,11 +1,6 @@
-const { PluginModule } = require("@web3api/core-js");
+const { Module } = require("./w3");
 
-class Query extends PluginModule {
-  
-  constructor(config) {
-    super(config)
-  }
-
+class Query extends Module {
   sampleQuery(input) {
     return input.data + this.config.defaultValue;
   }

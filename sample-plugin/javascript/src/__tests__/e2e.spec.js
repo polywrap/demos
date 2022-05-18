@@ -14,7 +14,10 @@ describe("e2e", () => {
       plugins: [
         {
           uri,
-          plugin: jsExamplePlugin({ defaultValue: "foo bar" })
+          plugin: jsExamplePlugin({
+            query: { defaultValue: "foo bar" },
+            mutation: { defaultValue: "foo bar" },
+          }),
         }
       ]
     });
