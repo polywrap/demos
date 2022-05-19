@@ -2,11 +2,11 @@ const path = require("path");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 
 module.exports = {
-  mode: "development",
+  mode: "none",
   entry: path.resolve(__dirname, "./dist/index.js"),
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: "index.js",
     libraryTarget: "umd",
     globalObject: "typeof self !== 'undefined' ? self : this",
   },
