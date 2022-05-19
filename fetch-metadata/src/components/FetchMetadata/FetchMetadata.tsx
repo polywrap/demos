@@ -115,7 +115,7 @@ export const FetchMetadata: React.FC<Props> = ({ setMetadata }: Props) => {
       setMetadata({
         format: "0.0.1-prealpha.3",
         displayName: "Failed to resolve URI",
-        subtext: "Need help? Check out our docs using the link in the header.",
+        subtext: "Metadata is optional. Does the wrapper declare a Meta Manifest?",
         __type: "MetaManifest",
       })
     }
