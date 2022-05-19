@@ -1,16 +1,13 @@
-console.log("jaj");
 import { HelloWorld_Query } from "./w3";
-console.log("jaj2");
 import { Web3ApiClient } from "@web3api/client-js";
 import Toastify from "toastify-js";
 
-console.log("jaj3");
 const invokeClient = async () => {
   const client = new Web3ApiClient();
   const input: HTMLInputElement = document.getElementById(
     "message_input"
   ) as HTMLInputElement;
-  const message = input.innerText;
+  const message = input.value;
   console.info("Invoking Method: logMessage");
   try {
     const result = await HelloWorld_Query.logMessage({ message }, client);
