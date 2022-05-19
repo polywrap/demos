@@ -94,8 +94,29 @@ export const FetchMetadata: React.FC<Props> = ({ setMetadata }: Props) => {
       return;
     }
 
+    let metaData: MetaData;
     try {
-      const metaData: MetaData = await client.getManifest(uri, {type: "meta"});
+      metaData = await client.getManifest(uri, {type: "meta"});
+    } catch (e: any) {
+      if (e.message.includes("WasmWeb3Api: File was not found.")) {
+        setMetadata({
+          format: "0.0.1-prealpha.3",
+          displayName: "File not found",
+          subtext: "Metadata is optional. Does the wrapper declare a Meta Manifest?",
+          __type: "MetaManifest",
+        })
+      } else {
+        setMetadata({
+          format: "0.0.1-prealpha.3",
+          displayName: "Failed to resolve URI",
+          subtext: "We didn't find a wrapper at that URI, or didn't receive a response from the host.",
+          __type: "MetaManifest",
+        })
+      }
+      return;
+    }
+
+    try {
       if (metaData.icon) {
         const imageBuffer: ArrayBuffer = await client.getFile(uri, {path: metaData.icon}) as ArrayBuffer;
         metaData.iconImage = Buffer.from(imageBuffer).toString("base64");
@@ -110,14 +131,23 @@ export const FetchMetadata: React.FC<Props> = ({ setMetadata }: Props) => {
         }
       }
       setMetadata(metaData);
-    }
-    catch {
-      setMetadata({
-        format: "0.0.1-prealpha.3",
-        displayName: "Failed to resolve URI",
-        subtext: "Metadata is optional. Does the wrapper declare a Meta Manifest?",
-        __type: "MetaManifest",
-      })
+    } catch (e: any) {
+      console.log(e.message)
+      if (e.message.includes("WasmWeb3Api: File was not found.")) {
+        setMetadata({
+          format: "0.0.1-prealpha.3",
+          displayName: "File not found",
+          subtext: "The meta manifest declares a path to an image, but the image wasn't there",
+          __type: "MetaManifest",
+        })
+      } else {
+        setMetadata({
+          format: "0.0.1-prealpha.3",
+          displayName: "Unexpected resolution error",
+          subtext: "We didn't receive a response from the URI host",
+          __type: "MetaManifest",
+        })
+      }
     }
   };
 

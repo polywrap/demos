@@ -96,7 +96,7 @@ export const DisplayMetadata: React.FC<Props> = ({ metadata }: Props) => {
           </Grid>
           <Grid item xs={10}>
             {metadata.queries && Object.values(metadata.queries).map(({ name, description }) => (
-              <MetadataItem container item direction="row" justifyContent={"flex-start"} alignItems={"flex-start"} spacing={0}>
+              <MetadataItem container item direction="row" justifyContent={"flex-start"} alignItems={"flex-start"} spacing={0} key={name}>
                 <Grid item xs={3}>
                   <Typography variant={"body1"}>{name}</Typography>
                 </Grid>
