@@ -132,7 +132,6 @@ export const FetchMetadata: React.FC<Props> = ({ setMetadata }: Props) => {
       }
       setMetadata(metaData);
     } catch (e: any) {
-      console.log(e.message)
       if (e.message.includes("WasmWeb3Api: File was not found.")) {
         setMetadata({
           format: "0.0.1-prealpha.3",
