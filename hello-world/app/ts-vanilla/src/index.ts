@@ -2,8 +2,9 @@ import { HelloWorld_Query } from "./w3";
 import { Web3ApiClient } from "@web3api/client-js";
 import Toastify from "toastify-js";
 
+const client = new Web3ApiClient();
+
 const invokeClient = async () => {
-  const client = new Web3ApiClient();
   const input: HTMLInputElement = document.getElementById(
     "message_input"
   ) as HTMLInputElement;
