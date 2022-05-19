@@ -1,7 +1,7 @@
 import React from 'react';
 import {Grid, Link, styled, Typography} from "@mui/material";
-import {MetaData} from "../../util/MetaData";
 import {imgType} from "../../util/image";
+import {MetaManifest} from "@web3api/client-js";
 
 const SectionContainer = styled(Grid)(({ theme }) => ({
   width: '100%',
@@ -26,14 +26,11 @@ const LinkIcon = styled('img')(({ theme }) => ({
 }));
 
 interface Props {
-  metadata: MetaData | undefined
+  manifest: MetaManifest
+  icons: Record<string, string>;
 }
 
-export const DisplayMetadata: React.FC<Props> = ({ metadata }: Props) => {
-
-  if (!metadata) {
-    return (<></>);
-  }
+export const DisplayMetadata: React.FC<Props> = ({ manifest, icons }: Props) => {
 
   const metaDataStringValue = (property: string, value?: string) => (
     <MetadataItem container item direction="row" justifyContent={"flex-start"} alignItems={"flex-start"} spacing={0}>
@@ -52,25 +49,25 @@ export const DisplayMetadata: React.FC<Props> = ({ metadata }: Props) => {
         <MetadataHeader container item direction="row" justifyContent={"flex-start"} alignItems={"flex-start"} spacing={0}>
           <Grid container item xs={10} direction="column" justifyContent={"flex-start"} alignItems={"flex-start"} spacing={0}>
             <Grid item>
-              <Typography variant={"h3"}>{metadata.displayName}</Typography>
+              <Typography variant={"h3"}>{manifest.displayName}</Typography>
             </Grid>
             <Grid item>
-              <Typography variant={"body2"}>{metadata.subtext}</Typography>
+              <Typography variant={"body2"}>{manifest.subtext}</Typography>
             </Grid>
           </Grid>
           <Grid item xs={2}>
-            {metadata.icon && metadata.iconImage && <WrapperIcon src={`data:image/${imgType(metadata.icon)};base64,${metadata.iconImage}`} alt={""}/>}
+            {manifest.icon && <WrapperIcon src={`data:image/${imgType(manifest.icon)};base64,${icons[manifest.icon]}`} alt={""}/>}
           </Grid>
         </MetadataHeader>
-        {metaDataStringValue("Description: ", metadata.description)}
-        {metaDataStringValue("Repository: ", metadata.repository)}
-        {metaDataStringValue("Tags: ", metadata.tags?.join(", "))}
+        {metaDataStringValue("Description: ", manifest.description)}
+        {metaDataStringValue("Repository: ", manifest.repository)}
+        {metaDataStringValue("Tags: ", manifest.tags?.join(", "))}
         <MetadataItem container item direction="row" justifyContent={"flex-start"} alignItems={"flex-start"} spacing={0}>
           <Grid item xs={2}>
             <Typography variant={"subtitle2"}>Links: </Typography>
           </Grid>
           <Grid item xs={10}>
-            {metadata.links && Object.values(metadata.links).map(({ name, icon, url, iconImage}) => (
+            {manifest.links && Object.values(manifest.links).map(({ name, icon, url}) => (
               <Grid container item direction="row" justifyContent={"flex-start"} alignItems={"flex-start"} spacing={2} key={icon}>
                 <Grid item>
                   <Link variant={"body1"}
@@ -81,9 +78,9 @@ export const DisplayMetadata: React.FC<Props> = ({ metadata }: Props) => {
                     {name}
                   </Link>
                 </Grid>
-                {icon && iconImage &&
+                {icon &&
                   <Grid item>
-                    <LinkIcon src={`data:image/${imgType(icon)};base64,${iconImage}`} alt={""}/>
+                    <LinkIcon src={`data:image/${imgType(icon)};base64,${icons[icon]}`} alt={""}/>
                   </Grid>
                 }
               </Grid>
@@ -95,7 +92,7 @@ export const DisplayMetadata: React.FC<Props> = ({ metadata }: Props) => {
             <Typography variant={"subtitle2"}>Queries: </Typography>
           </Grid>
           <Grid item xs={10}>
-            {metadata.queries && Object.values(metadata.queries).map(({ name, description }) => (
+            {manifest.queries && Object.values(manifest.queries).map(({ name, description }) => (
               <MetadataItem container item direction="row" justifyContent={"flex-start"} alignItems={"flex-start"} spacing={0} key={name}>
                 <Grid item xs={3}>
                   <Typography variant={"body1"}>{name}</Typography>

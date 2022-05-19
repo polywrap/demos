@@ -1,9 +1,8 @@
 import React, {FormEvent} from 'react';
 import {ButtonBase, Grid, InputBase, Link, styled, Typography} from "@mui/material";
 import {useWeb3ApiClient} from "@web3api/react";
-import {MetaData} from "../../util/MetaData";
 import {polywrapPalette} from "../../theme";
-import {Uri} from "@web3api/client-js";
+import {MetaManifest, Uri} from "@web3api/client-js";
 
 const SectionContainer = styled(Grid)(({ theme }) => ({
   width: '100%',
@@ -67,10 +66,11 @@ const FetchButton = styled(ButtonBase)(({ theme }) => ({
 }));
 
 interface Props {
-  setMetadata: React.Dispatch<React.SetStateAction<MetaData | undefined>>
+  setManifest: React.Dispatch<React.SetStateAction<MetaManifest | undefined>>
+  setIcons:  React.Dispatch<React.SetStateAction<Record<string, string>>>;
 }
 
-export const FetchMetadata: React.FC<Props> = ({ setMetadata }: Props) => {
+export const FetchMetadata: React.FC<Props> = ({ setManifest, setIcons }: Props) => {
   const client = useWeb3ApiClient();
 
   const [uri, setUri] = React.useState('');
@@ -85,7 +85,7 @@ export const FetchMetadata: React.FC<Props> = ({ setMetadata }: Props) => {
       return;
     }
     if (!Uri.isValidUri(uri)) {
-      setMetadata({
+      setManifest({
         format: "0.0.1-prealpha.3",
         displayName: "Invalid URI",
         subtext: "Need help? Check out our docs using the link in the header.",
@@ -94,60 +94,53 @@ export const FetchMetadata: React.FC<Props> = ({ setMetadata }: Props) => {
       return;
     }
 
-    let metaData: MetaData;
+    let manifest: MetaManifest;
     try {
-      metaData = await client.getManifest(uri, {type: "meta"});
+      manifest = await client.getManifest(uri, {type: "meta"});
+      setManifest(manifest);
     } catch (e: any) {
       if (e.message.includes("WasmWeb3Api: File was not found.")) {
-        setMetadata({
+        setManifest({
           format: "0.0.1-prealpha.3",
           displayName: "File not found",
           subtext: "Metadata is optional. Does the wrapper declare a Meta Manifest?",
           __type: "MetaManifest",
         })
       } else {
-        setMetadata({
+        setManifest({
           format: "0.0.1-prealpha.3",
           displayName: "Failed to resolve URI",
           subtext: "We didn't find a wrapper at that URI, or didn't receive a response from the host.",
           __type: "MetaManifest",
         })
       }
+      setIcons({});
       return;
     }
 
-    try {
-      if (metaData.icon) {
-        const imageBuffer: ArrayBuffer = await client.getFile(uri, {path: metaData.icon}) as ArrayBuffer;
-        metaData.iconImage = Buffer.from(imageBuffer).toString("base64");
-      }
-      if (metaData.links) {
-        for (const link of metaData.links) {
-          if (!link.icon) {
-            continue;
-          }
-          const imageBuffer: ArrayBuffer = await client.getFile(uri, {path: link.icon}) as ArrayBuffer;
-          link.iconImage = Buffer.from(imageBuffer).toString("base64");
-        }
-      }
-      setMetadata(metaData);
-    } catch (e: any) {
-      if (e.message.includes("WasmWeb3Api: File was not found.")) {
-        setMetadata({
-          format: "0.0.1-prealpha.3",
-          displayName: "File not found",
-          subtext: "The meta manifest declares a path to an image, but the image wasn't there",
-          __type: "MetaManifest",
-        })
-      } else {
-        setMetadata({
-          format: "0.0.1-prealpha.3",
-          displayName: "Unexpected resolution error",
-          subtext: "We didn't receive a response from the URI host",
-          __type: "MetaManifest",
-        })
+    const icons: Record<string, string> = {};
+    if (manifest.icon) {
+      try {
+        const imageBuffer: ArrayBuffer = await client.getFile(uri, {path: manifest.icon}) as ArrayBuffer;
+        icons[manifest.icon] = Buffer.from(imageBuffer).toString("base64");
+      } catch (e: any) {
+        console.log(e.message);
       }
     }
+
+    if (manifest.links) {
+      for (const link of manifest.links) {
+        if (link.icon) {
+          try {
+            const imageBuffer: ArrayBuffer = await client.getFile(uri, {path: link.icon}) as ArrayBuffer;
+            icons[link.icon] = Buffer.from(imageBuffer).toString("base64");
+          } catch (e: any) {
+            console.log(e.message);
+          }
+        }
+      }
+    }
+    setIcons(icons);
   };
 
   return (

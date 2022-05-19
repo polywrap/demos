@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Grid, styled} from "@mui/material";
 import {FetchMetadata} from "../components/FetchMetadata/FetchMetadata";
 import {DisplayMetadata} from "../components/DisplayMetadata/DisplayMetadata";
-import {MetaData} from "../util/MetaData";
+import {MetaManifest} from "@web3api/client-js";
 
 const AppContainer = styled(Grid)(({ theme }) => ({
   padding: "40px 10px",
@@ -11,15 +11,16 @@ const AppContainer = styled(Grid)(({ theme }) => ({
 
 export const Main: React.FC = () => {
 
-  const [metadata, setMetadata] = useState<MetaData | undefined>();
+  const [manifest, setManifest] = useState<MetaManifest | undefined>();
+  const [icons, setIcons] = useState<Record<string, string>>({});
 
   return (
     <AppContainer container direction="row" justifyContent="center" spacing={12} alignItems="flex-start">
       <Grid item xs={12} lg={6}>
-        <FetchMetadata setMetadata={setMetadata} />
+        <FetchMetadata setManifest={setManifest} setIcons={setIcons} />
       </Grid>
       <Grid item xs={12} lg={6}>
-        <DisplayMetadata metadata={metadata} />
+        {manifest && <DisplayMetadata manifest={manifest} icons={icons} />}
       </Grid>
     </AppContainer>
   );

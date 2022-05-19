@@ -1,4 +1,3 @@
-
 export function imgType(uri: string): string {
   const extension: string = uri.trimEnd().substring(uri.lastIndexOf(".") + 1);
   switch (extension) {
