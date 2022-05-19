@@ -5,6 +5,10 @@ This project demonstrates how a wrapper's Meta Manifest `web3api.meta.yaml` can 
 To see it in action, run the demo in development mode and enter a wrap URI. The demo will then display the contents of 
 the Meta Manifest.
 
+Try these URIs to test it out:
+
+Uniswap v3 wrapper: w3://ipfs/QmcFf5GY1EboKGtf1cJQM8BxyPbwk3pVjwt4zVyiYeftSD
+
 Some examples of valid URIs are:
 * w3://ipfs/QmHASH
 * w3://ens/sub.domain.eth
