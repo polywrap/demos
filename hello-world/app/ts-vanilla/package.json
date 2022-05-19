@@ -1,0 +1,21 @@
+{
+  "name": "templates-app-vanilla-typescript",
+  "description": "Polywrap dApp Vanilla Typescript Template",
+  "private": true,
+  "version": "0.0.1-prealpha.1",
+  "scripts": {
+    "start": "serve ./dist",
+    "build": "tsc && cp -r public/* dist",
+    "codegen": "npx w3 app codegen"
+  },
+  "dependencies": {
+    "@web3api/client-js": "0.0.1-prealpha.80",
+    "serve": "13.0.2",
+    "toastify-js": "1.11.2"
+  },
+  "devDependencies": {
+    "@types/toastify-js": "1.11.0",
+    "@web3api/cli": "0.0.1-prealpha.80",
+    "typescript": "4.6.4"
+  }
+}
