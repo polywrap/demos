@@ -18,7 +18,7 @@ const HeaderLink = styled(Link)(({ theme }) => ({
 const HeaderLogo = styled("img")(({ theme }) => ({
   objectFit: "contain",
   height: "40px",
-  width: "100%",
+  width: "40px",
   cursor: "pointer",
 }));
 

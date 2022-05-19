@@ -16,10 +16,10 @@ export const Main: React.FC = () => {
 
   return (
     <AppContainer container direction="row" justifyContent="center" spacing={12} alignItems="flex-start">
-      <Grid item xs={12} lg={6}>
+      <Grid item container xs={12} lg={6} direction="row" justifyContent="center" spacing={0}>
         <FetchMetadata setManifest={setManifest} setIcons={setIcons} />
       </Grid>
-      <Grid item xs={12} lg={6}>
+      <Grid item container xs={12} lg={6} direction="row" justifyContent="center" spacing={0}>
         {manifest && <DisplayMetadata manifest={manifest} icons={icons} />}
       </Grid>
     </AppContainer>

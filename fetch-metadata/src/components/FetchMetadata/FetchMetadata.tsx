@@ -5,7 +5,7 @@ import {polywrapPalette} from "../../theme";
 import {MetaManifest, Uri} from "@web3api/client-js";
 
 const SectionContainer = styled(Grid)(({ theme }) => ({
-  width: '100%',
+  width: 'max-content',
   [theme.breakpoints.up('lg')]: {
     alignItems: "flex-start",
   },
