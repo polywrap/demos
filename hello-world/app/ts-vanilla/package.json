@@ -5,7 +5,7 @@
   "version": "0.0.1-prealpha.1",
   "scripts": {
     "start": "serve ./dist",
-    "build": "tsc && webpack && cp -r public/* dist",
+    "build": "yarn codegen && tsc && webpack && cp -r public/* dist",
     "codegen": "npx w3 app codegen"
   },
   "dependencies": {
