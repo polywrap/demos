@@ -24,7 +24,7 @@ export function query(input: Input_query): Response | null {
 
   // handle json rpc error
   if (httpResponse.status == 400 || httpResponse.status == 404 || httpResponse.status == 500) {
-    // TODO: how to handle json rpc notification (i.e. no request id) when error occurs?fi
+    // TODO: how to handle json rpc notification (i.e. no request id) when error occurs?
     if (!httpResponse.body) {
       // handle unexpected missing response body
       const id: i32 = input.request.id.isNull ? I32.MIN_VALUE : input.request.id.value;

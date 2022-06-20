@@ -1,7 +1,6 @@
 import { Nullable, JSON, JSONSerializer } from "@polywrap/wasm-as";
 import { RpcError, Http_Response, Request } from "./wrap";
 
-// @ts-ignore
 @serializable
 export class RpcData {
   jsonrpc: string;
