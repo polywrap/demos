@@ -1,1 +1,1 @@
-#import * into SimpleStorage from "ens/simple-storage.eth"
+#import * into JsonRpc from "ens/json-rpc.eth"
