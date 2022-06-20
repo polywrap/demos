@@ -1,5 +1,5 @@
 format: 0.0.1-prealpha.9
-name: http-query
+name: json-rpc
 language: wasm/assemblyscript
 build: ./polywrap.build.yaml
 meta: ./polywrap.meta.yaml

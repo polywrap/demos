@@ -1,10 +1,12 @@
 format: 0.0.1-prealpha.3
-displayName: HTTP Query
+displayName: JSON RPC
 subtext: AssemblyScript Wasm Wrapper Demo
-description: HTTP Query Wasm wrapper written in AssemblyScript
+description: A Wasm wrapper written in AssemblyScript that uses the Polywrap HTTP plugin wrapper to perform JSON RPC queries.
 tags:
-  - http-query
+  - http query
   - http
+  - json-rpc
+  - rpc
   - ethereum
 repository: https://github.com/test/test
 icon: ./meta/icon.png
