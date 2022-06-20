@@ -1,0 +1,19 @@
+[package]
+name = "json-rpc"
+version = "0.1.0"
+description = "A Wasm wrapper written in Rust that uses the Polywrap HTTP plugin wrapper to perform JSON RPC queries."
+authors = ["Kris Bitney <kris@polywrap.io>"]
+repository = "https://github.com/polywrap/demos"
+license = "MIT"
+edition = "2021"
+
+[dependencies]
+polywrap-wasm-rs = { version = "0.0.1-prealpha.86" }
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[profile.release]
+opt-level = 's'
+lto = true
+panic = 'abort'

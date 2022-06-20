@@ -1,0 +1,21 @@
+format: 0.0.1-prealpha.3
+displayName: JSON RPC
+subtext: Rust Wasm Wrapper Demo
+description: A Wasm wrapper written in Rust that uses the Polywrap HTTP plugin wrapper to perform JSON RPC queries.
+tags:
+  - http query
+  - http
+  - json-rpc
+  - rpc
+  - ethereum
+repository: https://github.com/test/test
+icon: ./meta/icon.png
+links:
+  - name: test link
+    icon: ./meta/link.svg
+    url: http://link.com/path
+queries:
+  - name: test query
+    description: test description
+    query: ./meta/test.graphql
+    vars: ./meta/test.json
