@@ -1,45 +1,36 @@
-use polywrap_wasm_rs::{JSON, Serialize};
-use crate::{HttpResponse, Request, RpcError};
+use polywrap_wasm_rs::JSON;
+use crate::{HttpResponse, Request, Response, RpcError};
 
-#[derive(Serialize)]
-pub struct RpcData {
-    jsonrpc: String,
-    pub method: String,
-    pub params: Option<JSON::Value>,
-    pub id: Option<i32>,
+pub fn request_to_json_string(request: &Request) -> String {
+    let json_request = JSON::to_value(request).unwrap();
+    let mut rpc_data = json_request.as_object().cloned().unwrap();
+    let protocol: JSON::Value = JSON::Value::from("2.0");
+    rpc_data.insert(String::from("jsonrpc"), protocol);
+    let json_string: String = JSON::Value::from(rpc_data).to_string();
+    json_string
 }
 
-impl RpcData {
-    pub fn from(request: &Request) -> RpcData {
-        RpcData {
-            jsonrpc: String::from("2.0"),
-            method: request.method.clone(),
-            params: request.params.clone(),
-            id: request.id,
-        }
-    }
-
-    pub fn stringify(&self) -> String {
-        match JSON::to_string::<self>(&self) {
-            Ok(v) => v,
-            Err(e) => panic!("{}", e)
-        }
+pub fn response_from_json_string(string_val: String) -> Response {
+    let json_val: JSON::Value = JSON::from_str(string_val.as_str()).unwrap();
+    let json_obj: &JSON::Map<String, JSON::Value> = json_val.as_object().unwrap();
+    let result: Option<JSON::Value> = json_obj.get("result").cloned();
+    let error: Option<RpcError> = match json_obj.get("error").cloned() {
+        Some(v) => match JSON::from_value::<RpcError>(v) {
+            Ok(v) => Some(v),
+            _ => None
+        },
+        None => None
+    };
+    let id = match json_obj.get("id").cloned() {
+        Some(v) => String::from(v.as_str().unwrap_or("")),
+        None => String::from(""),
+    };
+    Response {
+        result,
+        error,
+        id,
     }
 }
-
-// pub fn to_rpc_data(request: &Request) -> String {
-//     let params: &str = match &request.params {
-//         Some(v) => v.to_string().as_str(),
-//         None => "null"
-//     };
-//
-//     return JSON::json!({
-//         "jsonrpc": "2.0",
-//         "method": request.method.as_str(),
-//         "params": params,
-//         "id": request.id,
-//     }).to_string();
-// }
 
 pub fn handle_unspecified_rpc_error(http_response: &HttpResponse) -> RpcError {
     match http_response.status {

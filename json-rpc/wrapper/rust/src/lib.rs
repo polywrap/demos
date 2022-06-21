@@ -4,9 +4,9 @@ mod utils;
 pub use wrap::*;
 use polywrap_wasm_rs::JSON;
 use crate::imported::http_module;
-use crate::utils::{handle_unspecified_rpc_error, RpcData, to_rpc_data};
+use crate::utils::{handle_unspecified_rpc_error, request_to_json_string, response_from_json_string};
 
-pub fn query<'a>(input: InputQuery) -> Option<Response> {
+pub fn query(input: InputQuery) -> Option<Response> {
 
     let http_response: HttpResponse = match HttpModule::post(&http_module::InputPost {
         url: input.url,
@@ -17,7 +17,7 @@ pub fn query<'a>(input: InputQuery) -> Option<Response> {
             ]),
             url_params: None,
             response_type: HttpResponseType::TEXT,
-            body: Some(RpcData::from(&input.request).stringify()),
+            body: Some(request_to_json_string(&input.request)),
         }),
     }) {
         Ok(Some(v)) => v,
@@ -26,16 +26,17 @@ pub fn query<'a>(input: InputQuery) -> Option<Response> {
     };
 
     // handle json rpc error
-    if httpResponse.status == 400 || httpResponse.status == 404 || httpResponse.status == 500 {
+    if http_response.status == 400 || http_response.status == 404 || http_response.status == 500 {
         // TODO: how to handle json rpc notification (i.e. no request id) when error occurs?
         return match http_response.body {
-            Some(v) => Some(JSON::from_str::<Response>(v.as_str()).unwrap()),
+            Some(v) => Some(response_from_json_string(v)),
             // handle unexpected missing response body
             None => {
-                let id: i32 = input.request.id.unwrap_or(i32::MIN);
+                let error: Option<RpcError> = Some(handle_unspecified_rpc_error(&http_response));
+                let id: String = input.request.id.unwrap_or(String::from(""));
                 return Some(Response {
                     result: None,
-                    error: Some(handle_unspecified_rpc_error(&http_response)),
+                    error,
                     id,
                 });
             }
@@ -43,18 +44,18 @@ pub fn query<'a>(input: InputQuery) -> Option<Response> {
     }
 
     // handle json rpc success
-    if httpResponse.status >= 200 && httpResponse.status <= 299 {
+    if http_response.status >= 200 && http_response.status <= 299 {
         if input.request.id.is_none() {
             // response was not requested
             return None;
         }
         return match http_response.body {
-            Some(v) => Some(JSON::from_str::<Response>(v.as_str()).unwrap()),
+            Some(v) => Some(response_from_json_string(v)),
             // handle unexpected missing response body
             None => Some(Response {
                 result: None,
                 error: None,
-                id: input.request.id.unwrap()
+                id: input.request.id.unwrap(),
             })
         };
     }

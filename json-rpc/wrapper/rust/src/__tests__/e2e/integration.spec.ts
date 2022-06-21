@@ -30,7 +30,7 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
         request: {
           method: "gas_price",
           // params: "[null]",
-          id: 1,
+          id: "1",
         }
       }
     });
@@ -47,7 +47,7 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
         request: {
           method: "gas_price",
           params: "[17824600]",
-          id: 1,
+          id: "1",
         }
       }
     });
