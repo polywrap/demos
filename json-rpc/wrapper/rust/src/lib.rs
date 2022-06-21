@@ -12,7 +12,7 @@ pub fn query(input: InputQuery) -> Option<Response> {
         url: input.url,
         request: Some(HttpRequest {
             headers: Some(vec![
-            HttpHeader { key: String::from("Content-Type"), value: String::from("application/json-rpc") },
+            HttpHeader { key: String::from("Content-Type"), value: String::from("application/json") },
             HttpHeader { key: String::from("Accept"), value: String::from("application/json") },
             ]),
             url_params: None,
