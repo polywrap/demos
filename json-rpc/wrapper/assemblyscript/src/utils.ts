@@ -1,27 +1,41 @@
-import { Nullable, JSON, JSONSerializer } from "@polywrap/wasm-as";
-import { RpcError, Http_Response, Request } from "./wrap";
+import { JSON, JSONEncoder } from "@polywrap/wasm-as";
+import { RpcError, Http_Response, Request, Response } from "./wrap";
 
-@serializable
-export class RpcData {
-  jsonrpc: string;
-  method: string;
-  params: JSON.Value | null;
-  id: Nullable<i32>;
-
-  constructor(request: Request) {
-    this.jsonrpc = "2.0";
-    this.method = request.method;
-    this.params = request.params;
-    this.id = request.id;
+export function requestToJsonString(request: Request): string {
+  const encoder = new JSONEncoder();
+  encoder.pushObject(null);
+  encoder.setString("jsonrpc", "2.0");
+  encoder.setString("method", request.method);
+  if (request.params != null) {
+    encoder.setValue("params", request.params!);
   }
-
-  static from(request: Request): RpcData {
-    return new RpcData(request);
+  if (request.id !== null) {
+    encoder.setString("id", request.id!);
   }
+  encoder.popObject();
+  return JSON.parse(encoder.serialize()).stringify();
+}
 
-  stringify(): string {
-    return JSONSerializer.encode(this).stringify()
+export function responseFromJsonString(stringVal: string): Response {
+  const jsonObj: JSON.Obj = <JSON.Obj>JSON.parse(stringVal);
+  const result: JSON.Value | null = jsonObj.getValue("result");
+  const jsonError: JSON.Value | null = jsonObj.getValue("error");
+  let error: RpcError | null = null;
+  if (jsonError !== null) {
+    const jsonErrorObj: JSON.Obj = <JSON.Obj>jsonError;
+    error = {
+      code: <i32>jsonErrorObj.getInteger("code")!.valueOf(),
+      message: jsonErrorObj.getString("message")!.valueOf(),
+      data: jsonErrorObj.getValue("data"),
+    };
   }
+  const jsonId: JSON.Str | null = jsonObj.getString("id");
+  const id: string = jsonId === null ? "" : jsonId!.valueOf();
+  return {
+    result,
+    error,
+    id,
+  };
 }
 
 export function handleUnspecifiedRpcError(httpResponse: Http_Response): RpcError {

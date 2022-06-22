@@ -1,5 +1,10 @@
-mutation {
-  deployContract(
-    connection: $connection
+query {
+  query(
+    url: $url
+    request: {
+      method: $method
+      params: $params
+      id: $id
+    }
   )
 }

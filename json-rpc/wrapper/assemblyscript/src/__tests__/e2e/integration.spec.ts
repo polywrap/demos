@@ -21,24 +21,56 @@ describe("JSON RPC Wasm Wrapper (AssemblyScript)", () => {
     await buildWrapper(wrapperPath);
   });
 
-  it("json rpc query without parameters", async () => {
+  it("Near protocol RPC -> 'gas_price' method", async () => {
     const { data, error } = await client.invoke<App.JsonRpc_Response | null>({
       uri: wrapperUri,
       method: "query",
       input: {
-        url: "https://rpc.testnet.near.org",
+        url: "https://archival-rpc.testnet.near.org",
         request: {
           method: "gas_price",
-          // params: "[null]",
-          id: 1,
+          params: "[93019381]",
+          id: "1",
         }
       }
     });
     expect(error).toBeFalsy();
-    console.log(JSON.stringify(data, null, 2));
+    expect(data).toBeTruthy();
+
+    expect(data!.id).toEqual("1");
+    expect(data!.error).toBeFalsy();
+    expect(data!.result).toBeTruthy();
+
+    const gas_price = JSON.parse(data!.result!);
+    expect(gas_price.gas_price).toEqual("100000000");
   });
 
-  it("json rpc query with parameters", async () => {
+  it("Near protocol RPC -> 'block' method", async () => {
+    const { data, error } = await client.invoke<App.JsonRpc_Response | null>({
+      uri: wrapperUri,
+      method: "query",
+      input: {
+        url: "https://archival-rpc.testnet.near.org",
+        request: {
+          method: "block",
+          params: JSON.stringify({ block_id: 93019381 }),
+          id: "1",
+        }
+      }
+    });
+    expect(error).toBeFalsy();
+    expect(data).toBeTruthy();
+
+    expect(data!.id).toEqual("1");
+    expect(data!.error).toBeFalsy();
+    expect(data!.result).toBeTruthy();
+
+    const block = JSON.parse(data!.result!);
+    expect(block.header.height).toEqual(93019381);
+    expect(block.header.gas_price).toEqual("100000000");
+  });
+
+  it("Near protocol RPC -> missing params", async () => {
     const { data, error } = await client.invoke<App.JsonRpc_Response | null>({
       uri: wrapperUri,
       method: "query",
@@ -46,12 +78,21 @@ describe("JSON RPC Wasm Wrapper (AssemblyScript)", () => {
         url: "https://rpc.testnet.near.org",
         request: {
           method: "gas_price",
-          params: "[17824600]",
-          id: 1,
+          id: "1",
         }
       }
     });
     expect(error).toBeFalsy();
-    console.log(JSON.stringify(data, null, 2));
+    expect(data).toBeTruthy();
+
+    expect(data!.id).toEqual("1");
+    expect(data!.result).toBeFalsy();
+    expect(data!.error).toBeTruthy();
+
+    expect(data!.error!).toEqual({
+      code: -32700,
+      message: "Parse error",
+      data: "\"Require at least one parameter\""
+    });
   });
 });

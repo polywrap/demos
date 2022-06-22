@@ -3,13 +3,13 @@
 type Request {
     method: String!
     params: JSON
-    id: Int
+    id: String
 }
 
 type Response {
     result: JSON
     error: RpcError
-    id: Int!
+    id: String!
 }
 
 type RpcError {
