@@ -118,6 +118,4 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
       data: "\"Require at least one parameter\""
     });
   });
-
-
 });
