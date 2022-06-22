@@ -1,19 +1,17 @@
-import { JSON, JSONEncoder } from "@polywrap/wasm-as";
+import { JSON } from "@polywrap/wasm-as";
 import { RpcError, Http_Response, Request, Response } from "./wrap";
 
 export function requestToJsonString(request: Request): string {
-  const encoder = new JSONEncoder();
-  encoder.pushObject(null);
-  encoder.setString("jsonrpc", "2.0");
-  encoder.setString("method", request.method);
+  const result: JSON.Obj = JSON.Value.Object();
+  result.set("jsonrpc", JSON.from("2.0"))
+  result.set("method", JSON.from(request.method));
   if (request.params != null) {
-    encoder.setValue("params", request.params!);
+    result.set("params", request.params!)
   }
   if (request.id !== null) {
-    encoder.setString("id", request.id!);
+    result.set("id", JSON.from(request.id!));
   }
-  encoder.popObject();
-  return JSON.parse(encoder.serialize()).stringify();
+  return result.stringify();
 }
 
 export function responseFromJsonString(stringVal: string): Response {

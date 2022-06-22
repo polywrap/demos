@@ -5,7 +5,7 @@ import path from "path";
 
 jest.setTimeout(500000);
 
-describe("JSON RPC Wasm Wrapper (AssemblyScript)", () => {
+describe("JSON RPC Wasm Wrapper (Rust)", () => {
 
   const client: PolywrapClient = new PolywrapClient();
 
@@ -21,7 +21,7 @@ describe("JSON RPC Wasm Wrapper (AssemblyScript)", () => {
     await buildWrapper(wrapperPath);
   });
 
-  it("Near protocol RPC -> 'gas_price' method", async () => {
+  it("calls Near RPC -> 'gas_price' method", async () => {
     const { data, error } = await client.invoke<App.JsonRpc_Response | null>({
       uri: wrapperUri,
       method: "query",
@@ -45,7 +45,7 @@ describe("JSON RPC Wasm Wrapper (AssemblyScript)", () => {
     expect(gas_price.gas_price).toEqual("100000000");
   });
 
-  it("Near protocol RPC -> 'block' method", async () => {
+  it("calls Near RPC -> 'block' method", async () => {
     const { data, error } = await client.invoke<App.JsonRpc_Response | null>({
       uri: wrapperUri,
       method: "query",
@@ -54,14 +54,14 @@ describe("JSON RPC Wasm Wrapper (AssemblyScript)", () => {
         request: {
           method: "block",
           params: JSON.stringify({ block_id: 93019381 }),
-          id: "1",
+          id: "2",
         }
       }
     });
     expect(error).toBeFalsy();
     expect(data).toBeTruthy();
 
-    expect(data!.id).toEqual("1");
+    expect(data!.id).toEqual("2");
     expect(data!.error).toBeFalsy();
     expect(data!.result).toBeTruthy();
 
@@ -70,7 +70,30 @@ describe("JSON RPC Wasm Wrapper (AssemblyScript)", () => {
     expect(block.header.gas_price).toEqual("100000000");
   });
 
-  it("Near protocol RPC -> missing params", async () => {
+  it("calls Ethereum Infura RPC -> 'eth_getBlockTransactionCountByHash' method", async () => {
+    const { data, error } = await client.invoke<App.JsonRpc_Response | null>({
+      uri: wrapperUri,
+      method: "query",
+      input: {
+        url: "https://mainnet.infura.io/v3/b00b2c2cc09c487685e9fb061256d6a6",
+        request: {
+          method: "eth_getBlockTransactionCountByHash",
+          params: JSON.stringify(["0xcb32f0ee739ee5fe6c21263c1e6842e5348530bc72e327b883224d0a14a0bc41"]),
+          id: "3",
+        }
+      }
+    });
+    expect(error).toBeFalsy();
+    expect(data).toBeTruthy();
+
+    expect(data!.id).toEqual("3");
+    expect(data!.error).toBeFalsy();
+    expect(data!.result).toBeTruthy();
+
+    expect(data!.result).toEqual("\"0x96\"");
+  });
+
+  it("returns RPC error when querying with wrong params", async () => {
     const { data, error } = await client.invoke<App.JsonRpc_Response | null>({
       uri: wrapperUri,
       method: "query",
@@ -78,14 +101,14 @@ describe("JSON RPC Wasm Wrapper (AssemblyScript)", () => {
         url: "https://rpc.testnet.near.org",
         request: {
           method: "gas_price",
-          id: "1",
+          id: "4",
         }
       }
     });
     expect(error).toBeFalsy();
     expect(data).toBeTruthy();
 
-    expect(data!.id).toEqual("1");
+    expect(data!.id).toEqual("4");
     expect(data!.result).toBeFalsy();
     expect(data!.error).toBeTruthy();
 
