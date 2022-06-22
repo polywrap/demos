@@ -26,7 +26,7 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
       uri: wrapperUri,
       method: "query",
       input: {
-        url: "https://rpc.testnet.near.org",
+        url: "https://archival-rpc.testnet.near.org",
         request: {
           method: "gas_price",
           params: "[93019381]",

@@ -1,5 +1,5 @@
 format: 0.0.1-prealpha.3
-displayName: JSON RPC
+displayName: JSON-RPC with HTTP plugin
 subtext: Rust Wasm Wrapper Demo
 description: A Wasm wrapper written in Rust that uses the Polywrap HTTP plugin wrapper to perform JSON RPC queries.
 tags:

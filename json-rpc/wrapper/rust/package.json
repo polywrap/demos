@@ -1,6 +1,6 @@
 {
-  "name": "http-query-demo-rs",
-  "description": "Polywrap Rust Wrapper Demo: HTTP Query",
+  "name": "json-rpc-demo-rs",
+  "description": "Polywrap Rust Wrapper Demo: JSON-RPC with HTTP plugin",
   "private": true,
   "version": "0.0.1-prealpha.86",
   "scripts": {
