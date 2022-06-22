@@ -51,12 +51,7 @@ pub fn query(input: InputQuery) -> Option<Response> {
         }
         return match http_response.body {
             Some(v) => Some(response_from_json_string(v)),
-            // handle unexpected missing response body
-            None => Some(Response {
-                result: None,
-                error: None,
-                id: input.request.id.unwrap(),
-            })
+            None => panic!("Missing response with successful HTTP status {}", http_response.status)
         };
     }
 
