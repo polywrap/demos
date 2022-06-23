@@ -1,0 +1,7 @@
+#import { Module } into Logger from "wrap://ens/logger.polytest.eth"
+
+type Module {
+    logMessage(
+        message: String!
+    ): Boolean!
+}

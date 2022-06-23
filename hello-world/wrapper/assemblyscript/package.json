@@ -1,0 +1,16 @@
+{
+  "name": "hello-world-demo",
+  "description": "Polywrap Hello World Demo",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "polywrap build",
+    "codegen": "polywrap codegen",
+    "test": "polywrap query ./recipes/e2e.json",
+    "deploy": "polywrap deploy"
+  },
+  "devDependencies": {
+    "polywrap": "0.0.1-prealpha.88",
+    "@polywrap/wasm-as": "0.0.1-prealpha.88"
+  }
+}
