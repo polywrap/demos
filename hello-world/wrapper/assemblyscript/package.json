@@ -6,17 +6,16 @@
   "scripts": {
     "build": "polywrap build",
     "codegen": "polywrap codegen",
-    "test": "polywrap query ./recipes/e2e.json",
-    "test:e2e": "jest --passWithNoTests --runInBand --verbose",
+    "test": "jest --passWithNoTests --runInBand --verbose",
     "deploy": "polywrap deploy"
   },
   "devDependencies": {
-    "@types/jest": "22.2.3",
     "@polywrap/wasm-as": "0.0.1-prealpha.89",
+    "@types/jest": "22.2.3",
     "jest": "27.0.6",
-    "polywrap": "0.0.1-prealpha.89",
-    "typescript": "4.0.7",
+    "polywrap": "^0.0.1-prealpha.89",
     "ts-jest": "27.0.4",
-    "ts-node": "9.1.1"
+    "ts-node": "9.1.1",
+    "typescript": "4.0.7"
   }
 }
