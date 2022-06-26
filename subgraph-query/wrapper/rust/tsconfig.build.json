@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": "build"
+  },
+  "include": [
+    "./src/**/*.ts",
+  ],
+  "exclude": [
+    "./src/__tests__/e2e/**/*.ts"
+  ]
+}
