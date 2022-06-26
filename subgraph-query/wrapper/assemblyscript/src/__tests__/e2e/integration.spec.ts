@@ -38,8 +38,6 @@ describe("SubgraphQuery", () => {
       wrapperUri
     );
 
-    console.log(response);
-
     expect(response).toBeTruthy();
     expect(response.error).toBeFalsy();
     expect(response.data).not.toBeNull();
