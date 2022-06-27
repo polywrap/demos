@@ -11,8 +11,10 @@ pub fn subgraph_query(input: InputSubgraphQuery) -> JSON::Value {
         subgraph_name: input.subgraph_name,
         query: input.query
     }) {
-        // FIXME
-        Ok(v) => JSON::from_str::<Map<String, JSON::Value>>(&v).unwrap()["data"],
+        Ok(v) => {
+            let response = JSON::from_str::<Map<String, JSON::Value>>(&v).unwrap();
+            response["data"].clone()
+        },
         Err(e) => panic!("{}", e),
     }
 }
