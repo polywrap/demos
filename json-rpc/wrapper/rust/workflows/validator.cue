@@ -3,10 +3,7 @@ package e2e
 case1: {
 		$0: {
 			data: {
-				result: {
-					gas_price: "100000000"
-					...
-				},
+				result: "{\"gas_price\":\"100000000\"}",
 				error: null,
 				id: "1"
 			},
@@ -16,14 +13,7 @@ case1: {
 case2: {
 		$0: {
 			data: {
-				result: {
-					header: {
-						height: 93019381,
-						gas_price: "100000000",
-						...
-					},
-					...
-				},
+				result: =~ "(\\\"gas_price\\\":\\\"100000000\\\").*(\\\"height\\\":93019381)|(\\\"height\\\":93019381).*(\\\"gas_price\\\":\\\"100000000\\\")"
 				error: null,
 				id: "2"
 			},
