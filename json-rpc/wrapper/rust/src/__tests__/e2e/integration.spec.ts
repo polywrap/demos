@@ -1,5 +1,4 @@
 import { PolywrapClient } from "@polywrap/client-js";
-import { buildWrapper } from "@polywrap/test-env-js";
 import * as App from "../types/wrap";
 import path from "path";
 
@@ -16,10 +15,6 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
     ".."
   );
   const wrapperUri = `fs/${wrapperPath}/build`;
-
-  beforeAll(async () => {
-    await buildWrapper(wrapperPath);
-  });
 
   it("calls Near RPC -> 'gas_price' method", async () => {
     const { data, error } = await client.invoke<App.JsonRpc_Response | null>({
