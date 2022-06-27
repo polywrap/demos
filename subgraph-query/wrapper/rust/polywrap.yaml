@@ -1,6 +1,8 @@
 format: 0.0.1-prealpha.9
 name: subgraph-query-rs
 language: wasm/rust
+meta: ./polywrap.meta.yaml
+deploy: ./polywrap.deploy.yaml
 build: ./polywrap.build.yaml
 schema: ./schema.graphql
 module: ./Cargo.toml
