@@ -1,0 +1,9 @@
+#import { Module } into Subgraph from "ens/graph-node.polywrap.eth"
+
+type Module {
+  subgraphQuery(
+    subgraphAuthor: String!
+    subgraphName: String!
+    query: String!
+  ): JSON!
+}
