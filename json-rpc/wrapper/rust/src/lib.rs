@@ -6,9 +6,9 @@ use polywrap_wasm_rs::JSON;
 use crate::imported::http_module;
 use crate::utils::{handle_unspecified_rpc_error, request_to_json_string, response_from_json_string};
 
-pub fn query(input: InputQuery) -> Option<Response> {
+pub fn query(input: ArgsQuery) -> Option<Response> {
 
-    let http_response: HttpResponse = match HttpModule::post(&http_module::InputPost {
+    let http_response: HttpResponse = match HttpModule::post(&http_module::ArgsPost {
         url: input.url,
         request: Some(HttpRequest {
             headers: Some(vec![
