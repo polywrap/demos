@@ -1,0 +1,8 @@
+name: hello-world
+jobs:
+  cases:
+    steps:
+    - uri: fs/./build
+      method: logMessage
+      input:
+        message: "Hello World!"

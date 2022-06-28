@@ -24,13 +24,5 @@
     "resolveJsonModule": true,
     "strictNullChecks": true
   },
-  "include": [
-    "./src/__tests__/**/*.ts"
-  ],
-  "exclude": [
-    "./src/query/**/*.ts",
-    "./src/mutation/**/*.ts",
-    "./src/common/**/*.ts",
-    "./src/contracts/**/*.ts",
-  ]
+  "typeAcquisition": { "include": ["jest"] },
 }
