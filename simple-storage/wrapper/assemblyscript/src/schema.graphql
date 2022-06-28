@@ -1,0 +1,31 @@
+#import { Module, Connection } into Ethereum from "wrap://ens/ethereum.polywrap.eth"
+
+type Module {
+    """
+    Module to deploy and interect with the simple-storage smart-contract
+    """
+
+    getData(
+        """
+        Get the latest set integer from the smart contract
+        """
+        address: String!
+        connection: Ethereum_Connection
+    ): Int!
+
+    setData(
+        """
+        Set the new integer value in the smart contract
+        """
+        address: String!
+        value: UInt32!
+        connection: Ethereum_Connection
+    ): String!
+
+    deployContract(
+        """
+        Deploys the simple-storage contract to the given blockchain
+        """
+        connection: Ethereum_Connection
+    ): String!
+}

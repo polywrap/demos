@@ -1,0 +1,13 @@
+format: 0.0.1-prealpha.3
+displayName: Subgraph query
+subtext: wrapper for quering subgraph
+description: wrapper for quering subgraph
+tags:
+  - subgraph
+  - query
+repository: https://github.com/test/test
+icon: ./meta/icon.png
+links:
+  - name: test link
+    icon: ./meta/link.svg
+    url: http://link.com/path
