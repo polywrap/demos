@@ -29,7 +29,7 @@ pub fn query(input: ArgsQuery) -> Option<Response> {
     if http_response.status == 400 || http_response.status == 404 || http_response.status == 500 {
         // TODO: how to handle json rpc notification (i.e. no request id) when error occurs?
         return match http_response.body {
-            Some(v) => Some(response_from_json_string(v)),
+            Some(v) => Some(response_from_json_string(&v)),
             // handle unexpected missing response body
             None => {
                 let error: Option<RpcError> = Some(handle_unspecified_rpc_error(&http_response));
@@ -50,7 +50,7 @@ pub fn query(input: ArgsQuery) -> Option<Response> {
             return None;
         }
         return match http_response.body {
-            Some(v) => Some(response_from_json_string(v)),
+            Some(v) => Some(response_from_json_string(&v)),
             None => panic!("Missing response with successful HTTP status {}", http_response.status)
         };
     }
