@@ -1,0 +1,10 @@
+query {
+  query(
+    url: $url
+    request: {
+      method: $method
+      params: $params
+      id: $id
+    }
+  )
+}
