@@ -1,0 +1,26 @@
+#import { Module, Request, Response } into Http from "wrap://ens/http.polywrap.eth"
+
+type Request {
+    method: String!
+    params: JSON
+    id: String
+}
+
+type Response {
+    result: JSON
+    error: RpcError
+    id: String!
+}
+
+type RpcError {
+    code: Int!
+    message: String!
+    data: JSON
+}
+
+type Module {
+    query(
+        url: String!
+        request: Request!
+    ): Response
+}
