@@ -7,7 +7,7 @@ pub fn log_message(input: InputLogMessage) -> bool {
     match LoggerModule::info(&logger_module::InputInfo {
         message: input.message,
     }) {
-        Ok(v) => v.unwrap(),
+        Ok(v) => v,
         Err(e) => panic!("{}", e),
     }
 }

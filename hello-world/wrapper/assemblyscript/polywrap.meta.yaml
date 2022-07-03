@@ -1,7 +1,7 @@
 format: 0.0.1-prealpha.3
-displayName: Simple Storage
-subtext: ethereum simple storage contract wrapper
-description: stores and retrieves data from ethereum blockchain
+displayName: Hello World
+subtext: simple hello world wrapper
+description: simple hello world wrapper
 tags:
   - simple-storage
   - storage
