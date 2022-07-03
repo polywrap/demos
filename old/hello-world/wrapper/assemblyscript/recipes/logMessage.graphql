@@ -1,5 +1,0 @@
-{
-  logMessage(
-    message: $message
-  )
-}
