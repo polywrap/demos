@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Grid, styled, Typography} from "@mui/material";
 import {FetchMetadata} from "../components/FetchMetadata/FetchMetadata";
 import {DisplayMetadata} from "../components/DisplayMetadata/DisplayMetadata";
-import {MetaManifest} from "@web3api/client-js";
+import {MetaManifest} from "@polywrap/client-js";
 
 const AppContainer = styled(Grid)(({ theme }) => ({
   padding: "40px 10px",

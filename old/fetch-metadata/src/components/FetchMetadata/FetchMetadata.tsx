@@ -1,8 +1,8 @@
 import React, {FormEvent} from 'react';
 import {ButtonBase, Grid, InputBase, Link, styled, Typography} from "@mui/material";
-import {useWeb3ApiClient} from "@web3api/react";
+import {usePolywrapClient} from "@polywrap/react";
 import {polywrapPalette} from "../../theme";
-import {MetaManifest, Uri} from "@web3api/client-js";
+import {MetaManifest, Uri} from "@polywrap/client-js";
 
 const SectionContainer = styled(Grid)(({ theme }) => ({
   width: 'max-content',
@@ -71,7 +71,7 @@ interface Props {
 }
 
 export const FetchMetadata: React.FC<Props> = ({ setManifest, setIcons }: Props) => {
-  const client = useWeb3ApiClient();
+  const client = usePolywrapClient();
 
   const [uri, setUri] = React.useState('');
 
@@ -99,7 +99,7 @@ export const FetchMetadata: React.FC<Props> = ({ setManifest, setIcons }: Props)
       manifest = await client.getManifest(uri, {type: "meta"});
       setManifest(manifest);
     } catch (e: any) {
-      if (e.message.includes("WasmWeb3Api: File was not found.")) {
+      if (e.message.includes("File was not found.")) {
         setManifest({
           format: "0.0.1-prealpha.3",
           displayName: "File not found",
@@ -107,6 +107,7 @@ export const FetchMetadata: React.FC<Props> = ({ setManifest, setIcons }: Props)
           __type: "MetaManifest",
         })
       } else {
+        console.log(e.message);
         setManifest({
           format: "0.0.1-prealpha.3",
           displayName: "Failed to resolve URI",

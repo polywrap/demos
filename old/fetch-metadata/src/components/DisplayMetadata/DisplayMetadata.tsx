@@ -1,7 +1,7 @@
 import React from 'react';
 import {Grid, Link, styled, Typography} from "@mui/material";
 import {imgType} from "../../util/image";
-import {MetaManifest} from "@web3api/client-js";
+import {MetaManifest} from "@polywrap/client-js";
 
 const SectionContainer = styled(Grid)(({ theme }) => ({
   width: '100%',
