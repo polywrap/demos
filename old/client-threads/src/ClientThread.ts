@@ -9,9 +9,9 @@ import {
 } from "./messages";
 
 import {
-  InvokeApiOptions,
-  InvokeApiResult,
-} from "@web3api/client-js";
+  InvokerOptions,
+  InvokeResult,
+} from "@polywrap/client-js";
 
 interface ClientThreadConfig {
   pool: ThreadPool;
@@ -22,19 +22,19 @@ export class ClientThread {
   constructor(private _config: ClientThreadConfig) { }
 
   public invoke<TData = unknown>(
-    options: InvokeApiOptions
-  ): ThreadJob<InvokeApiResult> {
+    options: InvokerOptions
+  ): ThreadJob<InvokeResult> {
     const { pool, clientModule } = this._config;
 
     let status: ThreadStatus = ThreadStatus.ACQUIRING_THREAD;
     let terminate: () => void = () => {
       status = ThreadStatus.TERMINATED;
     };
-    let result: InvokeApiResult<TData> | undefined;
+    let result: InvokeResult<TData> | undefined;
     let error: Error | undefined;
 
     const promise = new Promise<{
-      result?: InvokeApiResult<TData>,
+      result?: InvokeResult<TData>,
       error?: Error
     }>(
       async (resolve) => {
@@ -68,7 +68,7 @@ export class ClientThread {
 
             switch (action.type) {
               case "InvokeResult": {
-                result = action.result as InvokeApiResult<TData>;
+                result = action.result as InvokeResult<TData>;
                 status = ThreadStatus.RESULT;
                 break;
               }

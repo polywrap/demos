@@ -3,7 +3,7 @@ import {
   HostAction
 } from "./messages";
 
-import { Web3ApiClient } from "@web3api/client-js";
+import { PolywrapClient } from "@polywrap/client-js";
 
 const dispatchAction = (action: HostAction) => {
   // @ts-ignore webworker postMessage
@@ -16,8 +16,8 @@ addEventListener(
     const { invoke, clientModule } = event.data;
 
     const client = clientModule
-      ? require(clientModule).default as Web3ApiClient
-      : new Web3ApiClient();
+      ? require(clientModule).default as PolywrapClient
+      : new PolywrapClient();
 
     if (clientModule && (!client || typeof client.invoke !== "function")) {
       dispatchAction({

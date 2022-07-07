@@ -20,7 +20,6 @@ const thread = new ClientThread({
 
 const job = thread.invoke({
   uri: "ens/v2.uniswap.web3api.eth",
-  module: "query",
   method: "fetchTokenData",
   input: {
     chainId: "MAINNET",

@@ -1,7 +1,7 @@
-import { Web3ApiClient, defaultIpfsProviders } from "@web3api/client-js";
-import { ipfsPlugin } from "@web3api/ipfs-plugin-js";
+import { PolywrapClient, defaultIpfsProviders } from "@polywrap/client-js";
+import { ipfsPlugin } from "@polywrap/ipfs-plugin-js";
 
-export default new Web3ApiClient({
+export default new PolywrapClient({
   plugins: [
     {
       uri: "w3://ens/ipfs.web3api.eth",

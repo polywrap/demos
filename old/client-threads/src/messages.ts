@@ -1,7 +1,7 @@
 import {
-  InvokeApiOptions,
-  InvokeApiResult
-} from "@web3api/client-js";
+  InvokerOptions,
+  InvokeResult
+} from "@polywrap/client-js";
 
 // Thread events
 export type ThreadEvent =
@@ -10,7 +10,7 @@ export type ThreadEvent =
 export interface InvokeEvent {
   readonly type: "Invoke";
   readonly clientModule?: string;
-  readonly invoke: InvokeApiOptions;
+  readonly invoke: InvokerOptions;
 }
 
 // Host (main thread) actions
@@ -20,7 +20,7 @@ export type HostAction =
 
 export interface InvokeResultAction {
   readonly type: "InvokeResult";
-  readonly result: InvokeApiResult;
+  readonly result: InvokeResult;
 }
 
 export interface InvokeExceptionAction {

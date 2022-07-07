@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var client_js_1 = require("@web3api/client-js");
-var ipfs_plugin_js_1 = require("@web3api/ipfs-plugin-js");
-exports.default = new client_js_1.Web3ApiClient({
+var client_js_1 = require("@polywrap/client-js");
+var ipfs_plugin_js_1 = require("@polywrap/ipfs-plugin-js");
+exports.default = new client_js_1.PolywrapClient({
     plugins: [
         {
             uri: "w3://ens/ipfs.web3api.eth",
