@@ -6,10 +6,10 @@ use polywrap_wasm_rs::JSON;
 use crate::imported::http_module;
 use crate::utils::{handle_unspecified_rpc_error, request_to_json_string, response_from_json_string};
 
-pub fn query(input: ArgsQuery) -> Option<Response> {
+pub fn query(args: ArgsQuery) -> Option<Response> {
 
     let http_response: HttpResponse = match HttpModule::post(&http_module::ArgsPost {
-        url: input.url,
+        url: args.url,
         request: Some(HttpRequest {
             headers: Some(vec![
             HttpHeader { key: String::from("Content-Type"), value: String::from("application/json") },
@@ -17,7 +17,7 @@ pub fn query(input: ArgsQuery) -> Option<Response> {
             ]),
             url_params: None,
             response_type: HttpResponseType::TEXT,
-            body: Some(request_to_json_string(&input.request)),
+            body: Some(request_to_json_string(&args.request)),
         }),
     }) {
         Ok(Some(v)) => v,
@@ -33,7 +33,7 @@ pub fn query(input: ArgsQuery) -> Option<Response> {
             // handle unexpected missing response body
             None => {
                 let error: Option<RpcError> = Some(handle_unspecified_rpc_error(&http_response));
-                let id: String = input.request.id.unwrap_or(String::from(""));
+                let id: String = args.request.id.unwrap_or(String::from(""));
                 return Some(Response {
                     result: None,
                     error,
@@ -45,7 +45,7 @@ pub fn query(input: ArgsQuery) -> Option<Response> {
 
     // handle json rpc success
     if http_response.status >= 200 && http_response.status <= 299 {
-        if input.request.id.is_none() {
+        if args.request.id.is_none() {
             // response was not requested
             return None;
         }

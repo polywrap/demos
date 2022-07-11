@@ -25,7 +25,7 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
     const { data, error } = await client.invoke<App.JsonRpc_Response | null>({
       uri: wrapperUri,
       method: "query",
-      input: {
+      args: {
         url: "https://archival-rpc.testnet.near.org",
         request: {
           method: "gas_price",
@@ -49,7 +49,7 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
     const { data, error } = await client.invoke<App.JsonRpc_Response | null>({
       uri: wrapperUri,
       method: "query",
-      input: {
+      args: {
         url: "https://archival-rpc.testnet.near.org",
         request: {
           method: "block",
@@ -74,7 +74,7 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
     const { data, error } = await client.invoke<App.JsonRpc_Response | null>({
       uri: wrapperUri,
       method: "query",
-      input: {
+      args: {
         url: "https://mainnet.infura.io/v3/b00b2c2cc09c487685e9fb061256d6a6",
         request: {
           method: "eth_getBlockTransactionCountByHash",
@@ -97,7 +97,7 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
     const { data, error } = await client.invoke<App.JsonRpc_Response | null>({
       uri: wrapperUri,
       method: "query",
-      input: {
+      args: {
         url: "https://rpc.testnet.near.org",
         request: {
           method: "gas_price",
