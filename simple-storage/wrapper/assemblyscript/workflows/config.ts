@@ -1,8 +1,8 @@
-import { PolywrapClientConfig } from "@polywrap/client-js";
-import { ClientConfig, coreInterfaceUris } from "@polywrap/client-js";
-import { ensPlugin } from "@polywrap/ens-plugin-js";
+import { ClientConfig, PolywrapClientConfig } from "@polywrap/client-js";
+import { ensResolverPlugin } from "@polywrap/ens-resolver-plugin-js";
 import { ethereumPlugin } from "@polywrap/ethereum-plugin-js";
 import { ipfsPlugin } from "@polywrap/ipfs-plugin-js";
+import { providers, ensAddresses } from "@polywrap/test-env-js";
 
 interface TestEnvironment {
   ipfs: string;
@@ -14,9 +14,9 @@ interface TestEnvironment {
 }
 
 async function getProviders(): Promise<TestEnvironment> {
-  const ipfs = "http://localhost:5001";
-  const ethereum = "http://localhost:8545";
-  const ensAddress = "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab";
+  const ipfs = providers.ipfs;
+  const ethereum = providers.ethereum;
+  const ensAddress = ensAddresses.ensAddress;
 
   return { ipfs, ethereum, ensAddress };
 }
@@ -27,15 +27,14 @@ function getPlugins(
   ensAddress: string
 ): Partial<ClientConfig> {
   return {
-    redirects: [],
     plugins: [
       {
         uri: "wrap://ens/ipfs.polywrap.eth",
         plugin: ipfsPlugin({ provider: ipfs }),
       },
       {
-        uri: "wrap://ens/ens.polywrap.eth",
-        plugin: ensPlugin({ addresses: { testnet: ensAddress } }),
+        uri: "wrap://ens/ens-resolver.polywrap.eth",
+        plugin: ensResolverPlugin({ addresses: { testnet: ensAddress } }),
       },
       {
         uri: "wrap://ens/ethereum.polywrap.eth",
@@ -43,9 +42,6 @@ function getPlugins(
           networks: {
             testnet: {
               provider: ethereum,
-            },
-            MAINNET: {
-              provider: "http://localhost:8546",
             },
           },
           defaultNetwork: "testnet",
@@ -59,6 +55,5 @@ export async function getClientConfig(
   _: Partial<PolywrapClientConfig>
 ): Promise<Partial<PolywrapClientConfig>> {
   const { ipfs, ethereum, ensAddress } = await getProviders();
-
   return getPlugins(ethereum, ipfs, ensAddress);
 }

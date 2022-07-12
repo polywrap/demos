@@ -1,6 +1,5 @@
 import { PolywrapClient } from "@polywrap/client-js";
 import {
-  buildWrapper,
   initTestEnvironment,
   stopTestEnvironment,
   providers,
@@ -31,8 +30,6 @@ describe("SimpleStorage", () => {
 
     const config = getPlugins(providers.ethereum, providers.ipfs, ensAddresses.ensAddress);
     client = new PolywrapClient(config);
-
-    await buildWrapper(wrapperPath);
   });
 
   afterAll(async () => {
