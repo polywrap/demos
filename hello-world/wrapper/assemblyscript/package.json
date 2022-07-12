@@ -12,16 +12,11 @@
     "test:workflow": "npx polywrap run ./workflows/e2e.yaml"
   },
   "devDependencies": {
-    "@polywrap/ethereum-plugin-js": "0.1.1",
     "@types/jest": "27.0.3",
-    "@types/node": "16.11.11",
-    "@types/prettier": "2.6.0",
     "assemblyscript": "0.19.1",
-    "ethers": "5.0.7",
     "jest": "26.6.3",
     "polywrap": "0.1.1",
     "ts-jest": "26.5.4",
-    "ts-node": "8.10.2",
     "typescript": "4.0.7"
   },
   "dependencies": {
