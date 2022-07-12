@@ -1,6 +1,6 @@
 import { PolywrapClient } from "@polywrap/client-js";
 import { buildWrapper, runCLI } from "@polywrap/test-env-js";
-import * as App from "../types/wrap";
+import * as App from "./types/wrap";
 import path from "path";
 
 jest.setTimeout(500000);

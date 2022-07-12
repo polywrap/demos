@@ -1,8 +1,8 @@
 {
   "name": "subgraph-query-as",
-  "description": "Subgraph query demo as assemblyscript wrapper",
+  "description": "Subgraph query demo as rust wrapper",
   "private": true,
-  "version": "0.0.1-prealpha.89",
+  "version": "0.1.0",
   "scripts": {
     "build": "npx polywrap build",
     "postbuild": "yarn codegen:app",
@@ -16,12 +16,12 @@
     "test:workflow": "npx polywrap run ./workflows/e2e.yaml"
   },
   "devDependencies": {
-    "@polywrap/ethereum-plugin-js": "0.0.1-prealpha.89",
+    "@polywrap/ethereum-plugin-js": "0.1.0",
     "@types/jest": "27.0.3",
     "@types/node": "16.11.11",
     "@types/prettier": "2.6.0",
     "jest": "26.6.3",
-    "polywrap": "0.0.1-prealpha.89",
+    "polywrap": "0.1.0",
     "ts-jest": "26.5.4",
     "ts-node": "8.10.2",
     "typescript": "4.0.7"
