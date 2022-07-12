@@ -2,7 +2,8 @@ import React, {FormEvent} from 'react';
 import {ButtonBase, Grid, InputBase, Link, styled, Typography} from "@mui/material";
 import {usePolywrapClient} from "@polywrap/react";
 import {polywrapPalette} from "../../theme";
-import {MetaManifest, Uri} from "@polywrap/client-js";
+import { Uri } from "@polywrap/client-js";
+import { AnyMetaManifest as MetaManifest } from '@polywrap/polywrap-manifest-types-js';
 
 const SectionContainer = styled(Grid)(({ theme }) => ({
   width: 'max-content',
@@ -86,7 +87,7 @@ export const FetchMetadata: React.FC<Props> = ({ setManifest, setIcons }: Props)
     }
     if (!Uri.isValidUri(uri)) {
       setManifest({
-        format: "0.0.1-prealpha.3",
+        format: "0.1.0",
         displayName: "Invalid URI",
         subtext: "Need help? Check out our docs using the link in the header.",
         __type: "MetaManifest",
@@ -96,12 +97,13 @@ export const FetchMetadata: React.FC<Props> = ({ setManifest, setIcons }: Props)
 
     let manifest: MetaManifest;
     try {
-      manifest = await client.getManifest(uri, {type: "meta"});
+      const manifestString = await client.getFile(uri, { path: "./polywrap.meta.json", encoding: "utf-8" }) as string;
+      manifest = JSON.parse(manifestString);
       setManifest(manifest);
     } catch (e: any) {
       if (e.message.includes("File was not found.")) {
         setManifest({
-          format: "0.0.1-prealpha.3",
+          format: "0.1.0",
           displayName: "File not found",
           subtext: "Metadata is optional. Does the wrapper declare a Meta Manifest?",
           __type: "MetaManifest",
@@ -109,7 +111,7 @@ export const FetchMetadata: React.FC<Props> = ({ setManifest, setIcons }: Props)
       } else {
         console.log(e.message);
         setManifest({
-          format: "0.0.1-prealpha.3",
+          format: "0.1.0",
           displayName: "Failed to resolve URI",
           subtext: "We didn't find a wrapper at that URI, or didn't receive a response from the host.",
           __type: "MetaManifest",
