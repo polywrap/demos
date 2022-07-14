@@ -4,5 +4,5 @@ jobs:
     steps:
     - uri: fs/./build
       method: logMessage
-      input:
+      args:
         message: "Hello World!"
