@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import { PluginRegistration } from '@polywrap/client-js';
 import { PolywrapProvider } from '@polywrap/react';
-import { ethereumPlugin, EthereumConfig } from '@polywrap/ethereum-plugin-js';
+import { ethereumPlugin } from '@polywrap/ethereum-plugin-js';
 
 const networks: Record<
   string,
@@ -33,7 +33,7 @@ const networks: Record<
   },
 };
 
-const defaultEthConfig: EthereumConfig = {
+const defaultEthConfig = {
   networks: {
     mainnet: {
       provider:
