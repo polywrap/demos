@@ -1,4 +1,0 @@
-format: 0.1.0
-name: js-vanilla-hello-world-app
-language: app/typescript
-schema: ./schema.graphql
