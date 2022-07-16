@@ -1,5 +1,3 @@
-package e2e
-
 case1: {
 		$0: {
 			data: {

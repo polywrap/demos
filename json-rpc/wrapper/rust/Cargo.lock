@@ -34,7 +34,7 @@ checksum = "112c678d4050afce233f4f2852bb2eb519230b3cf12f33585275537d7e41578d"
 
 [[package]]
 name = "json-rpc"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "polywrap-wasm-rs",
  "serde",
@@ -73,9 +73,9 @@ dependencies = [
 
 [[package]]
 name = "polywrap-wasm-rs"
-version = "0.0.1-prealpha.90"
+version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5ebab13b7587535496989036d2773b41f04dee024225e3776f5f83797c541784"
+checksum = "27b79b5780d0a24f0081280edd12957c0f3354a91665d8561177dd6248a977f5"
 dependencies = [
  "bigdecimal",
  "byteorder",
