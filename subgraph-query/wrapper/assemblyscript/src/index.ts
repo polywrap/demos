@@ -1,14 +1,14 @@
 import {
-  Input_subgraphQuery,
+  Args_subgraphQuery,
   Subgraph_Module
 } from "./wrap";
 import { JSON } from "@polywrap/wasm-as";
 
-export function subgraphQuery(input: Input_subgraphQuery): JSON.Value {
+export function subgraphQuery(args: Args_subgraphQuery): JSON.Value {
   const response = Subgraph_Module.querySubgraph({
-    subgraphAuthor: input.subgraphAuthor,
-    subgraphName: input.subgraphName,
-    query: input.query
+    subgraphAuthor: args.subgraphAuthor,
+    subgraphName: args.subgraphName,
+    query: args.query
   }).unwrap();
 
   const json = JSON.parse(response);
@@ -16,9 +16,9 @@ export function subgraphQuery(input: Input_subgraphQuery): JSON.Value {
   if (!json.isObj) {
     throw new Error(
       "Subgraph response is not an object.\n" +
-      `Author: ${input.subgraphAuthor}\n` +
-      `Subgraph: ${input.subgraphName}\n` +
-      `Query: ${input.query}\n` +
+      `Author: ${args.subgraphAuthor}\n` +
+      `Subgraph: ${args.subgraphName}\n` +
+      `Query: ${args.query}\n` +
       `Response: ${response}`
     );
   }

@@ -1,4 +1,4 @@
-format: 0.0.1-prealpha.3
+format: 0.1.0
 displayName: Subgraph query
 subtext: wrapper for quering subgraph
 description: wrapper for quering subgraph

@@ -1,7 +1,7 @@
-import { Input_logMessage, Logger_Module } from "./wrap";
+import { Args_logMessage, Logger_Module } from "./wrap";
 
-export function logMessage(input: Input_logMessage): bool {
+export function logMessage(args: Args_logMessage): bool {
   return Logger_Module.info({
-    message: input.message
+    message: args.message
   }).unwrap();
 }
