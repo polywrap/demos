@@ -23,6 +23,7 @@
     "resolveJsonModule": true,
     "strictNullChecks": true
   },
+  "typeAcquisition": { "include": ["jest"] },
   "include": [
     "./tests/**/*.ts"
   ],

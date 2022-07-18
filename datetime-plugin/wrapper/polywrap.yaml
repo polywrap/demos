@@ -1,10 +1,8 @@
-format: 0.0.1-prealpha.7
+format: 0.1.0
 name: DateTime
 language: wasm/assemblyscript
-modules:
-  query:
-    schema: ./src/query/schema.graphql
-    module: ./src/query/index.ts
+schema: ./src/schema.graphql
+module: ./src/index.ts
 import_redirects:
   - uri: ens/datetime.eth
     schema: ../plugin/build/schema.graphql

@@ -1,0 +1,5 @@
+#import { Module } into DateTime from "wrap://ens/datetime.eth"
+
+type Module {
+  currentTime: BigInt!
+}

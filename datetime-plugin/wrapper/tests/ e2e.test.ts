@@ -1,75 +1,29 @@
-import {
-  Web3ApiClient,
-  createWeb3ApiClient
-} from "@web3api/client-js";
-import {
-  initTestEnvironment,
-  stopTestEnvironment,
-  buildAndDeployApi
-} from "@web3api/test-env-js";
+import { PolywrapClient } from "@polywrap/client-js";
 import { dateTimePlugin } from "../../plugin";
+import path from "path"
 
 jest.setTimeout(360000);
 
 describe("e2e", () => {
 
-  let client: Web3ApiClient;
+  let client: PolywrapClient;
   let uri: string;
 
   beforeAll(async () => {
-    try {
-      // Setup the local test environment
-      const {
-          ipfs,
-          ethereum,
-          ensAddress,
-      } = await initTestEnvironment();
-
       // Create the client w/ test env configuration + the dateTimePlugin
-      client = await createWeb3ApiClient({
-        ethereum: {
-          networks: {
-            testnet: {
-              provider: ethereum
-            }
-          },
-          defaultNetwork: "testnet"
-        },
-        ipfs: {
-          provider: ipfs,
-          fallbackProviders: ["https://ipfs.io"]
-        },
-        ens: {
-          addresses: {
-            testnet: ensAddress
-          }
-        }
-      }, {
+      client = new PolywrapClient({
         plugins: [{
           uri: "ens/datetime.eth",
           plugin: dateTimePlugin({}),
         }],
-      });
+      })
 
-      // build and deploy the wrapper
-      const api = await buildAndDeployApi(
-        `${__dirname}/../`,
-        ipfs,
-        ensAddress
-      );
-
-      uri = `ens/testnet/${api.ensDomain}`;
-    } catch (e) {
-      console.log(e)
-      throw e;
-    }
+    // Get path to wrapper and create filesystem uri
+    const wrapperPath: string = path.join(path.resolve(__dirname), "..");
+    uri = `wrap://fs/${wrapperPath}/build`;
   });
 
-  afterAll(async () => {
-    await stopTestEnvironment();
-  });
-
-  it("e2e", async () => {
+  it("gets current datetime", async () => {
     // Query the polywrapper, which will
     // in turn query the dateTimePlugin
     const { data, errors } = await client.query<{
