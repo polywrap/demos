@@ -1,5 +1,4 @@
 import { PolywrapClient } from "@polywrap/client-js";
-import { buildWrapper, runCLI } from "@polywrap/test-env-js";
 import * as App from "../types/wrap";
 import path from "path";
 
@@ -18,13 +17,6 @@ describe("SubgraphQuery", () => {
 
   beforeAll(async () => {
     client = new PolywrapClient();
-
-    await buildWrapper(wrapperPath);
-
-    await runCLI({
-      args: ["app", "codegen", "-c", "./wrap"],
-      cwd: path.join(__dirname, "..", "types"),
-    });
   });
 
   it("subgraph-query", async () => {

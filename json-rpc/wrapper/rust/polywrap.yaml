@@ -1,5 +1,5 @@
-format: 0.0.1-prealpha.9
-name: json-rpc
+format: 0.1.0
+name: jsonrpc-rs
 language: wasm/rust
 build: ./polywrap.build.yaml
 meta: ./polywrap.meta.yaml

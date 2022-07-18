@@ -1,9 +1,9 @@
-import { Http_Module, Http_Response, Http_ResponseType, Input_query, Response } from "./wrap";
+import { Http_Module, Http_Response, Http_ResponseType, Args_query, Response } from "./wrap";
 import {handleUnspecifiedRpcError, requestToJsonString, responseFromJsonString} from "./utils";
 
-export function query(input: Input_query): Response | null {
+export function query(args: Args_query): Response | null {
   const httpResponse: Http_Response | null = Http_Module.post({
-    url: input.url,
+    url: args.url,
     request: {
       headers: [
         { key: "Content-Type", value: "application/json" },
@@ -11,7 +11,7 @@ export function query(input: Input_query): Response | null {
       ],
       urlParams: null,
       responseType: Http_ResponseType.TEXT,
-      body: requestToJsonString(input.request),
+      body: requestToJsonString(args.request),
     },
   }).unwrapOrElse((e: string) => {
     throw new Error(e);
@@ -25,7 +25,7 @@ export function query(input: Input_query): Response | null {
   if (httpResponse.status == 400 || httpResponse.status == 404 || httpResponse.status == 500) {
     if (!httpResponse.body) {
       // handle unexpected missing response body
-      const id: string = input.request.id === null ? "" : input.request.id!;
+      const id: string = args.request.id === null ? "" : args.request.id!;
       return {
         result: null,
         error: handleUnspecifiedRpcError(httpResponse),
@@ -37,7 +37,7 @@ export function query(input: Input_query): Response | null {
 
   // handle json rpc success
   if (httpResponse.status >= 200 && httpResponse.status <= 299) {
-    if (input.request.id ===  null) {
+    if (args.request.id ===  null) {
       // response was not requested
       return null;
     }
