@@ -4,5 +4,4 @@ stages:
     package: ipfs
     uri: fs/./build
     config:
-    config:
       gatewayUri: 'https://ipfs.wrappers.io'
