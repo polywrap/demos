@@ -1,5 +1,5 @@
 import { PolywrapClient } from "@polywrap/client-js";
-import { dateTimePlugin } from "../../plugin";
+import { dateTimePlugin } from "../../plugin/build";
 import path from "path"
 
 jest.setTimeout(360000);
@@ -26,16 +26,14 @@ describe("e2e", () => {
   it("gets current datetime", async () => {
     // Query the polywrapper, which will
     // in turn query the dateTimePlugin
-    const { data, errors } = await client.query<{
-      currentTime: string
-    }>({
+    const { data, error } = await client.invoke<string>({
       uri,
-      query: `query { currentTime }`,
+      method: "currentTime"
     });
 
-    expect(errors).toBeFalsy();
+    expect(error).toBeFalsy();
     expect(data).toBeTruthy();
-    expect(data?.currentTime).toBeTruthy();
-    expect(Number.parseInt(data?.currentTime) <= Date.now()).toBeTruthy();
+    expect (Number.parseInt(data!)).toBeGreaterThanOrEqual(Date.now() - 300000);
+    expect(Number.parseInt(data!)).toBeLessThanOrEqual(Date.now());
   });
 });
