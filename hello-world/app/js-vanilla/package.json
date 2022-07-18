@@ -1,15 +1,16 @@
 {
-  "name": "templates-app-vanilla-javascript",
+  "name": "hello-world-app-vanilla-javascript",
   "description": "Polywrap dApp Vanilla Javascript Template",
   "private": true,
-  "version": "0.0.1-prealpha.1",
+  "version": "0.1.0",
   "scripts": {
+    "infra:up": "polywrap infra up --modules=eth-ens-ipfs",
+    "infra:down": "polywrap infra down --modules=eth-ens-ipfs",
     "start": "serve public",
-    "build": "yarn codegen && rollup -c",
-    "codegen": "polywrap app codegen"
+    "prestart": "rollup -c"
   },
   "dependencies": {
-    "@polywrap/client-js": "0.0.1-prealpha.89",
+    "@polywrap/client-js": "0.2.0",
     "serve": "13.0.2",
     "toastify-js": "1.11.2"
   },
@@ -17,7 +18,7 @@
     "@rollup/plugin-commonjs": "22.0.0",
     "@rollup/plugin-json": "4.1.0",
     "@rollup/plugin-node-resolve": "13.3.0",
-    "polywrap": "0.0.1-prealpha.89",
+    "polywrap": "0.2.0",
     "rollup": "2.73.0",
     "rollup-plugin-polyfill-node": "0.9.0",
     "rollup-plugin-replace": "2.2.0",
