@@ -1,0 +1,27 @@
+{
+  "name": "datetime-plugin",
+  "description": "Polywrap datetime plugin",
+  "private": true,
+  "version": "0.2.0",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "rimraf ./build && yarn codegen && tsc --project tsconfig.json",
+    "codegen": "npx polywrap plugin codegen",
+    "test": "jest --passWithNoTests --runInBand --verbose",
+    "test:ci": "jest --passWithNoTests --runInBand --verbose",
+    "test:watch": "jest --watch --passWithNoTests --verbose"
+  },
+  "dependencies": {
+    "@polywrap/core-js": "0.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "26.0.8",
+    "polywrap": "0.2.0",
+    "@polywrap/client-js": "0.2.0",
+    "jest": "26.6.3",
+    "rimraf": "3.0.2",
+    "ts-jest": "26.5.4",
+    "ts-node": "8.10.2",
+    "typescript": "4.0.7"
+  }
+}

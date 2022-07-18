@@ -1,0 +1,5 @@
+#import { Query } into DateTime from "w3://ens/datetime.eth"
+
+type Query {
+  currentTime: BigInt!
+}
