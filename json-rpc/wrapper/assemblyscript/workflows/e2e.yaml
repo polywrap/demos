@@ -4,7 +4,7 @@ jobs:
     steps:
       - uri: fs/build
         method: query
-        input:
+        args:
           url: "https://archival-rpc.testnet.near.org"
           request:
             method: "gas_price"
@@ -14,7 +14,7 @@ jobs:
     steps:
       - uri: fs/build
         method: query
-        input:
+        args:
           url: "https://archival-rpc.testnet.near.org"
           request:
             method: "block"
@@ -24,7 +24,7 @@ jobs:
     steps:
       - uri: fs/build
         method: query
-        input:
+        args:
           url: "https://mainnet.infura.io/v3/b00b2c2cc09c487685e9fb061256d6a6"
           request:
             method: "eth_getBlockTransactionCountByHash"
@@ -34,7 +34,7 @@ jobs:
     steps:
       - uri: fs/build
         method: query
-        input:
+        args:
           url: "https://rpc.testnet.near.org"
           request:
             method: "gas_price"
