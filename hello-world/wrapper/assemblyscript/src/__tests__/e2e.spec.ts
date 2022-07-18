@@ -9,7 +9,7 @@ describe("Hello world wrapper", () => {
     const invocation = await client.invoke({
       uri: "fs/./build",
       method: "logMessage",
-      input: {
+      args: {
         message: "Invocation being executed from wrapper!"
       }
     })
