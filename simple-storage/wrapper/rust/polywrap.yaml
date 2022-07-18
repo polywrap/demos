@@ -1,5 +1,5 @@
 format: 0.1.0
-name: SimpleStorage
+name: simple-storage-rs
 language: wasm/rust
 build: ./polywrap.build.yaml
 meta: ./polywrap.meta.yaml

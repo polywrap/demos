@@ -1,5 +1,5 @@
 {
-  "name": "simple-storage",
+  "name": "simple-storage-as",
   "description": "Ethereum simple storage contract wrapper",
   "private": true,
   "version": "0.1.1",
