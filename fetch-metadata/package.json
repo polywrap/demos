@@ -2,13 +2,14 @@
   "name": "polywrap-fetch-metadata-demo",
   "description": "Polywrap Fetch Metadata Demo",
   "private": true,
-  "version": "0.0.1-prealpha.92",
+  "version": "0.1.0",
   "dependencies": {
     "@emotion/react": "11.9.0",
     "@emotion/styled": "11.8.1",
     "@mui/material": "5.7.0",
-    "@polywrap/client-js": "0.1.1",
-    "@polywrap/react": "0.1.1",
+    "@polywrap/client-js": "0.2.0",
+    "@polywrap/react": "0.2.0",
+    "@polywrap/polywrap-manifest-types-js": "0.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-scripts": "3.4.4",
@@ -19,8 +20,7 @@
     "@types/node": "16.11.35",
     "@types/react": "17.0.45",
     "@types/react-dom": "17.0.17",
-    "polywrap": "0.1.1",
-    "@polywrap/polywrap-manifest-types-js": "0.1.1"
+    "polywrap": "0.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

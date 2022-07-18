@@ -1,39 +1,48 @@
-import React from 'react';
-import {Grid, Link, styled, Typography} from "@mui/material";
-import {imgType} from "../../util/image";
-import { AnyMetaManifest as MetaManifest } from '@polywrap/polywrap-manifest-types-js';
+import React from "react";
+import { Grid, Link, styled, Typography } from "@mui/material";
+import { imgType } from "../../util/image";
+import { AnyMetaManifest as MetaManifest } from "@polywrap/polywrap-manifest-types-js";
 
 const SectionContainer = styled(Grid)(({ theme }) => ({
-  width: '100%',
+  width: "100%",
 }));
 
 const MetadataHeader = styled(Grid)(({ theme }) => ({
-  marginBottom: '16px',
+  marginBottom: "16px",
 }));
 
 const MetadataItem = styled(Grid)(({ theme }) => ({
-  marginBottom: '8px',
+  marginBottom: "8px",
 }));
 
-const WrapperIcon = styled('img')(({ theme }) => ({
+const WrapperIcon = styled("img")(({ theme }) => ({
   height: "64px",
   maxWidth: "100%",
 }));
 
-const LinkIcon = styled('img')(({ theme }) => ({
+const LinkIcon = styled("img")(({ theme }) => ({
   height: "28px",
   maxWidth: "100%",
 }));
 
 interface Props {
-  manifest: MetaManifest
+  manifest: MetaManifest;
   icons: Record<string, string>;
 }
 
-export const DisplayMetadata: React.FC<Props> = ({ manifest, icons }: Props) => {
-
+export const DisplayMetadata: React.FC<Props> = ({
+  manifest,
+  icons,
+}: Props) => {
   const metaDataStringValue = (property: string, value?: string) => (
-    <MetadataItem container item direction="row" justifyContent={"flex-start"} alignItems={"flex-start"} spacing={0}>
+    <MetadataItem
+      container
+      item
+      direction="row"
+      justifyContent={"flex-start"}
+      alignItems={"flex-start"}
+      spacing={0}
+    >
       <Grid item xs={2}>
         <Typography variant={"subtitle2"}>{property}</Typography>
       </Grid>
@@ -41,13 +50,34 @@ export const DisplayMetadata: React.FC<Props> = ({ manifest, icons }: Props) => 
         <Typography variant={"body2"}>{value}</Typography>
       </Grid>
     </MetadataItem>
-  )
+  );
 
   return (
     <>
-      <SectionContainer container direction="column" justifyContent="flex-start" alignItems="flex-start" spacing={2}>
-        <MetadataHeader container item direction="row" justifyContent={"flex-start"} alignItems={"flex-start"} spacing={0}>
-          <Grid container item xs={10} direction="column" justifyContent={"flex-start"} alignItems={"flex-start"} spacing={0}>
+      <SectionContainer
+        container
+        direction="column"
+        justifyContent="flex-start"
+        alignItems="flex-start"
+        spacing={2}
+      >
+        <MetadataHeader
+          container
+          item
+          direction="row"
+          justifyContent={"flex-start"}
+          alignItems={"flex-start"}
+          spacing={0}
+        >
+          <Grid
+            container
+            item
+            xs={10}
+            direction="column"
+            justifyContent={"flex-start"}
+            alignItems={"flex-start"}
+            spacing={0}
+          >
             <Grid item>
               <Typography variant={"h3"}>{manifest.displayName}</Typography>
             </Grid>
@@ -56,52 +86,76 @@ export const DisplayMetadata: React.FC<Props> = ({ manifest, icons }: Props) => 
             </Grid>
           </Grid>
           <Grid item xs={2}>
-            {manifest.icon && <WrapperIcon src={`data:image/${imgType(manifest.icon)};base64,${icons[manifest.icon]}`} alt={""}/>}
+            {manifest.icon && (
+              <WrapperIcon
+                src={`data:image/${imgType(manifest.icon)};base64,${
+                  icons[manifest.icon]
+                }`}
+                alt={""}
+              />
+            )}
           </Grid>
         </MetadataHeader>
         {metaDataStringValue("Description: ", manifest.description)}
         {metaDataStringValue("Repository: ", manifest.repository)}
         {metaDataStringValue("Tags: ", manifest.tags?.join(", "))}
-        <MetadataItem container item direction="row" justifyContent={"flex-start"} alignItems={"flex-start"} spacing={0}>
+        <MetadataItem
+          container
+          item
+          direction="row"
+          justifyContent={"flex-start"}
+          alignItems={"flex-start"}
+          spacing={0}
+        >
           <Grid item xs={2}>
             <Typography variant={"subtitle2"}>Links: </Typography>
           </Grid>
           <Grid item xs={10}>
-            {manifest.links && Object.values(manifest.links).map(({ name, icon, url}) => (
-              <Grid container item direction="row" justifyContent={"flex-start"} alignItems={"flex-start"} spacing={2} key={icon}>
-                <Grid item>
-                  <Link variant={"body1"}
-                        href={url}
-                        underline={"hover"}
-                        target='_blank'
-                        rel="noopener">
-                    {name}
-                  </Link>
-                </Grid>
-                {icon &&
+            {manifest.links &&
+              Object.values(manifest.links).map(({ name, icon, url }) => (
+                <Grid
+                  container
+                  item
+                  direction="row"
+                  justifyContent={"flex-start"}
+                  alignItems={"flex-start"}
+                  spacing={2}
+                  key={icon}
+                >
                   <Grid item>
-                    <LinkIcon src={`data:image/${imgType(icon)};base64,${icons[icon]}`} alt={""}/>
+                    <Link
+                      variant={"body1"}
+                      href={url}
+                      underline={"hover"}
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      {name}
+                    </Link>
                   </Grid>
-                }
-              </Grid>
-            ))}
+                  {icon && (
+                    <Grid item>
+                      <LinkIcon
+                        src={`data:image/${imgType(icon)};base64,${
+                          icons[icon]
+                        }`}
+                        alt={""}
+                      />
+                    </Grid>
+                  )}
+                </Grid>
+              ))}
           </Grid>
         </MetadataItem>
-        <MetadataItem container item direction="row" justifyContent={"flex-start"} alignItems={"flex-start"} spacing={0}>
-          <Grid item xs={2}>
-            <Typography variant={"subtitle2"}>Queries: </Typography>
-          </Grid>
+        <MetadataItem
+          container
+          item
+          direction="row"
+          justifyContent={"flex-start"}
+          alignItems={"flex-start"}
+          spacing={0}
+        >
           <Grid item xs={10}>
-            {manifest.queries && Object.values(manifest.queries).map(({ name, description }) => (
-              <MetadataItem container item direction="row" justifyContent={"flex-start"} alignItems={"flex-start"} spacing={0} key={name}>
-                <Grid item xs={3}>
-                  <Typography variant={"body1"}>{name}</Typography>
-                </Grid>
-                <Grid item xs={9}>
-                  <Typography variant={"body2"}>{description}</Typography>
-                </Grid>
-              </MetadataItem>
-            ))}
           </Grid>
         </MetadataItem>
       </SectionContainer>
