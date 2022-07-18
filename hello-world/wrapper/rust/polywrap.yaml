@@ -1,5 +1,5 @@
 format: 0.1.0
-name: hello-world
+name: hello-world-rs
 language: wasm/rust
 schema: ./schema.graphql
 module: ./Cargo.toml
