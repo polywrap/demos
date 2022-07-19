@@ -8,9 +8,9 @@ import nodePolyfills from "rollup-plugin-polyfill-node";
 export default {
   input: "src/index.js",
   output: {
-    file: "public/main.js",
+    file: "dist/index.js",
     format: "umd",
-    name: "main",
+    name: "index",
   },
   plugins: [
     replace({

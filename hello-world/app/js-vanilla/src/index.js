@@ -1,26 +1,12 @@
+import { HelloWorld_Module } from "./wrap";
 import { PolywrapClient } from "@polywrap/client-js";
-import { ipfsPlugin } from "@polywrap/ipfs-plugin-js"
 import Toastify from "toastify-js";
 
-const config = {
-  plugins: [{
-    uri: "wrap://ens/ipfs.polywrap.eth",
-    plugin: ipfsPlugin({
-      provider: "http://localhost:5001"
-    })
-  }]
-}
-const client = new PolywrapClient(config);
+const client = new PolywrapClient();
 
 function invokeClient() {
   const message = document.getElementById("message_input").value;
-  const result = client.invoke({
-    uri: "wrap://ipfs/QmNeSVRrYVDhgoqz1C9VAJTfHgedkk1QY3J6YpSGghgxQk",
-    method: "logMessage",
-    args: {
-      message
-    }
-  })
+  const result = HelloWorld_Module.logMessage({ message }, client);
   console.info("Invoking Method: logMessage");
   result
     .then((result) =>
