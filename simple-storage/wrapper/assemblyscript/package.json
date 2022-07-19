@@ -16,6 +16,7 @@
     "test:workflow": "yarn test:env:up && sleep 5 && npx polywrap run ./workflows/e2e.yaml -c ./workflows/config.ts && yarn test:env:down"
   },
   "devDependencies": {
+    "@polywrap/wasm-as": "0.2.0",
     "@types/jest": "27.0.3",
     "@types/node": "16.11.11",
     "assemblyscript": "0.19.1",
