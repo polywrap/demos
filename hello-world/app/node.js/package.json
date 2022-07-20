@@ -4,8 +4,10 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
+    "codegen": "polywrap app codegen",
+    "build": "yarn codegen && tsc",
     "start": "ts-node ./src/index.ts",
-    "prestart": "polywrap app codegen"
+    "prestart": "yarn codegen"
   },
   "dependencies": {
     "@polywrap/client-js": "0.2.0"

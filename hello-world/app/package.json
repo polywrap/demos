@@ -1,0 +1,21 @@
+{
+  "name": "hello-world-app",
+  "description": "Hello World app implementations",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "install": "yarn install:js-vanilla && yarn install:next-js && yarn install:node-js && yarn install:react-js && yarn install:ts-vanilla",
+    "install:js-vanilla": "yarn --cwd ./js-vanilla install",
+    "install:next-js": "yarn --cwd ./next.js install",
+    "install:node-js": "yarn --cwd ./node.js install",
+    "install:react-js": "yarn --cwd ./react.js install",
+    "install:ts-vanilla": "yarn --cwd ./ts-vanilla install",
+    "build": "yarn build:js-vanilla && yarn build:next-js && yarn build:node-js && yarn build:react-js && yarn build:ts-vanilla",
+    "build:js-vanilla": "yarn --cwd ./js-vanilla build",
+    "build:next-js": "yarn --cwd ./next.js build",
+    "build:node-js": "yarn --cwd ./node.js build",
+    "build:react-js": "yarn --cwd ./react.js build",
+    "build:ts-vanilla": "yarn --cwd ./ts-vanilla build",
+    "test": "echo TODO"
+  }
+}
