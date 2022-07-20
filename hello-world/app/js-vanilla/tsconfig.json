@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+      "noImplicitAny": false,
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "declaration": true,
+  }
+}

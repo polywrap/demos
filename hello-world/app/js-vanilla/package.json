@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "scripts": {
     "start": "serve ./dist",
+    "build": "yarn codegen && rollup -c && cp -r public/* dist",
     "prestart": "yarn codegen && rollup -c && cp -r public/* dist",
     "codegen": "polywrap app codegen"
   },
