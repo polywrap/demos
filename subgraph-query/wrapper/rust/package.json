@@ -2,7 +2,7 @@
   "name": "subgraph-query-rs",
   "description": "Subgraph query demo rust wrapper",
   "private": true,
-  "version": "0.1.1",
+  "version": "0.1.0",
   "scripts": {
     "build": "npx polywrap build",
     "postbuild": "yarn codegen:app",
