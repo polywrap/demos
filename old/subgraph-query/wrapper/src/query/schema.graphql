@@ -1,9 +1,0 @@
-#import { Query } into Subgraph from "/ens/graph-node.web3api.eth"
-
-type Query {
-  subgraphQuery(
-    subgraphAuthor: String!
-    subgraphName: String!
-    query: String!
-  ): JSON!
-}

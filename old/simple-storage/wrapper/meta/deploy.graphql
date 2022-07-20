@@ -1,7 +1,0 @@
-mutation {
-  deployContract(
-    connection: {
-      networkNameOrChainId: $network
-    }
-  )
-}
