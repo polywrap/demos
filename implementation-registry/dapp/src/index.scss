@@ -1,0 +1,77 @@
+@import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #111620;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.title {
+  font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #4ed29e;
+}
+
+.widget {
+  background: linear-gradient(
+    50deg,
+    rgba(75, 78, 84, 0.2) 20%, 
+    rgba(85, 88, 94, 0.2) 60%,
+    rgba(95, 98, 104, 0.2) 100%
+  ); 
+
+  padding: 15px;
+
+  border: 1px solid rgb(242, 242, 242);
+  border-radius: 13px;
+  box-shadow: rgb(255, 171, 124) 1px 1px 0px 0px;
+}
+
+::placeholder {
+  color: #ffffffab;
+}
+
+
+button {
+  color: #ffffff;
+  border: 1px solid #afa900;
+  background-color: transparent;
+
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.25em;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+    color: #eaeaff;
+    border: 1px solid #33c5cc;
+    box-shadow: #d2d2f9 2px 2px 0px 0px;
+    outline-width: 0;
+  }
+}
+
+input {
+  border: 1px solid #9fb2bb;
+  color: #ffffff;
+  background: transparent;
+  padding: 0.5rem 2rem 0.5rem 0.5rem;
+  border-radius: 0.25em;
+  font-size: 18px;
+}
+
+.component-title {
+  margin: 20px;
+}

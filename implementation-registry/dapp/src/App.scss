@@ -1,0 +1,40 @@
+.App {
+  text-align: center;
+
+  background-color: #111620;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+  color: white;
+
+  .widget-container {
+    width: 100%;
+
+    .registry-container {
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    .implementations-container {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  h3 {
+    font-size: 35px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+
+  h4 {
+    font-size: 25px;
+  }
+
+  .main__logo {
+    width: 150px;
+    margin-top: 20px;
+  }
+}
