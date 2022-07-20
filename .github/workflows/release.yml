@@ -1,13 +1,9 @@
 name: Release
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-  # workflow_run:
-  #   workflows: [CI]
-  #   types: [completed]
-  #   branches: [main]
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
 
 jobs:
   GetVersion:
