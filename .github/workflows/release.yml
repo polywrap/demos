@@ -120,12 +120,12 @@ jobs:
       # Deploy wrappers to ENS
       - id: ensExists
         name: Check if ens uri exists
-        run: 'echo ::set-output name=value::$(node ./scripts/release/checkEnsExists.js "$(ethers-ens lookup ${{ steps.package.outputs.uri }} --rpc https://rinkeby.infura.io/v3/${{ secrets.INFURA_KEY }})")'
+        run: 'echo ::set-output name=value::$(node ./scripts/release/checkEnsExists.js "$(ethers-ens lookup ${{ steps.package.outputs.uri }} --rpc https://goerli.infura.io/v3/${{ secrets.INFURA_KEY }})")'
 
       - name: Create ens subdomain uri
         uses: Wandalen/wretry.action@v1.0.11
         with:
-          command: ethers-ens set-subnode "${{ steps.package.outputs.uri }}" --account ${{ secrets.PRIVATE_KEY }} --rpc https://rinkeby.infura.io/v3/${{ secrets.INFURA_KEY }} --yes --wait
+          command: ethers-ens set-subnode "${{ steps.package.outputs.uri }}" --account ${{ secrets.PRIVATE_KEY }} --rpc https://goerli.infura.io/v3/${{ secrets.INFURA_KEY }} --yes --wait
           attempt_limit: 3
           attempt_delay: 20000
         if: ${{ (steps.ensExists.outputs.value == 'false') }}
@@ -133,7 +133,7 @@ jobs:
       - name: Set Resolver for created ens subdomain
         uses: Wandalen/wretry.action@v1.0.11
         with:
-          command: "ethers-ens set-resolver ${{ steps.package.outputs.uri }} --account ${{ secrets.PRIVATE_KEY }} --rpc https://rinkeby.infura.io/v3/${{ secrets.INFURA_KEY }} --yes --wait"
+          command: "ethers-ens set-resolver ${{ steps.package.outputs.uri }} --account ${{ secrets.PRIVATE_KEY }} --rpc https://goerli.infura.io/v3/${{ secrets.INFURA_KEY }} --yes --wait"
           attempt_limit: 3
           attempt_delay: 20000
         if: ${{ (steps.ensExists.outputs.value == 'false') }}
@@ -141,6 +141,6 @@ jobs:
       - name: Publish current wrapper to ENS
         uses: Wandalen/wretry.action@v1.0.11
         with:
-          command: "ethers-ens set-content ${{ steps.package.outputs.uri }} ${{ steps.ipfs.outputs.value }} --account ${{ secrets.PRIVATE_KEY }} --rpc https://rinkeby.infura.io/v3/${{ secrets.INFURA_KEY }} --yes --wait"
+          command: "ethers-ens set-content ${{ steps.package.outputs.uri }} ${{ steps.ipfs.outputs.value }} --account ${{ secrets.PRIVATE_KEY }} --rpc https://goerli.infura.io/v3/${{ secrets.INFURA_KEY }} --yes --wait"
           attempt_limit: 3
           attempt_delay: 20000
