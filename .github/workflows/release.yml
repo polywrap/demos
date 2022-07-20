@@ -99,7 +99,7 @@ jobs:
       # Fetch Built Wrappers
       - uses: dawidd6/action-download-artifact@v2
         with:
-          github_token: ${{secrets.GH_TOKEN}}
+          github_token: ${{secrets.GITHUB_TOKEN}}
           workflow: ci.yml
           workflow_conclusion: success
           branch: main
