@@ -4,10 +4,10 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "infra:up": "polywrap infra up --modules=eth-ens-ipfs",
-    "infra:down": "polywrap infra down --modules=eth-ens-ipfs",
-    "start": "serve public",
-    "prestart": "rollup -c"
+    "start": "serve ./dist",
+    "build": "yarn codegen && rollup -c && cp -r public/* dist",
+    "prestart": "yarn codegen && rollup -c && cp -r public/* dist",
+    "codegen": "polywrap app codegen"
   },
   "dependencies": {
     "@polywrap/client-js": "0.2.0",

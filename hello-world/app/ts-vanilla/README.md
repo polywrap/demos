@@ -14,10 +14,6 @@ Install and use the proper version of node.
 
 Install all dependencies.
 
-### `yarn build`
-
-Build and bundle code
-
 ### `yarn start`
 
 Runs the app.<br />

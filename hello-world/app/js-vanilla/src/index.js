@@ -1,3 +1,4 @@
+import { HelloWorld_Module } from "./wrap";
 import { PolywrapClient } from "@polywrap/client-js";
 import Toastify from "toastify-js";
 
@@ -5,13 +6,7 @@ const client = new PolywrapClient();
 
 function invokeClient() {
   const message = document.getElementById("message_input").value;
-  const result = client.invoke({
-    uri: "wrap://ens/goerli/hello.as.demos.wraplib.eth",
-    method: "logMessage",
-    args: {
-      message
-    }
-  })
+  const result = HelloWorld_Module.logMessage({ message }, client);
   console.info("Invoking Method: logMessage");
   result
     .then((result) =>

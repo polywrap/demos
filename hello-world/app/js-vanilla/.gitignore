@@ -1,4 +1,5 @@
 node_modules
 wrap
+dist
 public/*.ts
-public/*.js
+public/*.js 

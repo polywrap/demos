@@ -2,14 +2,15 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 import replace from "rollup-plugin-replace";
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
+import typescript from "rollup-plugin-typescript2";
 import nodePolyfills from "rollup-plugin-polyfill-node";
 
 export default {
   input: "src/index.js",
   output: {
-    file: "public/main.js",
+    file: "dist/index.js",
     format: "umd",
-    name: "main",
+    name: "index",
   },
   plugins: [
     replace({
@@ -25,5 +26,8 @@ export default {
     }),
     nodePolyfills(),
     json(),
+    typescript({
+      rollupCommonJSResolveHack: true,
+    }),
   ],
 };
