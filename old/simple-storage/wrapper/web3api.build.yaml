@@ -1,8 +1,0 @@
-format: 0.0.1-prealpha.2
-docker:
-  name: simple-storage-build
-config:
-  node_version: "16.13.0"
-  include:
-    - ./package.json
-    - ./src

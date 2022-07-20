@@ -1,7 +1,0 @@
-query {
-  subgraphQuery(
-    subgraphAuthor: $subgraphAuthor
-    subgraphName: $subgraphName
-    query: $query
-  )
-}
