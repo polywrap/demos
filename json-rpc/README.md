@@ -1,7 +1,7 @@
 # JSON RPC
 This is a demo that showcases how to interact with JSON RPC protocol inside a wrapper.
 
-We have implemented this project in below WASM compatible languages:
+We have implemented this project in the below WASM compatible languages:
 
 | Language | Source | Status | Version |
 |----------|--------|--------|---------|

@@ -1,7 +1,7 @@
 # Subgraph Query
 This is a simple demo project which allows user to query subgraph using the wrapper
 
-We have implemented this project in below WASM compatible languages:
+We have implemented this project in the below WASM compatible languages:
 
 | Language | Source | Status | Version |
 |----------|--------|--------|---------|
