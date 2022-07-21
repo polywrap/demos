@@ -104,14 +104,14 @@ jobs:
           branch: main
           event: push
           name: ${{ steps.package.outputs.name }}-${{ matrix.language }}-build-artifact
-          path: ./builds/${{ steps.package.outputs.name }}-${{ matrix.language }}
+          path: ./${{ steps.package.outputs.name }}-${{ matrix.language }}-build-artifact
       - name: create deployments
         run: mkdir ./deployments # fails if dir already exists but that's okay
         continue-on-error: true
 
       # Deploy wrappers to IPFS
       - name: Deploy current wrapper to IPFS
-        run: pinata-cli -u ./builds/${{ steps.package.outputs.name }}-${{ matrix.language }} > ./deployments/${{ steps.package.outputs.name }}-${{ matrix.language }}.ipfs.txt
+        run: pinata-cli -u ./${{ steps.package.outputs.name }}-${{ matrix.language }}-build-artifact > ./deployments/${{ steps.package.outputs.name }}-${{ matrix.language }}.ipfs.txt
       - id: ipfs
         name: Fetch IPFS CID for current wrapper
         run: echo ::set-output name=value::$(node ./scripts/release/getIpfsCid.js "$(cat ./deployments/${{ steps.package.outputs.name }}-${{ matrix.language }}.ipfs.txt)")
