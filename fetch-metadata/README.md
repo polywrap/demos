@@ -1,24 +1,23 @@
 # Polywrap Demo: Fetch Metadata
 
-This project demonstrates how a wrapper's Meta Manifest `web3api.meta.yaml` can be fetched using the Polywrap client. 
+This project demonstrates how a wrapper's Meta Manifest `polywrap.meta.yaml` can be fetched using the Polywrap client. 
 
-To see it in action, run the demo in development mode and enter a wrap URI. The demo will then display the contents of 
+To see it in action, either go to [fetchmetadata.demo.polywrap.io](https://fetchmetadata.demo.polywrap.io/) or run the demo in development mode and enter a wrap URI. The demo will then display the contents of 
 the Meta Manifest.
 
 Try these URIs to test it out:
 
-Uniswap v3 wrapper: w3://ipfs/QmcFf5GY1EboKGtf1cJQM8BxyPbwk3pVjwt4zVyiYeftSD
+Hello World Assemblyscript Wrapper: `wrap://ens/goerli/hello.as.demos.polywrap.eth`
 
 Some examples of valid URIs are:
-* w3://ipfs/QmHASH
-* w3://ens/sub.domain.eth
-* w3://fs/directory/file.txt
-* w3://uns/domain.crypto
+* wrap://ipfs/QmHASH
+* wrap://ens/sub.domain.eth
+* wrap://fs/directory/file.txt
 * ens/sub.domain.eth
 * ipfs/QmHASH
 
 Breaking down the various parts of the URI, as it applies to [the URI standard](https://tools.ietf.org/html/rfc3986#section-3):
-* **w3://** - URI Scheme: differentiates Polywrap URIs.
+* **wrap://** - URI Scheme: differentiates Polywrap URIs.
 * **ipfs/** - URI Authority: allows the Polywrap URI resolution algorithm to determine an authoritative URI resolver.
 * **sub.domain.eth** - URI Path: tells the Authority where the API resides.
 

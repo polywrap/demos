@@ -2,7 +2,7 @@
   "name": "hello-world-app-vanilla-javascript",
   "description": "Polywrap dApp Vanilla Javascript Template",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "start": "serve ./dist",
     "build": "yarn codegen && rollup -c && cp -r public/* dist",
