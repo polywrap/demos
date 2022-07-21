@@ -93,6 +93,9 @@ jobs:
         run: pinata-cli -a ${{ secrets.PINATA_API_KEY }}
 
       # Fetch Built Wrappers
+      - name: create builds
+        run: mkdir ./builds # fails if dir already exists but that's okay
+        continue-on-error: true
       - uses: dawidd6/action-download-artifact@v2
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
@@ -101,17 +104,17 @@ jobs:
           branch: main
           event: push
           name: ${{ steps.package.outputs.name }}-${{ matrix.language }}-build-artifact
-          path: ./${{ steps.package.outputs.name }}
+          path: ./builds/${{ steps.package.outputs.name }}-${{ matrix.language }}
       - name: create deployments
         run: mkdir ./deployments # fails if dir already exists but that's okay
         continue-on-error: true
 
       # Deploy wrappers to IPFS
       - name: Deploy current wrapper to IPFS
-        run: pinata-cli -u ./${{ steps.package.outputs.name }} > ./deployments/${{ steps.package.outputs.name }}.ipfs.txt
+        run: pinata-cli -u ./builds/${{ steps.package.outputs.name }}-${{ matrix.language }} > ./deployments/${{ steps.package.outputs.name }}-${{ matrix.language }}.ipfs.txt
       - id: ipfs
         name: Fetch IPFS CID for current wrapper
-        run: echo ::set-output name=value::$(node ./scripts/release/getIpfsCid.js "$(cat ./deployments/${{ steps.package.outputs.name }}.ipfs.txt)")
+        run: echo ::set-output name=value::$(node ./scripts/release/getIpfsCid.js "$(cat ./deployments/${{ steps.package.outputs.name }}-${{ matrix.language }}.ipfs.txt)")
 
       # Deploy wrappers to ENS
       - id: ensExists
