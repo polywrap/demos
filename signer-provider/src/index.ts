@@ -17,6 +17,7 @@ const KNOWN_NETWORKS = {
 }
 
 let client;
+document.getElementById("invoke_button").innerText = "Authenticate"
 
 const authenticate = async () => {
   if (!window.ethereum) {
@@ -47,7 +48,6 @@ const authenticate = async () => {
     },
     defaultNetwork: "mainnet"
   }
-  console.log(config)
 
   client = new PolywrapClient({
     plugins: [
@@ -57,6 +57,8 @@ const authenticate = async () => {
       }
     ]
   })
+
+  document.getElementById("invoke_button").innerText = "Sign Message"
 }
 
 const invokeClient = async () => {
@@ -71,20 +73,6 @@ const invokeClient = async () => {
   } catch (error) {
     console.log({ error });
   }
-};
-
-const executeInvoke = async () => {
-  // Toastify({
-  //   text: "Take a look at your console!",
-  //   style: {
-  //     fontSize: "20px",
-  //     fontWeight: "500",
-  //     color: "white",
-  //     background: "#60c093",
-  //   },
-  // }).showToast();
-
-  await invokeClient();
 };
 
 const button: HTMLButtonElement = document.getElementById(
