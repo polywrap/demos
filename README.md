@@ -26,11 +26,11 @@ Each demo contains a `README.md` for further instructions on building and runnin
 
 | Demo                                 | Type        | Status                                               | Version                                                                                                                     |
 | ------------------------------------ | ----------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| [Hello World](./hello-world)         | wrapper/app | Live: [App](https://demo.helloworld.polywrap.io/)    | [![npm](https://img.shields.io/npm/v/polywrap.svg?style=for-the-badge)](https://www.npmjs.com/package/polywrap) |
-| [Simple Storage](./simple-storage)   | wrapper/app | Live: [App](https://demo.simplestorage.polywrap.io/) | [![npm](https://img.shields.io/npm/v/polywrap.svg?style=for-the-badge)](https://www.npmjs.com/package/polywrap) |
-| [Fetch Metadata](./fetch-metadata)   | app     | Live: [App](todo)                                              | [![npm](https://img.shields.io/npm/v/polywrap.svg?style=for-the-badge)](https://www.npmjs.com/package/polywrap) |
-| [Subgraph Query](./subgraph-query)   | wrapper     | Running                                              | [![npm](https://img.shields.io/npm/v/polywrap.svg?style=for-the-badge)](https://www.npmjs.com/package/polywrap) |
-| [JSON RPC](./json-rpc)   | wrapper     | Running                                              | [![npm](https://img.shields.io/npm/v/polywrap.svg?style=for-the-badge)](https://www.npmjs.com/package/polywrap) |
+| [Hello World](./hello-world)         | wrapper + app | Live: [App](https://demo.helloworld.polywrap.io/)    | [![Polywrap](https://img.shields.io/badge/Polywrap-0.2.0-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.2.0) |
+| [Simple Storage](./simple-storage)   | wrapper + app | Live: [App](https://demo.simplestorage.polywrap.io/) | [![Polywrap](https://img.shields.io/badge/Polywrap-0.2.0-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.2.0) |
+| [Fetch Metadata](./fetch-metadata)   | app | Live: [App](todo)                                              | [![Polywrap](https://img.shields.io/badge/Polywrap-0.2.0-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.2.0) |
+| [Subgraph Query](./subgraph-query)   | wrapper     | Running                                              | [![Polywrap](https://img.shields.io/badge/Polywrap-0.2.0-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.2.0) |
+| [JSON RPC](./json-rpc)   | wrapper     | Running                                              | [![Polywrap](https://img.shields.io/badge/Polywrap-0.2.0-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.2.0) |
 
 ## Have a demo not in this list?
 
