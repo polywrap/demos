@@ -27,7 +27,7 @@ const authenticate = async () => {
         fontSize: "20px",
         fontWeight: "500",
         color: "white",
-        background: "#60c093",
+        background: "red",
       },
     }).showToast();
     return
@@ -35,20 +35,30 @@ const authenticate = async () => {
 
   const provider = new ethers.providers.Web3Provider(window.ethereum as JsonRpcProvider);
   await provider.send('eth_requestAccounts', [])
-  const signer = provider.getSigner()
+  await provider.getSigner()
 
   const chainId = Number(window.ethereum.chainId)
   const chainName = KNOWN_NETWORKS[chainId] 
   const config = {
     networks: {
       [chainName]: {
-        provider,
-        signer
+        provider: window.ethereum as JsonRpcProvider
       }
     },
     defaultNetwork: "mainnet"
   }
 
+  if (!client) {
+    Toastify({
+      text: "Now you can sign your message!",
+      style: {
+        fontSize: "20px",
+        fontWeight: "500",
+        color: "white",
+        background: "green",
+      },
+    }).showToast();
+  }
   client = new PolywrapClient({
     plugins: [
       {
@@ -67,6 +77,15 @@ const invokeClient = async () => {
       console.log(client)
       console.info("Invoking Method: Ethereum_Module.signMessage");
       const result = await Ethereum_Module.signMessage({ message: "Signing message from polywrap" }, client);
+      Toastify({
+        text: "Message signed!",
+        style: {
+          fontSize: "20px",
+          fontWeight: "500",
+          color: "white",
+          background: "green",
+        },
+      }).showToast();
       console.info(`Invoke Result: ${JSON.stringify(result, null, 2)}`);
     }
     await authenticate()   
