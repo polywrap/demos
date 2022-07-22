@@ -18,6 +18,19 @@ jobs:
         name: Get version
         run: echo "::set-output name=value::$(cat VERSION | grep v)"
 
+      - name: Check if tag Exists
+        id: tag_check
+        shell: bash -ex {0}
+        run: |
+          GET_API_URL="https://api.github.com/repos/${{github.repository}}/git/ref/tags/${{env.RELEASE_VERSION}}"
+          http_status_code=$(curl -LI $GET_API_URL -o /dev/null -w '%{http_code}\n' -s \
+            -H "Authorization: token ${GITHUB_TOKEN}")
+          if [ "$http_status_code" -ne "404" ] ; then
+            exit 1
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   Github-release:
     name: Create Release
     runs-on: ubuntu-latest
@@ -28,6 +41,13 @@ jobs:
         uses: actions/checkout@v2
       - name: print version with needs
         run: echo ${{ needs.GetVersion.outputs.version }}
+      - id: changelog
+        name: "Generate release changelog"
+        uses: heinrichreimer/github-changelog-generator-action@v2.3
+        with:
+          unreleasedOnly: true
+          unreleasedLabel: ${{ needs.GetVersion.outputs.version }}
+          token: ${{ secrets.GITHUB_TOKEN }}    
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -36,6 +56,7 @@ jobs:
         with:
           tag_name: ${{ needs.GetVersion.outputs.version }}
           release_name: Release ${{ needs.GetVersion.outputs.version }}
+          body: ${{ steps.changelog.outputs.changelog }}
           draft: false
           prerelease: false
 
@@ -50,7 +71,8 @@ jobs:
         language:
           - assemblyscript
           - rust
-
+    needs:
+      - GetVersion
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
