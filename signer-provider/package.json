@@ -7,7 +7,8 @@
     "start": "serve ./dist",
     "build": "yarn codegen && tsc && webpack && cp -r public/* dist",
     "prestart": "yarn codegen && tsc && webpack && cp -r public/* dist",
-    "codegen": "polywrap app codegen"
+    "codegen": "polywrap app codegen",
+    "test": "echo todo"
   },
   "dependencies": {
     "@polywrap/client-js": "0.2.0",
