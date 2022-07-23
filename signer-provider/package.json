@@ -2,7 +2,7 @@
   "name": "signer-provider",
   "description": "Polywrap dApp Wallet signer provider example",
   "private": true,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "scripts": {
     "start": "serve ./dist",
     "build": "yarn codegen && tsc && webpack && cp -r public/* dist",
