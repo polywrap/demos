@@ -2,7 +2,7 @@
   "name": "@polywrap/demo-simple-storage-dapp",
   "description": "Polywrap SimpleStorage dApp Demo",
   "private": true,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "repository": {
     "type": "git",

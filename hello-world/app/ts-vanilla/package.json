@@ -2,7 +2,7 @@
   "name": "templates-app-vanilla-typescript",
   "description": "Polywrap dApp Vanilla Typescript Template",
   "private": true,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "scripts": {
     "start": "serve ./dist",
     "build": "yarn codegen && tsc && webpack && cp -r public/* dist",
