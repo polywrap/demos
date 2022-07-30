@@ -1,16 +1,18 @@
 {
-  "name": "templates-app-vanilla-typescript",
-  "description": "Polywrap dApp Vanilla Typescript Template",
+  "name": "signer-provider",
+  "description": "Polywrap dApp Wallet signer provider example",
   "private": true,
   "version": "0.1.2",
   "scripts": {
     "start": "serve ./dist",
     "build": "yarn codegen && tsc && webpack && cp -r public/* dist",
     "prestart": "yarn codegen && tsc && webpack && cp -r public/* dist",
-    "codegen": "polywrap app codegen"
+    "codegen": "polywrap app codegen",
+    "test": "echo todo"
   },
   "dependencies": {
     "@polywrap/client-js": "0.2.0",
+    "@polywrap/ethereum-plugin-js": "0.2.0",
     "serve": "13.0.2",
     "toastify-js": "1.11.2"
   },
