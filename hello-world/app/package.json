@@ -2,7 +2,7 @@
   "name": "hello-world-app",
   "description": "Hello World app implementations",
   "private": true,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "scripts": {
     "install": "yarn install:js-vanilla && yarn install:next-js && yarn install:node-js && yarn install:react-js && yarn install:ts-vanilla",
     "install:js-vanilla": "yarn --cwd ./js-vanilla install",

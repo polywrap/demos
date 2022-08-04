@@ -1,5 +1,27 @@
 # Changelog
 
+## [v0.1.2](https://github.com/polywrap/demos/tree/HEAD)
+
+[Full Changelog](https://github.com/polywrap/demos/compare/v0.1.1...HEAD)
+
+**Closed issues:**
+
+- Each demo should have workflow with validators [\#78](https://github.com/polywrap/demos/issues/78)
+- Add README file in each demos [\#63](https://github.com/polywrap/demos/issues/63)
+- Host fetch-metadata demo app to fleek [\#55](https://github.com/polywrap/demos/issues/55)
+
+## [v0.1.1](https://github.com/polywrap/demos/tree/v0.1.1) (2022-07-21)
+
+[Full Changelog](https://github.com/polywrap/demos/compare/v0.1.0...v0.1.1)
+
+**Closed issues:**
+
+- Add Jest testing for getIpfsData and setIpfsData functions [\#6](https://github.com/polywrap/demos/issues/6)
+
+**Merged pull requests:**
+
+- release v0.1.1 [\#84](https://github.com/polywrap/demos/pull/84) ([Niraj-Kamdar](https://github.com/Niraj-Kamdar))
+
 ## [v0.1.0](https://github.com/polywrap/demos/tree/v0.1.0) (2022-07-20)
 
 [Full Changelog](https://github.com/polywrap/demos/compare/6afae493ddb29f09074ee91da40f6f761fb0bcca...v0.1.0)

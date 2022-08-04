@@ -2,7 +2,7 @@
   "name": "json-rpc-demo-as",
   "description": "Polywrap AssemblyScript Wrapper Demo: JSON-RPC with HTTP plugin",
   "private": true,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "scripts": {
     "build": "npx polywrap build",
     "test:env:up": "npx polywrap infra up --modules=eth-ens-ipfs",

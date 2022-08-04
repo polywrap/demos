@@ -2,7 +2,7 @@
   "name": "subgraph-query-as",
   "description": "Subgraph query demo as assemblyscript wrapper",
   "private": true,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "scripts": {
     "build": "npx polywrap build",
     "codegen": "npx polywrap codegen",
@@ -13,7 +13,7 @@
     "test": "yarn test:e2e && yarn test:workflow",
     "test:e2e": "yarn test:e2e:codegen && jest --passWithNoTests --runInBand --verbose",
     "test:e2e:codegen": "npx polywrap app codegen -m ./src/__tests__/types/polywrap.app.yaml -g ./src/__tests__/types/wrap",
-    "test:workflow": "npx polywrap run ./workflows/e2e.yaml"
+    "test:workflow": "npx polywrap run ./workflows/e2e.yaml -v ./workflows/validator.cue"
   },
   "devDependencies": {
     "@types/jest": "27.0.3",
