@@ -9,9 +9,9 @@ A collection of demos to showcase different aspects of Polywrap.
 
 Welcome! If you are new to polywrap, we recommend getting started with the [hello-world](./hello-world) demo to see how a wrapper is integrated into various types of apps:
 
-- [Node.js & TypeScript](./hello-world/app/node.js)
-- [React.js & TypeScript](./hello-world/app/react.js)
-- [Next.js & TypeScript](./hello-world/app/next.js)
+- [Node.js & TypeScript](./hello-world/app/node-js)
+- [React.js & TypeScript](./hello-world/app/react-js)
+- [Next.js & TypeScript](./hello-world/app/next-js)
 - [js-vanilla](./hello-world/app/js-vanilla)
 - [ts-vanilla](./hello-world/app/ts-vanilla)
 
