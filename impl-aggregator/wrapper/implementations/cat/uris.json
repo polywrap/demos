@@ -1,0 +1,24 @@
+[
+  {
+    "id": "ipfs_deploy",
+    "name": "ipfs_deploy",
+    "input": {
+      "uri": "wrap://fs/./build"
+    },
+    "result": "wrap://ipfs/QmX2pijgzgY8dCBtVY7FBapbbEVH7F2oHDBws845kVruAk"
+  },
+  {
+    "id": "ipfs_deploy.ens_publish",
+    "name": "ens_publish",
+    "input": {
+      "uri": "wrap://ipfs/QmX2pijgzgY8dCBtVY7FBapbbEVH7F2oHDBws845kVruAk",
+      "config": {
+        "domainName": "cat.impls.animals.eth",
+        "ports": {
+          "ethereum": 8545
+        }
+      }
+    },
+    "result": "wrap://ens/cat.impls.animals.eth"
+  }
+]
