@@ -2,13 +2,13 @@ import { Http_Module, Http_Response, Http_ResponseType, Args_query, Response } f
 import {handleUnspecifiedRpcError, requestToJsonString, responseFromJsonString} from "./utils";
 
 export function query(args: Args_query): Response | null {
+  const headers: Map<string, string> = new Map();
+  headers.set("Content-Type", "application/json");
+  headers.set("Accept", "application/json");
   const httpResponse: Http_Response | null = Http_Module.post({
     url: args.url,
     request: {
-      headers: [
-        { key: "Content-Type", value: "application/json" },
-        { key: "Accept", value: "application/json" },
-      ],
+      headers,
       urlParams: null,
       responseType: Http_ResponseType.TEXT,
       body: requestToJsonString(args.request),
