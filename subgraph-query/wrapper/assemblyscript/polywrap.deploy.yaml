@@ -5,3 +5,8 @@ stages:
     uri: fs/./build
     config:
       gatewayUri: 'https://ipfs.wrappers.io'
+  local_ipfs_deploy:
+    package: ipfs
+    uri: fs/./build
+    config:
+      gatewayUri: 'http://127.0.0.1:45005'
