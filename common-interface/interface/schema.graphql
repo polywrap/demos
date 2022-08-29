@@ -1,0 +1,16 @@
+type Module {
+  abstractMethod(
+    arg1: String!
+    arg2: UInt32!
+  ): Object!
+}
+
+type Object {
+  prop1: String!
+  prop2: UInt32!
+  prop3: NestedObject!
+}
+
+type NestedObject {
+  prop: String!
+}
