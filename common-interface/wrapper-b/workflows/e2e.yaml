@@ -1,0 +1,9 @@
+name: wrapper-b
+jobs:
+  abstractMethod:
+    steps:
+      - uri: fs/build
+        method: abstractMethod
+        args:
+          arg1: "Common Interface Testing #"
+          arg2: 2
