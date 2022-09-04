@@ -1,0 +1,29 @@
+.main {
+  display: flex;
+  margin: 0 auto;
+  width: 1200px;
+  align-items: center;
+  justify-content: center;
+  min-height: 85vh;
+}
+
+.main__logo {
+  width: 200px;
+  padding: 3rem;
+}
+
+
+@media screen and (max-width: 1300px) {
+  .main {
+    width: auto;
+    flex-direction: column;
+    margin: auto 0;
+  }
+}
+
+.Toastify__toast {
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  background-color: #60c093;
+}

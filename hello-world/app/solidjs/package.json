@@ -1,0 +1,26 @@
+{
+  "name": "solid-polywrap",
+  "description": "Polywrap dApp SolidJS",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "4.8.2",
+    "vite": "3.0.9",
+    "vite-plugin-solid": "2.3.0",
+    "polywrap": "0.6.0",
+    "eslint": "8.23.0",
+    "eslint-plugin-solid": "^0.7.1",
+    "@typescript-eslint/parser": "5.36.1"
+  },
+  "dependencies": {
+    "solid-js": "1.5.3",
+    "@polywrap/client-js": "0.6.0"
+  }
+}
