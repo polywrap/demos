@@ -2,7 +2,7 @@
 
 type Module {
     """
-    Module to deploy and interect with the simple-storage smart-contract
+    Module to deploy and interact with the simple-storage smart-contract
     """
 
     getData(
