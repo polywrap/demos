@@ -1,0 +1,6 @@
+{
+  "name": "tracing-demo",
+  "dependencies": {
+    "polywrap": "0.6.0"
+  }
+}
