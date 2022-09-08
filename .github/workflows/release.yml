@@ -14,10 +14,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - id: Halt release if CI failed
+        run: exit 1
+        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
       - id: version
         name: Get version
         run: echo "::set-output name=value::$(cat VERSION | grep v)"
-
       - name: Check if tag Exists
         id: tag_check
         shell: bash -ex {0}
