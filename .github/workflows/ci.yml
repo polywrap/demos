@@ -61,19 +61,19 @@ jobs:
       - name: Install interface dependencies
         run: yarn --cwd ./${{ matrix.demo }}/interface install --nonInteractive --frozen-lockfile --prefer-offline
         if: ${{ (steps.interfaceExists.outputs.value == 'true') }}
-      - name: Build
+      - name: Build Interface
         run: yarn --cwd ./${{ matrix.demo }}/interface build
         if: ${{ (steps.interfaceExists.outputs.value == 'true') }}
-      - name: Deploy
+      - name: Deploy interface
         run: yarn --cwd ./${{ matrix.demo }}/interface deploy
         if: ${{ (steps.interfaceExists.outputs.value == 'true') }}
       - name: Install dependencies
         run: yarn --cwd ./${{ matrix.demo }}/wrapper/${{ matrix.language }} install --nonInteractive --frozen-lockfile --prefer-offline
-      - name: Build
+      - name: Build Wrapper
         run: yarn --cwd ./${{ matrix.demo }}/wrapper/${{ matrix.language }} build
-      - name: Deploy
+      - name: Deploy Wrapper
         run: yarn --cwd ./${{ matrix.demo }}/wrapper/${{ matrix.language }} deploy
-      - name: Test
+      - name: Test Wrapper
         run: yarn --cwd ./${{ matrix.demo }}/wrapper/${{ matrix.language }} test
       - uses: actions/upload-artifact@v3
         with:
