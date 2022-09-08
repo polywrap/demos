@@ -49,7 +49,8 @@ jobs:
         with:
           unreleasedOnly: true
           unreleasedLabel: ${{ needs.GetVersion.outputs.version }}
-          token: ${{ secrets.GITHUB_TOKEN }}    
+          token: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -121,7 +122,7 @@ jobs:
       # Fetch Built Wrappers
       - id: shouldRun
         name: Check if the step should run or not
-        run: 'echo ::set-output name=value::$(node ./scripts/release/shouldRun.js ${{ matrix.demo }} ${{ matrix.language }}'
+        run: 'echo ::set-output name=value::$(node ./scripts/release/shouldRun.js ${{ matrix.demo }} ${{ matrix.language }})'
       - name: create builds
         run: mkdir ./builds # fails if dir already exists but that's okay
         continue-on-error: true
