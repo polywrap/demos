@@ -1,0 +1,5 @@
+type Module {
+  helloWorld(message: String!): String!
+  helloWorldFutureToPromise(message: String!): String!
+  helloWorldSpawnLocal(message: String!): String!
+}
