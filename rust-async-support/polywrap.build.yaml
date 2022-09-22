@@ -3,5 +3,3 @@ docker:
   name: rust-async-support
 config:
   rust_version: "1.58.0"
-  include:
-    - ./src/lib.rs

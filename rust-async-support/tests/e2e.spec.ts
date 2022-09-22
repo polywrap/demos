@@ -35,15 +35,4 @@ describe("rust async support", () => {
 
       expect(response.data).toBe("hello world");
     });
-
-    it("async future to promise", async () => {
-      const message = "hello world";
-      const response = await client.invoke<string>({
-        uri,
-        method: "helloWorldFutureToPromise",
-        args: {message},
-      });
-
-      expect(response.data).toBe("hello world");
-    });
 });
