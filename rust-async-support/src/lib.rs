@@ -1,17 +1,8 @@
+use futures::executor;
 use std::future::Future;
 pub mod wrap;
 pub use wrap::*;
 use wrap::{ArgsHelloWorld, ArgsHelloWorldSpawnLocal};
-mod task;
-mod queue;
-
-#[inline]
-pub fn spawn_local<F>(future: F)
-where
-    F: Future<Output = ()> + 'static,
-{
-    task::Task::spawn(Box::pin(future));
-}
 
 pub fn hello_world(args: ArgsHelloWorld) -> String {
     args.message
@@ -24,10 +15,9 @@ pub fn hello_world_spawn_local(args: ArgsHelloWorldSpawnLocal) -> String {
     let message_copy = args.message.clone();
 
     // use `async move` to force the async block to take ownership of variables
-    spawn_local(async move {
-        let message = &message_copy;
-        ()
+    let result = executor::block_on(async move {
+        format!("{} {}", message_copy, "foo bar")
     });
 
-    args.message
+    result
 }

@@ -33,6 +33,6 @@ describe("rust async support", () => {
         args: {message},
       });
 
-      expect(response.data).toBe("hello world");
+      expect(response.data).toBe("hello world foo bar");
     });
 });
