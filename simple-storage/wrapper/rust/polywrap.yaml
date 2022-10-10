@@ -1,8 +1,11 @@
-format: 0.1.0
-name: simple-storage-rs
-language: wasm/rust
-build: ./polywrap.build.yaml
-meta: ./polywrap.meta.yaml
-deploy: ./polywrap.deploy.yaml
-schema: ./schema.graphql
-module: ./Cargo.toml
+format: 0.2.0
+project:
+  name: simple-storage-rs
+  type: wasm/rust
+source:
+  schema: ./schema.graphql
+  module: ./Cargo.toml
+extensions:
+  build: ./polywrap.build.yaml
+  meta: ./polywrap.meta.yaml
+  deploy: ./polywrap.deploy.yaml
