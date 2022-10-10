@@ -12,7 +12,7 @@
     "deploy": "npx polywrap deploy",
     "test": "yarn test:e2e && yarn test:workflow",
     "test:e2e": "yarn test:e2e:codegen && jest --passWithNoTests --runInBand --verbose",
-    "test:e2e:codegen": "npx polywrap app codegen -m ./src/__tests__/types/polywrap.app.yaml -g ./src/__tests__/types/wrap",
+    "test:e2e:codegen": "npx polywrap codegen -m ./src/__tests__/types/polywrap.app.yaml -g ./src/__tests__/types/wrap",
     "test:workflow": "yarn test:env:up && sleep 7 && npx polywrap run ./workflows/e2e.yaml -c ./workflows/config.ts -v ./workflows/validator.cue && yarn test:env:down"
   },
   "devDependencies": {
@@ -21,7 +21,7 @@
     "assemblyscript": "0.19.1",
     "ethers": "5.0.7",
     "jest": "26.6.3",
-    "polywrap": "0.2.0",
+    "polywrap": "0.9.0",
     "solc": "0.8.3",
     "ts-jest": "26.5.4",
     "ts-node": "8.10.2",
