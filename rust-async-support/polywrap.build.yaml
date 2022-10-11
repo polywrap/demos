@@ -1,0 +1,5 @@
+format: 0.1.0
+docker:
+  name: rust-async-support
+config:
+  rust_version: "1.58.0"
