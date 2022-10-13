@@ -8,7 +8,6 @@ pub fn get_data(args: ArgsGetData) -> i32 {
         address: args.address,
         method: "function get() view returns (uint256)".to_string(),
         args: None,
-        connection: args.connection,
     }) {
         Ok(v) => v.parse::<i32>().unwrap(),
         Err(e) => panic!("{}", e),
@@ -20,8 +19,6 @@ pub fn set_data(args: ArgsSetData) -> String {
         address: args.address,
         method: "function set(uint256 value)".to_string(),
         args: Some(vec![args.value.to_string()]),
-        connection: args.connection,
-        tx_overrides: None,
     }) {
         Ok(res) => res.hash,
         Err(e) => panic!("{}", e),
@@ -35,7 +32,5 @@ pub fn deploy_contract(args: ArgsDeployContract) -> String {
         abi,
         bytecode,
         args: None,
-        connection: args.connection,
-    })
-    .unwrap()
+    }).unwrap()
 }

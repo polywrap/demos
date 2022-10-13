@@ -5,15 +5,16 @@ import {
   providers,
   ensAddresses
 } from "@polywrap/test-env-js";
-import * as App from "../types/wrap";
+import * as App from "../types/src/wrap";
 import path from "path";
 
 import { getPlugins } from "../utils";
 
+declare function fail(error?: any): never;
+
 jest.setTimeout(500000);
 
 describe("SimpleStorage", () => {
-  const CONNECTION = { networkNameOrChainId: "testnet" };
 
   let client: PolywrapClient;
 
@@ -37,52 +38,50 @@ describe("SimpleStorage", () => {
   });
 
   const getData = async (contractAddr: string): Promise<number> => {
-    const response = await App.SimpleStorage_Module.getData(
+    const result = await App.SimpleStorage_Module.getData(
       {
         address: contractAddr,
-        connection: CONNECTION,
       },
       client,
       wrapperUri
     );
 
-    expect(response).toBeTruthy();
-    expect(response.error).toBeFalsy();
-    expect(response.data).not.toBeNull();
+    if (!result.ok) fail(result.error);
+    expect(result.value).not.toBeNull();
 
-    return response.data as number;
+    return result.value as number;
   }
 
   const setData = async (contractAddr: string, value: number): Promise<string> => {
-    const response = await App.SimpleStorage_Module.setData(
+    const result = await App.SimpleStorage_Module.setData(
       {
         address: contractAddr,
-        connection: CONNECTION,
         value: value,
       },
       client,
       wrapperUri
     );
 
-    expect(response).toBeTruthy();
-    expect(response.error).toBeFalsy();
-    expect(response.data).not.toBeNull();
+    if (!result.ok) fail(result.error);
+    expect(result.value).not.toBeNull();
 
-    return response.data as string;
+    return result.value as string;
   }
 
   it("sanity", async () => {
+
     // Deploy contract
     const deployContractResponse = await App.SimpleStorage_Module.deployContract(
-      { connection: CONNECTION },
+      { },
       client,
       wrapperUri
     );
-    expect(deployContractResponse).toBeTruthy();
-    expect(deployContractResponse.error).toBeFalsy();
-    expect(deployContractResponse.data).toBeTruthy();
+    console.log(deployContractResponse)
 
-    const contractAddress = deployContractResponse.data as string;
+    if (!deployContractResponse.ok) fail(deployContractResponse.error);
+    expect(deployContractResponse.value).not.toBeNull();
+
+    const contractAddress = deployContractResponse.value as string;
 
     // Get data
     let data = await getData(contractAddress);

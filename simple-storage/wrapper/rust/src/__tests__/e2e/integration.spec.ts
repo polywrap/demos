@@ -13,7 +13,6 @@ import { getPlugins } from "../utils";
 jest.setTimeout(500000);
 
 describe("SimpleStorage", () => {
-  const CONNECTION = { networkNameOrChainId: "testnet" };
 
   let client: PolywrapClient;
 
@@ -38,11 +37,11 @@ describe("SimpleStorage", () => {
 
   const getData = async (contractAddr: string): Promise<number> => {
     const result = await App.SimpleStorage_Module.getData(
-      {
-        address: contractAddr,
-      },
-      client,
-      wrapperUri
+     {
+       address: contractAddr,
+     },
+     client,
+     wrapperUri
     );
 
     if (!result.ok) fail(result.error);
@@ -53,12 +52,12 @@ describe("SimpleStorage", () => {
 
   const setData = async (contractAddr: string, value: number): Promise<string> => {
     const result = await App.SimpleStorage_Module.setData(
-      {
-        address: contractAddr,
-        value,
-      },
-      client,
-      wrapperUri
+     {
+       address: contractAddr,
+       value,
+     },
+     client,
+     wrapperUri
     );
 
     if (!result.ok) fail(result.error);
@@ -70,10 +69,11 @@ describe("SimpleStorage", () => {
   it("sanity", async () => {
     // Deploy contract
     const result = await App.SimpleStorage_Module.deployContract(
-      { },
-      client,
-      wrapperUri
+     { },
+     client,
+     wrapperUri
     );
+
     if (!result.ok) fail(result.error);
     expect(result.value).not.toBeNull();
 

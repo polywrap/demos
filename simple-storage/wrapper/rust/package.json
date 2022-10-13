@@ -17,6 +17,8 @@
   },
   "devDependencies": {
     "@types/jest": "27.0.3",
+    "@polywrap/ethereum-provider": "0.1.0",
+    "@polywrap/ethereum-wrapper": "0.2.0",
     "@types/node": "16.11.11",
     "assemblyscript": "0.19.1",
     "ethers": "5.0.7",

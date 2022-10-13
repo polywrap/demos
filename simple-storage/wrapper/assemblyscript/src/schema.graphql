@@ -1,4 +1,4 @@
-#import { Module, Connection } into Ethereum from "wrap://ens/ethereum.polywrap.eth"
+#import { Module } into Ethereum from "wrap://ens/ethereum-wrapper.polywrap.eth"
 
 type Module {
     """
@@ -10,7 +10,6 @@ type Module {
         Get the latest set integer from the smart contract
         """
         address: String!
-        connection: Ethereum_Connection
     ): Int!
 
     setData(
@@ -19,13 +18,10 @@ type Module {
         """
         address: String!
         value: UInt32!
-        connection: Ethereum_Connection
     ): String!
 
-    deployContract(
-        """
-        Deploys the simple-storage contract to the given blockchain
-        """
-        connection: Ethereum_Connection
-    ): String!
+    """
+    Deploys the simple-storage contract to the given blockchain
+    """
+    deployContract: String!
 }

@@ -1,7 +1,8 @@
 import { ClientConfig } from "@polywrap/client-js";
 import { ensResolverPlugin } from "@polywrap/ens-resolver-plugin-js";
-import { ethereumPlugin } from "@polywrap/ethereum-plugin-js";
 import { ipfsPlugin } from "@polywrap/ipfs-plugin-js";
+import { ethereumPlugin } from "@polywrap/ethereum-provider";
+import { defaultIpfsProviders } from "@polywrap/client-config-builder-js";
 
 export function getPlugins(
   ethereum: string,
@@ -9,25 +10,35 @@ export function getPlugins(
   ensAddress: string,
 ): Partial<ClientConfig> {
   return {
-    redirects: [],
+    envs: [
+      {
+        uri: "wrap://ens/ipfs.polywrap.eth",
+        env: {
+          provider: ipfs,
+          fallbackProviders: defaultIpfsProviders,
+        },
+      },
+    ],
+    redirects: [
+      {
+        from: "wrap://ens/ethereum-wrapper.polywrap.eth",
+        to: "fs/../../../../integrations/protocol/ethereum/wrapper/build",
+      },
+    ],
     plugins: [
       {
         uri: "wrap://ens/ipfs.polywrap.eth",
-        plugin: ipfsPlugin({ provider: ipfs }),
+        plugin: ipfsPlugin({ }),
       },
       {
         uri: "wrap://ens/ens.polywrap.eth",
         plugin: ensResolverPlugin({ addresses: { testnet: ensAddress } }),
       },
       {
-        uri: "wrap://ens/ethereum.polywrap.eth",
+        uri: "wrap://ens/ethereum-provider.polywrap.eth",
         plugin: ethereumPlugin({
-          networks: {
-            testnet: {
-              provider: ethereum,
-            },
-          },
-          defaultNetwork: "testnet",
+          url: ethereum,
+          wallet: "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d"
         }),
       },
     ],

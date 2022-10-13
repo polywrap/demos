@@ -5,6 +5,11 @@ project:
 source:
   schema: ./schema.graphql
   module: ./Cargo.toml
+  import_abis:
+  - uri: "wrap://ens/ethereum-provider.polywrap.eth"
+    abi: "../../../../integrations/protocol/ethereum/provider/build/wrap.info"
+  - uri: "wrap://ens/ethereum-wrapper.polywrap.eth"
+    abi: "../../../../integrations/protocol/ethereum/wrapper/build/wrap.info"
 extensions:
   build: ./polywrap.build.yaml
   meta: ./polywrap.meta.yaml
