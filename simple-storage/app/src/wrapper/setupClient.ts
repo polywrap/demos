@@ -1,5 +1,5 @@
 import { ClientConfigBuilder } from '@polywrap/client-config-builder-js';
-import { PolywrapClient, IUriPackage, Uri, ClientConfig } from '@polywrap/client-js';
+import { PolywrapClient } from '@polywrap/client-js';
 import { ethereumPlugin, Connections, Connection } from '@polywrap/ethereum-plugin-js';
 
 export async function setupPolywrapClient(): Promise<PolywrapClient> {
