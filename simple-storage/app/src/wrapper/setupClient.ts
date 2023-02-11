@@ -14,7 +14,7 @@ export async function setupPolywrapClient(): Promise<PolywrapClient> {
       uri: 'ens/ethereum.polywrap.eth',
       plugin: ethereumPlugin({
         networks: {
-          rinkeby: {
+          goerli: {
             provider: ethereum,
           },
         },

@@ -1,6 +1,6 @@
 import { PolywrapClient } from "@polywrap/client-js";
 
-export const uri = "ens/rinkeby/api.simplestorage.eth";
+export const uri = "ens/goerli/api.simplestorage.eth";
 
 export async function setData(
   contract: string,
@@ -15,7 +15,7 @@ export async function setData(
       address: contract,
       value,
       connection: {
-        networkNameOrChainId: "rinkeby"
+        networkNameOrChainId: "goerli"
       }
     },
   });
@@ -36,7 +36,7 @@ export async function deployContract(
     method: "deployContract",
     args: {
       connection: {
-        networkNameOrChainId: "rinkeby"
+        networkNameOrChainId: "goerli"
       }
     },
   });
