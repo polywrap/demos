@@ -8,7 +8,7 @@ export async function setData(
   client: PolywrapClient
 ): Promise<string> {
 
-  const { data, error } = await client.invoke<string>({
+  const result = await client.invoke<string>({
     uri,
     method: "setData",
     args: {
@@ -20,18 +20,18 @@ export async function setData(
     },
   });
 
-  if (error || !data) {
-    throw error;
+  if (!result.ok) {
+    throw result.error;
   }
 
-  return data;
+  return result.value;
 }
 
 export async function deployContract(
   client: PolywrapClient
 ): Promise<string> {
 
-  const { data, error } = await client.invoke<string>({
+  const result = await client.invoke<string>({
     uri,
     method: "deployContract",
     args: {
@@ -41,9 +41,9 @@ export async function deployContract(
     },
   });
 
-  if (error || !data) {
-    throw error;
+  if (!result.ok) {
+    throw result.error;
   }
 
-  return data;
+  return result.value;
 }

@@ -1,7 +1,0 @@
-format: 0.1.0
-name: generate-typescript-types
-language: app/typescript
-schema: ./schema.graphql
-import_redirects:
-  - uri: "wrap://ens/simple-storage.eth"
-    schema: "../../../build/schema.graphql"
