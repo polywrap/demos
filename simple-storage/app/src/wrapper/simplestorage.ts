@@ -1,6 +1,6 @@
 import { PolywrapClient } from "@polywrap/client-js";
 
-export const uri = "ens/rinkeby/api.simplestorage.eth";
+export const uri = "ens/goerli/api.simplestorage.eth";
 
 export async function setData(
   contract: string,
@@ -8,42 +8,42 @@ export async function setData(
   client: PolywrapClient
 ): Promise<string> {
 
-  const { data, error } = await client.invoke<string>({
+  const result = await client.invoke<string>({
     uri,
     method: "setData",
     args: {
       address: contract,
       value,
       connection: {
-        networkNameOrChainId: "rinkeby"
+        networkNameOrChainId: "goerli"
       }
     },
   });
 
-  if (error || !data) {
-    throw error;
+  if (!result.ok) {
+    throw result.error;
   }
 
-  return data;
+  return result.value;
 }
 
 export async function deployContract(
   client: PolywrapClient
 ): Promise<string> {
 
-  const { data, error } = await client.invoke<string>({
+  const result = await client.invoke<string>({
     uri,
     method: "deployContract",
     args: {
       connection: {
-        networkNameOrChainId: "rinkeby"
+        networkNameOrChainId: "goerli"
       }
     },
   });
 
-  if (error || !data) {
-    throw error;
+  if (!result.ok) {
+    throw result.error;
   }
 
-  return data;
+  return result.value;
 }
