@@ -12,4 +12,4 @@ We have also created demo apps that integrate this wrapper in the following lang
 
 | Language | Framework | Source | App | Version |
 |----------|-----------|--------|---------|---------|
-| ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&labelColor=ffffff&logoColor=3178C6&logo=typescript) | [React.js](https://reactjs.org/) | [./app](./app)  | [Live](https://helloworld.demo.polywrap.io/) | [![Polywrap](https://img.shields.io/badge/Polywrap-0.9.5-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.9.5) |
+| ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&labelColor=ffffff&logoColor=3178C6&logo=typescript) | [React.js](https://reactjs.org/) | [./app](./app)  | [Live](https://simplestorage.demo.polywrap.io/) | [![Polywrap](https://img.shields.io/badge/Polywrap-0.9.5-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.9.5) |
