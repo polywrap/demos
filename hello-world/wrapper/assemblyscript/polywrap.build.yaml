@@ -1,8 +1,15 @@
-format: 0.1.0
-docker:
-  name: hello-world-wasm-as
+format: 0.3.0
 config:
-  node_version: "16.13.0"
+  node_version: 16.13.0
   include:
     - ./package.json
     - ./src
+strategies:
+  image:
+    name: hello-world-wasm-as
+    node_version: 16.13.0
+    include:
+      - ./package.json
+      - ./src
+    buildx:
+      keepBuilder: false
