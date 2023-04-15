@@ -1,5 +1,10 @@
-import { PolywrapClient, PluginRegistration } from '@polywrap/client-js';
-import { ethereumPlugin } from '@polywrap/ethereum-plugin-js';
+import {
+  PolywrapClient,
+  ClientConfigBuilder,
+  DefaultBundle,
+  IWrapPackage
+} from '@polywrap/client-js';
+import { ethereumProviderPlugin, Connections, Connection } from '@polywrap/ethereum-provider-js';
 
 export async function setupPolywrapClient(): Promise<PolywrapClient> {
   const ethereum = (window as any).ethereum;
@@ -9,18 +14,21 @@ export async function setupPolywrapClient(): Promise<PolywrapClient> {
     throw Error('Please install Metamask.');
   }
 
-  const plugins: PluginRegistration[] = [
-    {
-      uri: 'ens/ethereum.polywrap.eth',
-      plugin: ethereumPlugin({
-        networks: {
-          rinkeby: {
-            provider: ethereum,
+  const config = new ClientConfigBuilder()
+    .addDefaults()
+    .addPackage(
+      DefaultBundle.plugins.ethereumProviderV2.uri.uri,
+      ethereumProviderPlugin({
+        connections: new Connections({
+          networks: {
+            rinkeby: new Connection({
+              provider: ethereum
+            }),
           },
-        },
-      }),
-    },
-  ];
+        }),
+      }) as IWrapPackage
+    )
+    .build()
 
-  return new PolywrapClient({ plugins });
+  return new PolywrapClient(config);
 }
