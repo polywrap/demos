@@ -890,7 +890,7 @@
     "@polywrap/result" "0.10.0"
     "@polywrap/wrap-manifest-types-js" "0.10.0"
 
-"@polywrap/wasm-as@^0.10.0":
+"@polywrap/wasm-as@0.10.0":
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/@polywrap/wasm-as/-/wasm-as-0.10.0.tgz#2138bb6be507ade5458fbc91ba46e932ab6012f2"
   integrity sha512-LO835Z9Yvp0E3PqAxvFjmsf+bjiCoA1FKQiDAXDK4ZbHam42Resc8r5MT4VZT+t3H6GMTe0G5+8B5xIhuJtF/w==
@@ -2648,7 +2648,7 @@ picomatch@^2.0.4, picomatch@^2.2.1:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
-polywrap@^0.10.0:
+polywrap@0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/polywrap/-/polywrap-0.10.0.tgz#2039246630a77b4a09af9b2e78185f47773140fa"
   integrity sha512-0TSxlbmzvzZQX05m/+Z0VyWadc01bdGRloprjY4BLPBzB/gAlUAT0k3ocH4SG6kvaZlQIEcY5pIYC0/pcqN7vQ==

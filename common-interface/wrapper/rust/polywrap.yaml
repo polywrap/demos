@@ -8,3 +8,4 @@ source:
   import_abis:
     - uri: wrap://ens/interface.common.eth
       abi: ../../interface/build/wrap.info
+resources: ./resources

@@ -9,6 +9,6 @@
     "test": "npx polywrap test -o ./workflows/output.json -m ./workflows/e2e.yaml"
   },
   "devDependencies": {
-    "polywrap": "^0.10.0"
+    "polywrap": "0.10.0"
   }
 }

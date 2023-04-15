@@ -4,3 +4,4 @@ project:
   type: interface
 source:
   schema: ./schema.graphql
+resources: ./resources

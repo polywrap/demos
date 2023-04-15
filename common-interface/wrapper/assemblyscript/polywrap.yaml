@@ -8,3 +8,4 @@ source:
   import_abis:
     - uri: wrap://ens/interface.common.eth
       abi: ../../interface/schema.graphql
+resources: ./resources
