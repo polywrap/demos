@@ -1,59 +1,39 @@
-import { ClientConfig, PolywrapClientConfig } from "@polywrap/client-js";
-import { ensResolverPlugin } from "@polywrap/ens-resolver-plugin-js";
-import { ethereumPlugin } from "@polywrap/ethereum-plugin-js";
-import { ipfsPlugin } from "@polywrap/ipfs-plugin-js";
-import { providers, ensAddresses } from "@polywrap/test-env-js";
+import { ExtendableUriResolver, IWrapPackage } from "@polywrap/client-js";
+import {Connection, Connections, ethereumProviderPlugin, ProviderConfig} from "@polywrap/ethereum-provider-js";
+import {ETH_ENS_IPFS_MODULE_CONSTANTS} from "polywrap";
+import { DefaultBundle, IClientConfigBuilder } from "@polywrap/client-config-builder-js";
 
-interface TestEnvironment {
-  ipfs: string;
-  ethereum: string;
-  ensAddress: string;
-  registrarAddress?: string;
-  reverseAddress?: string;
-  resolverAddress?: string;
-}
-
-async function getProviders(): Promise<TestEnvironment> {
-  const ipfs = providers.ipfs;
-  const ethereum = providers.ethereum;
-  const ensAddress = ensAddresses.ensAddress;
-
-  return { ipfs, ethereum, ensAddress };
-}
-
-function getPlugins(
-  ethereum: string,
-  ipfs: string,
-  ensAddress: string
-): Partial<ClientConfig> {
-  return {
-    plugins: [
-      {
-        uri: "wrap://ens/ipfs.polywrap.eth",
-        plugin: ipfsPlugin({ provider: ipfs }),
-      },
-      {
-        uri: "wrap://ens/ens-resolver.polywrap.eth",
-        plugin: ensResolverPlugin({ addresses: { testnet: ensAddress } }),
-      },
-      {
-        uri: "wrap://ens/ethereum.polywrap.eth",
-        plugin: ethereumPlugin({
-          networks: {
-            testnet: {
-              provider: ethereum,
-            },
-          },
-          defaultNetwork: "testnet",
+export function configure(builder: IClientConfigBuilder): IClientConfigBuilder {
+  const ethereumConfig: ProviderConfig = {
+    connections: new Connections({
+      networks: {
+        testnet: new Connection({
+          provider: ETH_ENS_IPFS_MODULE_CONSTANTS.ethereumProvider // Ganache test network,
         }),
       },
-    ]
+      defaultNetwork: "testnet",
+    }),
   };
-}
 
-export async function getClientConfig(
-  _: Partial<PolywrapClientConfig>
-): Promise<Partial<PolywrapClientConfig>> {
-  const { ipfs, ethereum, ensAddress } = await getProviders();
-  return getPlugins(ethereum, ipfs, ensAddress);
+  return builder
+    .addPackage(
+      DefaultBundle.plugins.ethereumProviderV2.uri.uri,
+      ethereumProviderPlugin(ethereumConfig) as IWrapPackage
+    )
+    .addEnv(DefaultBundle.embeds.ipfsResolver.source.uri, {
+      provider: ETH_ENS_IPFS_MODULE_CONSTANTS.ipfsProvider,
+      fallbackProviders: DefaultBundle.ipfsProviders,
+      retries: { tryResolveUri: 2, getFile: 2 },
+    })
+    .addEnv("proxy/testnet-ens-uri-resolver-ext", {
+      registryAddress: ETH_ENS_IPFS_MODULE_CONSTANTS.ensAddresses.ensAddress,
+    })
+    .addRedirect(
+      "proxy/testnet-ens-uri-resolver-ext",
+      "ens/wraps.eth:ens-uri-resolver-ext@1.0.1"
+    )
+    .addInterfaceImplementation(
+      ExtendableUriResolver.defaultExtInterfaceUris[0].uri,
+      "proxy/testnet-ens-uri-resolver-ext"
+    );
 }
