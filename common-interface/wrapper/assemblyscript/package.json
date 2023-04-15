@@ -6,13 +6,13 @@
   "scripts": {
     "build": "npx polywrap build",
     "deploy": "npx polywrap deploy",
-    "test": "npx polywrap run -o ./workflows/output.json -v ./workflows/validator.cue ./workflows/e2e.yaml"
+    "test": "npx polywrap test -o ./workflows/output.json -m ./workflows/e2e.yaml"
   },
   "devDependencies": {
-    "assemblyscript": "0.19.1",
-    "polywrap": "0.5.0"
+    "assemblyscript": "0.19.23",
+    "polywrap": "^0.10.0"
   },
   "dependencies": {
-    "@polywrap/wasm-as": "0.5.0"
+    "@polywrap/wasm-as": "^0.10.0"
   }
 }

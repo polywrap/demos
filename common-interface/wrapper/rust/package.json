@@ -6,9 +6,9 @@
   "scripts": {
     "build": "npx polywrap build",
     "deploy": "npx polywrap deploy",
-    "test": "npx polywrap run -o ./workflows/output.json -v ./workflows/validator.cue ./workflows/e2e.yaml"
+    "test": "npx polywrap test -o ./workflows/output.json -m ./workflows/e2e.yaml"
   },
   "devDependencies": {
-    "polywrap": "0.5.0"
+    "polywrap": "^0.10.0"
   }
 }

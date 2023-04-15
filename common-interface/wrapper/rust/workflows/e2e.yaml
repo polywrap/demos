@@ -1,4 +1,6 @@
-name: wrapper-b
+format: "0.2.0"
+name: wrapper-a
+validation: ./validator.cue
 jobs:
   abstractMethod:
     steps:
