@@ -1,4 +1,6 @@
+format: 0.2.0
 name: simple-storage
+validation: ./validator.cue
 jobs:
   cases:
     steps:
