@@ -2,31 +2,26 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { useState } from 'react';
-import { usePolywrapQuery } from '@polywrap/react';
+import { usePolywrapInvoke } from '@polywrap/react';
 import { Uris } from '../polywrap.config';
 import Image from 'next/image';
+import {Uri} from "@polywrap/core-js";
 
 const Home: NextPage = () => {
   const [message, setMessage] = useState('');
 
-  const query = {
-    uri: Uris.helloWorld,
-    query: `query { 
-        logMessage(
-            message: $message
-        )
-     }`,
-    variables: {
-      message: message,
-    },
+  const invokeOptions = {
+    uri: Uri.from(Uris.helloWorld),
+    method: "logMessage",
+    args: { message },
   };
 
-  const { execute } = usePolywrapQuery(query);
+  const { execute } = usePolywrapInvoke(invokeOptions);
 
   const logMsgHandler = async (event: any): Promise<any> => {
     setMessage('');
     event.preventDefault();
-    console.info(`Sending Query: ${JSON.stringify(query, null, 2)}`);
+    console.info(`Sending Query: ${JSON.stringify(invokeOptions, null, 2)}`);
     const result = await execute();
     console.info(`Query Result: ${JSON.stringify(result, null, 2)}`);
   };

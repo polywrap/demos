@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import {useEffect, useRef} from 'react';
 import { useWeb3React } from '@web3-react/core';
-import { PluginRegistration } from '@polywrap/client-js';
 import { PolywrapProvider } from '@polywrap/react';
-import { ethereumPlugin } from '@polywrap/ethereum-plugin-js';
+import {Connection, Connections, ethereumProviderPlugin} from "@polywrap/ethereum-provider-js";
+import {ClientConfigBuilder} from "@polywrap/client-js";
 
 const networks: Record<
   string,
@@ -33,16 +33,10 @@ const networks: Record<
   },
 };
 
-const defaultEthConfig = {
-  networks: {
-    mainnet: {
-      provider:
-        process.env.ETH_PROVIDER ||
-        'https://mainnet.infura.io/v3/b00b2c2cc09c487685e9fb061256d6a6',
-    },
-  },
-  defaultNetwork: 'mainnet',
-};
+const defaultConnection = new Connection({
+  provider: process.env.ETH_PROVIDER ||
+    'https://mainnet.infura.io/v3/b00b2c2cc09c487685e9fb061256d6a6'
+});
 
 export const Uris = {
   helloWorld: 'ens/helloworld.polytest.eth',
@@ -56,14 +50,12 @@ export default function Web3ApiManager({
 }) {
   const { library, chainId, account } = useWeb3React();
 
-  const [ethPlugin, setEthPlugin] = useState(ethereumPlugin(defaultEthConfig));
-
-  const plugins: PluginRegistration[] = [
-    {
-      uri: 'ens/ethereum.polywrap.eth',
-      plugin: ethPlugin,
+  const connections = useRef(new Connections({
+    networks: {
+      mainnet: defaultConnection,
     },
-  ];
+    defaultNetwork: "mainnet"
+  }));
 
   useEffect(() => {
     if (chainId && library) {
@@ -71,25 +63,26 @@ export default function Web3ApiManager({
       const currentNetwork = networks[id];
 
       if (!currentNetwork) {
-        setEthPlugin(ethereumPlugin(defaultEthConfig));
+        connections.current.setDefaultNetwork("mainnet", defaultConnection)
         return;
       }
 
-      const networkConfigs = {
-        [currentNetwork.name]: {
+      connections.current.setDefaultNetwork(
+        currentNetwork.name,
+        new Connection({
           provider: library,
           signer: library.getSigner(),
-        },
-      };
-
-      setEthPlugin(
-        ethereumPlugin({
-          networks: networkConfigs,
-          defaultNetwork: currentNetwork.name,
         })
       );
     }
   }, [library, chainId, account]);
 
-  return <PolywrapProvider plugins={plugins}>{children}</PolywrapProvider>;
+  const packages = new ClientConfigBuilder().addPackage(
+      "plugin/ethereum-provider@2.0.0",
+      ethereumProviderPlugin({
+        connections: connections.current
+      })
+    ).config.packages;
+
+  return <PolywrapProvider packages={packages}>{children}</PolywrapProvider>;
 }

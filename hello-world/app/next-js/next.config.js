@@ -7,6 +7,9 @@ const nextConfig = {
     config.resolve.fallback = {
       fs: false,
       path: false,
+      querystring: require.resolve("querystring-es3"),
+      http: require.resolve("stream-http"),
+      https: require.resolve("https-browserify"),
     };
 
     return config;
