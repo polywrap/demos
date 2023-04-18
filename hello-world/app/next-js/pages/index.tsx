@@ -3,7 +3,6 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { useState } from 'react';
 import { usePolywrapInvoke } from '@polywrap/react';
-import { Uris } from '../polywrap.config';
 import Image from 'next/image';
 import {Uri} from "@polywrap/core-js";
 
@@ -11,7 +10,7 @@ const Home: NextPage = () => {
   const [message, setMessage] = useState('');
 
   const invokeOptions = {
-    uri: Uri.from(Uris.helloWorld),
+    uri: Uri.from('wrap://ipfs/Qmd3B3UPXoJYCWMjdnKa7Hs8SXpxLo2tQJfMdqpECbki7J'),
     method: "logMessage",
     args: { message },
   };
@@ -57,7 +56,7 @@ const Home: NextPage = () => {
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <p className={styles.code}>ens/helloworld.Polywrap.eth</p>
+                <p className={styles.code}>ipfs/Qmd3B3UPXoJYCWMjdnKa7Hs8SXpxLo2tQJfMdqpECbki7J</p>
               </a>
               <br></br>
               <br></br>
