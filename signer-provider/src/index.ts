@@ -1,7 +1,7 @@
 import { Ethereum_Module } from "./wrap";
-import { PolywrapClient } from "@polywrap/client-js";
+import {ClientConfigBuilder, DefaultBundle, IWrapPackage, PolywrapClient} from "@polywrap/client-js";
 import Toastify from "toastify-js";
-import { ethereumPlugin } from "@polywrap/ethereum-plugin-js";
+import {Connection, Connections, ethereumProviderPlugin, ProviderConfig} from "@polywrap/ethereum-provider-js";
 import { ethers, providers } from "ethers";
 
 declare let window: {
@@ -48,21 +48,27 @@ const authenticate = async () => {
       },
     }).showToast();
   }
-  client = new PolywrapClient({
-    plugins: [
-      {
-        uri: "wrap://ens/ethereum.polywrap.eth",
-        plugin: ethereumPlugin({
-          networks: {
-            [window.ethereum.chainId]: {
-              provider: provider,
-            },
-          },
-          defaultNetwork: window.ethereum.chainId,
+
+  const ethereumConfig: ProviderConfig = {
+    connections: new Connections({
+      networks: {
+        [window.ethereum.chainId]: new Connection({
+          provider: provider
         }),
       },
-    ],
-  });
+      defaultNetwork: window.ethereum.chainId,
+    }),
+  };
+
+  const config = new ClientConfigBuilder()
+    .addDefaults()
+    .addPackage(
+      DefaultBundle.plugins.ethereumProviderV2.uri.uri,
+      ethereumProviderPlugin(ethereumConfig) as IWrapPackage
+    )
+    .build();
+
+  client = new PolywrapClient(config);
 
   document.getElementById("invoke_button").innerText = "Sign Message";
 };
