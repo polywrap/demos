@@ -1,11 +1,10 @@
 import { PolywrapClient } from "@polywrap/client-js";
-import { buildWrapper } from "@polywrap/test-env-js";
 import * as App from "../types/wrap";
 import path from "path";
 
 jest.setTimeout(500000);
 
-describe("JSON RPC Wasm Wrapper (Rust)", () => {
+describe("JSON RPC Wasm Wrapper (AssemblyScript)", () => {
 
   const client: PolywrapClient = new PolywrapClient();
 
@@ -17,12 +16,8 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
   );
   const wrapperUri = `fs/${wrapperPath}/build`;
 
-  beforeAll(async () => {
-    await buildWrapper(wrapperPath);
-  });
-
   it("calls Near RPC -> 'gas_price' method", async () => {
-    const { data, error } = await client.invoke<App.JsonRpc_Response | null>({
+    const result = await client.invoke<App.JsonRpc_Response | null>({
       uri: wrapperUri,
       method: "query",
       args: {
@@ -34,8 +29,8 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
         }
       }
     });
-    expect(error).toBeFalsy();
-    expect(data).toBeTruthy();
+    if (!result.ok) throw result.error;
+    const data = result.value;
 
     expect(data!.id).toEqual("1");
     expect(data!.error).toBeFalsy();
@@ -46,7 +41,7 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
   });
 
   it("calls Near RPC -> 'block' method", async () => {
-    const { data, error } = await client.invoke<App.JsonRpc_Response | null>({
+    const result = await client.invoke<App.JsonRpc_Response | null>({
       uri: wrapperUri,
       method: "query",
       args: {
@@ -58,8 +53,8 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
         }
       }
     });
-    expect(error).toBeFalsy();
-    expect(data).toBeTruthy();
+    if (!result.ok) throw result.error;
+    const data = result.value;
 
     expect(data!.id).toEqual("2");
     expect(data!.error).toBeFalsy();
@@ -71,7 +66,7 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
   });
 
   it("calls Ethereum Infura RPC -> 'eth_getBlockTransactionCountByHash' method", async () => {
-    const { data, error } = await client.invoke<App.JsonRpc_Response | null>({
+    const result = await client.invoke<App.JsonRpc_Response | null>({
       uri: wrapperUri,
       method: "query",
       args: {
@@ -83,8 +78,8 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
         }
       }
     });
-    expect(error).toBeFalsy();
-    expect(data).toBeTruthy();
+    if (!result.ok) throw result.error;
+    const data = result.value;
 
     expect(data!.id).toEqual("3");
     expect(data!.error).toBeFalsy();
@@ -94,7 +89,7 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
   });
 
   it("returns RPC error when querying with wrong params", async () => {
-    const { data, error } = await client.invoke<App.JsonRpc_Response | null>({
+    const result = await client.invoke<App.JsonRpc_Response | null>({
       uri: wrapperUri,
       method: "query",
       args: {
@@ -105,8 +100,8 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
         }
       }
     });
-    expect(error).toBeFalsy();
-    expect(data).toBeTruthy();
+    if (!result.ok) throw result.error;
+    const data = result.value;
 
     expect(data!.id).toEqual("4");
     expect(data!.result).toBeFalsy();
@@ -115,7 +110,7 @@ describe("JSON RPC Wasm Wrapper (Rust)", () => {
     expect(data!.error!).toEqual({
       code: -32700,
       message: "Parse error",
-      data: "\"Require at least one parameter\""
+      data: "\"Failed parsing args: invalid type: null, expected a tuple of size 1\"",
     });
   });
 });

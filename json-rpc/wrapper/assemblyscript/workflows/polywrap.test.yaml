@@ -1,4 +1,6 @@
+format: 0.2.0
 name: json-rpc
+validation: ./validator.cue
 jobs:
   case1:
     steps:

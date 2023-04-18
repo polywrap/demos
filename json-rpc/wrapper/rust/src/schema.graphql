@@ -1,4 +1,4 @@
-#import { Module, Request, Response } into Http from "wrap://ens/http.polywrap.eth"
+#import * into Http from "wrap://ens/wraps.eth:http@1.1.0"
 
 type Request {
     method: String!
