@@ -8,7 +8,7 @@ export const HelloWorld: React.FC = () => {
   const [message, setMessage] = React.useState('');
 
   const invocation = {
-    uri: Uri.from('ens/helloworld.polytest.eth'),
+    uri: Uri.from('wrap://ipfs/Qmd3B3UPXoJYCWMjdnKa7Hs8SXpxLo2tQJfMdqpECbki7J'),
     method: 'logMessage',
     args: { message }
   };

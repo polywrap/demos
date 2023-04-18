@@ -1,4 +1,4 @@
-#import { Module } into Logger from "wrap://ens/logger.polytest.eth"
+#import { Module } into Logger from "wrap://ens/wraps.eth:logging@1.0.0"
 
 type Module {
     logMessage(

@@ -39,7 +39,7 @@ const defaultConnection = new Connection({
 });
 
 export const Uris = {
-  helloWorld: 'ens/helloworld.polytest.eth',
+  helloWorld: 'wrap://ipfs/Qmd3B3UPXoJYCWMjdnKa7Hs8SXpxLo2tQJfMdqpECbki7J',
   anotherUri: '',
 };
 
