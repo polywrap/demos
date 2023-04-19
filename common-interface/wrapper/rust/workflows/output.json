@@ -8,6 +8,9 @@
       "prop3": {
         "prop": "Common Interface Testing #2"
       }
+    },
+    "validation": {
+      "status": "SUCCEED"
     }
   }
 ]

@@ -65,9 +65,9 @@ dependencies = [
 
 [[package]]
 name = "polywrap-wasm-rs"
-version = "0.1.1"
+version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "27b79b5780d0a24f0081280edd12957c0f3354a91665d8561177dd6248a977f5"
+checksum = "34cbe3c4135451c7b4f638bef22ccb6c1009f78250a24b826e2a7899c4a2ca2d"
 dependencies = [
  "bigdecimal",
  "byteorder",
