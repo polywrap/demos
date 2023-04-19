@@ -13,9 +13,9 @@
     "build": "polywrap build"
   },
   "devDependencies": {
-    "polywrap": "0.7.0",
+    "polywrap": "0.10.0",
     "@types/jest": "27.0.3",
-    "@polywrap/client-js": "0.7.0",
+    "@polywrap/client-js": "0.10.0",
     "jest": "29.0.3",
     "ts-jest": "29.0.1",
     "ts-node": "10.9.1",

@@ -1,5 +1,11 @@
-format: 0.1.0
-docker:
-  name: rust-async-support
+format: 0.3.0
 config:
-  rust_version: "1.58.0"
+  rust_version: 1.58.0
+strategies:
+  image:
+    name: rust-async-support
+    node_version: 16.13.0
+    include:
+      - ./package.json
+    buildx:
+      keepBuilder: false
