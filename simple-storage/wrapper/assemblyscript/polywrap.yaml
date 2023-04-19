@@ -1,10 +1,9 @@
-format: 0.2.0
+format: 0.3.0
 project:
   name: simple-storage-as
   type: wasm/assemblyscript
 source:
-  module: ./src/index.ts
   schema: ./src/schema.graphql
+  module: ./src/index.ts
 extensions:
   build: ./polywrap.build.yaml
-  deploy: ./polywrap.deploy.yaml

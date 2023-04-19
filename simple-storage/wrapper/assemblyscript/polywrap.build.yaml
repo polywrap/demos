@@ -1,8 +1,15 @@
-format: 0.1.0
-docker:
-  name: simple-storage-wasm-as
+format: 0.3.0
 config:
-  node_version: "16.13.0"
+  node_version: 16.13.0
   include:
     - ./package.json
     - ./src
+strategies:
+  image:
+    name: simple-storage-wasm-as
+    node_version: 16.13.0
+    include:
+      - ./package.json
+      - ./src
+    buildx:
+      keepBuilder: false

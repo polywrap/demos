@@ -3,9 +3,8 @@ module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
   testMatch: ["**/__tests__/e2e/**/?(*.)+(spec|test).[jt]s?(x)"],
-  modulePathIgnorePatterns: [
-    "/.polywrap/"
-  ],
+  testPathIgnorePatterns: ["/.polywrap"],
+  modulePathIgnorePatterns: ["/.polywrap"],
   globals: {
     "ts-jest": {
       tsconfig: "tsconfig.json",
