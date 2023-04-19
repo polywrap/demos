@@ -1,0 +1,9 @@
+format: "0.2.0"
+name: hello-world
+jobs:
+  cases:
+    steps:
+    - uri: fs/./build
+      method: logMessage
+      args:
+        message: "Hello World!"

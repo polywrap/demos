@@ -2,16 +2,15 @@ import React from 'react';
 import { usePolywrapInvoke } from '@polywrap/react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {Uri} from "@polywrap/client-js";
 
 export const HelloWorld: React.FC = () => {
   const [message, setMessage] = React.useState('');
 
   const invocation = {
-    uri: 'ens/helloworld.polytest.eth',
+    uri: Uri.from('wrap://ipfs/Qmd3B3UPXoJYCWMjdnKa7Hs8SXpxLo2tQJfMdqpECbki7J'),
     method: 'logMessage',
-    input: {
-      message
-    }
+    args: { message }
   };
 
   const { execute } = usePolywrapInvoke(invocation);

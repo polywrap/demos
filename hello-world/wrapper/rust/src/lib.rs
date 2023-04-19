@@ -3,11 +3,10 @@ use polywrap_wasm_rs::JSON;
 use wrap::imported::logger_module;
 pub use wrap::*;
 
-pub fn log_message(args: ArgsLogMessage) -> bool {
-    match LoggerModule::info(&logger_module::ArgsInfo {
-        message: args.message,
-    }) {
-        Ok(v) => v,
-        Err(e) => panic!("{}", e),
+impl ModuleTrait for Module {
+    fn log_message(args: ArgsLogMessage) -> Result<bool, String> {
+        LoggerModule::info(&logger_module::ArgsInfo {
+            message: args.message,
+        })
     }
 }

@@ -1,5 +1,5 @@
 import { JSON } from "@polywrap/wasm-as";
-import { RpcError, Http_Response, Request, Response } from "./wrap";
+import { RpcError, Http_Http_Response as Http_Response, Request, Response } from "./wrap";
 
 export function requestToJsonString(request: Request): string {
   const result: JSON.Obj = JSON.Value.Object();
