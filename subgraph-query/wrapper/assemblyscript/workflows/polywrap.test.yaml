@@ -1,4 +1,6 @@
+format: 0.2.0
 name: subgraph-query
+validation: ./validator.cue
 jobs:
   cases:
     steps:

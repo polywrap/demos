@@ -1,3 +1,9 @@
-format: 0.1.0
-docker:
-  name: subgraph-query-wasm-rs
+format: 0.3.0
+strategies:
+  image:
+    name: subgraph-query-wasm-rs
+    node_version: 16.13.0
+    include:
+      - ./package.json
+    buildx:
+      keepBuilder: false
