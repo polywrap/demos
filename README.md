@@ -24,13 +24,15 @@ Each demo contains a `README.md` for further instructions on building and runnin
 
 ## All Demos
 
-| Demo                                 | Type        | Status                                               | Version                                                                                                                     |
-| ------------------------------------ | ----------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| [Hello World](./hello-world)         | wrapper + app | Live: [App](https://demo.helloworld.polywrap.io/)    | [![Polywrap](https://img.shields.io/badge/Polywrap-0.2.0-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.2.0) |
-| [Simple Storage](./simple-storage)   | wrapper + app | Live: [App](https://demo.simplestorage.polywrap.io/) | [![Polywrap](https://img.shields.io/badge/Polywrap-0.2.0-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.2.0) |
-| [Fetch Metadata](./fetch-metadata)   | app | Live: [App](todo)                                              | [![Polywrap](https://img.shields.io/badge/Polywrap-0.2.0-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.2.0) |
-| [Subgraph Query](./subgraph-query)   | wrapper     | Running                                              | [![Polywrap](https://img.shields.io/badge/Polywrap-0.2.0-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.2.0) |
-| [JSON RPC](./json-rpc)   | wrapper     | Running                                              | [![Polywrap](https://img.shields.io/badge/Polywrap-0.2.0-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.2.0) |
+| Demo                                       | Type          | Status                                               | Version                                                                                                                     |
+|--------------------------------------------|---------------| ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| [Hello World](./hello-world)               | wrapper + app | Live: [App](https://demo.helloworld.polywrap.io/)    | [![Polywrap](https://img.shields.io/badge/Polywrap-0.10.0-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.10.0) |
+| [Simple Storage](./simple-storage)         | wrapper + app | Live: [App](https://demo.simplestorage.polywrap.io/) | [![Polywrap](https://img.shields.io/badge/Polywrap-0.10.0-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.10.0) |
+| [Subgraph Query](./subgraph-query)         | wrapper       | Running                                              | [![Polywrap](https://img.shields.io/badge/Polywrap-0.10.0-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.10.0) |
+| [JSON RPC](./json-rpc)                     | wrapper       | Running                                              | [![Polywrap](https://img.shields.io/badge/Polywrap-0.10.0-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.10.0) |
+| [Signer-Provider](./signer-provider)       | app           | Running                                              | [![Polywrap](https://img.shields.io/badge/Polywrap-0.10.0-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.10.0) |
+| [Rust Async Support](./rust-async-support) | wrapper       | Running                                              | [![Polywrap](https://img.shields.io/badge/Polywrap-0.10.0-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.10.0) |
+| [Common Interface](./common-interface)     | wrapper       | Running                                              | [![Polywrap](https://img.shields.io/badge/Polywrap-0.10.0-blue?style=for-the-badge)](https://www.npmjs.com/package/polywrap/v/0.10.0) |
 
 ## Have a demo not in this list?
 

@@ -1,12 +1,8 @@
 import { PolywrapClient } from "@polywrap/client-js";
-import {
-  initTestEnvironment,
-  stopTestEnvironment,
-} from "@polywrap/test-env-js";
-import * as App from "../types/wrap";
+import { Commands } from '@polywrap/cli-js';
 import path from "path";
 
-import { getClientConfig } from "../../../client-config";
+import { getConfig } from "../utils";
 
 jest.setTimeout(500000);
 
@@ -24,62 +20,57 @@ describe("SimpleStorage", () => {
   const wrapperUri = `fs/${wrapperPath}/build`;
 
   beforeAll(async () => {
-    await initTestEnvironment();
-    const config = await getClientConfig({});
-    client = new PolywrapClient(config);
+    await Commands.infra("up", {
+      modules: ["eth-ens-ipfs"],
+    });
+
+    client = new PolywrapClient(getConfig());
   });
 
   afterAll(async () => {
-    await stopTestEnvironment();
+    await Commands.infra("down", {
+      modules: ["eth-ens-ipfs"],
+    });
   });
 
   const getData = async (contractAddr: string): Promise<number> => {
-    const response = await App.SimpleStorage_Module.getData(
-      {
+    const response = await client.invoke<number>({
+      uri: wrapperUri,
+      method: "getData",
+      args: {
         address: contractAddr,
         connection: CONNECTION,
-      },
-      client,
-      wrapperUri
-    );
+      }
+    });
 
-    if (!response.ok) fail(response.error);
-    expect(response.ok).toBeTruthy();
-    expect(response.value).not.toBeNull();
-
-    return response.value as number;
+    if (!response.ok) throw response.error;
+    return response.value
   }
 
   const setData = async (contractAddr: string, value: number): Promise<string> => {
-    const response = await App.SimpleStorage_Module.setData(
-      {
+    const response = await client.invoke<string>({
+      uri: wrapperUri,
+      method: "setData",
+      args: {
         address: contractAddr,
         connection: CONNECTION,
         value: value,
       },
-      client,
-      wrapperUri
-    );
+    });
 
-    if (!response.ok) fail(response.error);
-    expect(response.ok).toBeTruthy();
-    expect(response.value).not.toBeNull();
-
-    return response.value as string;
+    if (!response.ok) throw response.error;
+    return response.value
   }
 
   it("sanity", async () => {
     // Deploy contract
-    const response = await App.SimpleStorage_Module.deployContract(
-      { connection: CONNECTION },
-      client,
-      wrapperUri
-    );
-    if (!response.ok) fail(response.error);
-    expect(response.ok).toBeTruthy();
-    expect(response.value).not.toBeNull();
-
-    const contractAddress = response.value as string;
+    const deployContractResponse = await client.invoke<string>({
+      uri: wrapperUri,
+      method: "deployContract",
+      args: { connection: CONNECTION },
+    });
+    if (!deployContractResponse.ok) throw deployContractResponse.error;
+    const contractAddress = deployContractResponse.value;
 
     // Get data
     let data = await getData(contractAddress);

@@ -1,4 +1,0 @@
-format: 0.1.0
-name: node-hello-world
-language: app/typescript
-schema: ./schema.graphql

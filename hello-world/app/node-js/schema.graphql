@@ -1,2 +1,2 @@
-#import * into HelloWorld from "ens/helloworld.polytest.eth"
-#import * into Ethereum from "ens/ethereum.polywrap.eth"
+#import * into HelloWorld from "wrap://ipfs/Qmd3B3UPXoJYCWMjdnKa7Hs8SXpxLo2tQJfMdqpECbki7J"
+#import * into Ethereum from "wrap://ens/wraps.eth:ethereum@2.0.0"

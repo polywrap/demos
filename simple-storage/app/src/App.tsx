@@ -170,7 +170,7 @@ function App() {
             />
             <button
               onClick={async () =>
-                setData(contract, inputValue, await getClient())
+                setData(contract as string, inputValue, await getClient())
                   .then((result) => {
                     addSet({
                       txReceipt: result,

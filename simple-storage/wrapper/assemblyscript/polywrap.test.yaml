@@ -1,6 +1,6 @@
-format: "0.1"
+format: 0.2.0
 name: simple-storage
-validation: "./validator.cue"
+validation: ./validator.cue
 jobs:
   cases:
     steps:

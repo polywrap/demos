@@ -1,0 +1,43 @@
+format: 0.2.0
+name: json-rpc
+validation: ./validator.cue
+jobs:
+  case1:
+    steps:
+      - uri: fs/build
+        method: query
+        args:
+          url: "https://archival-rpc.testnet.near.org"
+          request:
+            method: "gas_price"
+            params: "[93019381]"
+            id: "1"
+  case2:
+    steps:
+      - uri: fs/build
+        method: query
+        args:
+          url: "https://archival-rpc.testnet.near.org"
+          request:
+            method: "block"
+            params: "{\"block_id\": 93019381 }"
+            id: "2"
+  case3:
+    steps:
+      - uri: fs/build
+        method: query
+        args:
+          url: "https://mainnet.infura.io/v3/b00b2c2cc09c487685e9fb061256d6a6"
+          request:
+            method: "eth_getBlockTransactionCountByHash"
+            params: "[\"0xcb32f0ee739ee5fe6c21263c1e6842e5348530bc72e327b883224d0a14a0bc41\"]"
+            id: "3"
+  case4:
+    steps:
+      - uri: fs/build
+        method: query
+        args:
+          url: "https://rpc.testnet.near.org"
+          request:
+            method: "gas_price"
+            id: "4"
