@@ -1,4 +1,4 @@
-format: 0.2.0
+format: 0.3.0
 project:
   name: rust-async-support
   type: wasm/rust
@@ -7,3 +7,4 @@ source:
   schema: ./schema.graphql
 extensions:
   build: ./polywrap.build.yaml
+resources: ./resources

@@ -11,7 +11,7 @@ describe("rust async support", () => {
   const uri = `fs/${wrapperPath}/build`;
 
   beforeAll(async () => {
-    client = new PolywrapClient({});
+    client = new PolywrapClient();
   });
 
     it("sync", async () => {
@@ -21,8 +21,9 @@ describe("rust async support", () => {
         method: "helloWorld",
         args: {message},
       });
+      if (response.ok === false) throw response.error;
 
-      expect(response.data).toBe("hello world");
+      expect(response.value).toBe("hello world");
     });
     
     it("async spawn local", async () => {
@@ -32,7 +33,8 @@ describe("rust async support", () => {
         method: "helloWorldSpawnLocal",
         args: {message},
       });
+      if (response.ok === false) throw response.error;
 
-      expect(response.data).toBe("hello world foo bar");
+      expect(response.value).toBe("hello world foo bar");
     });
 });
