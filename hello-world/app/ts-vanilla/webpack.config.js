@@ -34,8 +34,6 @@ module.exports = {
         "crypto",
         "domain",
         "events",
-        "http",
-        "https",
         "os",
         "punycode",
         "querystring",

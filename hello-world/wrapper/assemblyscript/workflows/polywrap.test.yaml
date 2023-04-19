@@ -1,3 +1,4 @@
+format: "0.2.0"
 name: hello-world
 jobs:
   cases:
