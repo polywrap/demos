@@ -15,6 +15,7 @@ jobs:
           - json-rpc
           - simple-storage
           - subgraph-query
+          - common-interface
         language:
           - rust
           - assemblyscript
@@ -48,18 +49,41 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('./${{ matrix.demo }}/wrapper/${{ matrix.language }}/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      - uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('./${{ matrix.demo }}/interface/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - id: interfaceExists
+        name: Check if Interface exists
+        run: 'echo ::set-output name=value::$(node ./scripts/ci/checkInterfaceExists.js ${{ matrix.demo }})'
+      - name: Install interface dependencies
+        run: yarn --cwd ./${{ matrix.demo }}/interface install --nonInteractive --frozen-lockfile --prefer-offline
+        if: ${{ (steps.interfaceExists.outputs.value == 'true') }}
+      - name: Build Interface
+        run: yarn --cwd ./${{ matrix.demo }}/interface build
+        if: ${{ (steps.interfaceExists.outputs.value == 'true') }}
+      - name: Deploy interface
+        run: yarn --cwd ./${{ matrix.demo }}/interface deploy
+        if: ${{ (steps.interfaceExists.outputs.value == 'true') }}
       - name: Install dependencies
         run: yarn --cwd ./${{ matrix.demo }}/wrapper/${{ matrix.language }} install --nonInteractive --frozen-lockfile --prefer-offline
-      - name: Build
+      - name: Build Wrapper
         run: yarn --cwd ./${{ matrix.demo }}/wrapper/${{ matrix.language }} build
-      - name: Deploy
+      - name: Deploy Wrapper
         run: yarn --cwd ./${{ matrix.demo }}/wrapper/${{ matrix.language }} deploy
-      - name: Test
+      - name: Test Wrapper
         run: yarn --cwd ./${{ matrix.demo }}/wrapper/${{ matrix.language }} test
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.demo }}-${{ matrix.language }}-build-artifact
           path: ./${{ matrix.demo }}/wrapper/${{ matrix.language }}/build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.demo }}-interface-build-artifact
+          path: ./${{ matrix.demo }}/interface/build
+        if: ${{ (steps.interfaceExists.outputs.value == 'true') }}
 
   Apps-CI:
     strategy:

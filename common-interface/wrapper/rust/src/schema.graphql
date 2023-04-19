@@ -1,0 +1,5 @@
+#import * into Common from "ens/interface.common.eth"
+
+type Module implements Common_Module { }
+
+type MyObject implements Common_Object { }
