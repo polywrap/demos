@@ -35,7 +35,7 @@ case4: {
 				error: {
 					code: -32700,
 					message: "Parse error",
-					data: "\"Require at least one parameter\""
+					data: "\"Failed parsing args: invalid type: null, expected a tuple of size 1\""
 				}
 				id: "4"
 			},
