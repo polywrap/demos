@@ -1,7 +1,14 @@
-format: 0.1.0
-docker:
-  name: jsonrpc-rs-buid-env
+format: 0.3.0
 config:
   include:
     - ./package.json
     - ./src
+strategies:
+  image:
+    name: jsonrpc-rs-buid-env
+    node_version: 16.13.0
+    include:
+      - ./package.json
+      - ./src
+    buildx:
+      keepBuilder: false

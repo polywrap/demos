@@ -1,6 +1,0 @@
-{
-  "url": "https://archival-rpc.testnet.near.org",
-  "method": "gas_price",
-  "params": "[93019381]",
-  "id": "1"
-}

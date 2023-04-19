@@ -1,8 +1,10 @@
-format: 0.1.0
-name: jsonrpc-rs
-language: wasm/rust
-build: ./polywrap.build.yaml
-meta: ./polywrap.meta.yaml
-deploy: ./polywrap.deploy.yaml
-module: ./Cargo.toml
-schema: ./src/schema.graphql
+format: 0.3.0
+project:
+  name: jsonrpc-rs
+  type: wasm/rust
+source:
+  schema: ./src/schema.graphql
+  module: ./Cargo.toml
+extensions:
+  build: ./polywrap.build.yaml
+resources: ./resources
