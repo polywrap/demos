@@ -2,7 +2,7 @@
   "name": "templates-app-typescript-node",
   "description": "Polywrap App TypeScript Node Template",
   "private": true,
-  "version": "0.1.2",
+  "version": "0.2.1",
   "scripts": {
     "codegen": "polywrap app codegen",
     "build": "yarn codegen && tsc",

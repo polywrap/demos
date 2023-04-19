@@ -1,0 +1,12 @@
+format: 0.2.0
+project:
+  name: wrapper-b
+  type: wasm/rust
+source:
+  module: ./Cargo.toml
+  schema: ./src/schema.graphql
+  import_abis:
+    - uri: wrap://ens/interface.common.eth
+      abi: ../../interface/build/wrap.info
+extensions:
+  deploy: ./polywrap.deploy.yaml

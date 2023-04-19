@@ -14,10 +14,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Halt release if CI failed
+        run: exit 1
+        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
       - id: version
         name: Get version
         run: echo "::set-output name=value::$(cat VERSION | grep v)"
-
       - name: Check if tag Exists
         id: tag_check
         shell: bash -ex {0}
@@ -47,7 +49,8 @@ jobs:
         with:
           unreleasedOnly: true
           unreleasedLabel: ${{ needs.GetVersion.outputs.version }}
-          token: ${{ secrets.GITHUB_TOKEN }}    
+          token: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -68,7 +71,9 @@ jobs:
           - simple-storage,simple-storage
           - json-rpc,jsonrpc
           - subgraph-query,subgraph
+          - common-interface, common-interface
         language:
+          - interface
           - assemblyscript
           - rust
     needs:
@@ -115,6 +120,9 @@ jobs:
         run: pinata-cli -a ${{ secrets.PINATA_API_KEY }}
 
       # Fetch Built Wrappers
+      - id: shouldRun
+        name: Check if the step should run or not
+        run: 'echo ::set-output name=value::$(node ./scripts/release/shouldRun.js ${{ matrix.demo }} ${{ matrix.language }})'
       - name: create builds
         run: mkdir ./builds # fails if dir already exists but that's okay
         continue-on-error: true
@@ -127,6 +135,7 @@ jobs:
           event: push
           name: ${{ steps.package.outputs.name }}-${{ matrix.language }}-build-artifact
           path: ./${{ steps.package.outputs.name }}-${{ matrix.language }}-build-artifact
+        if: ${{ (steps.shouldRun.outputs.value == 'true') }}
       - name: create deployments
         run: mkdir ./deployments # fails if dir already exists but that's okay
         continue-on-error: true
@@ -134,14 +143,17 @@ jobs:
       # Deploy wrappers to IPFS
       - name: Deploy current wrapper to IPFS
         run: pinata-cli -u ./${{ steps.package.outputs.name }}-${{ matrix.language }}-build-artifact > ./deployments/${{ steps.package.outputs.name }}-${{ matrix.language }}.ipfs.txt
+        if: ${{ (steps.shouldRun.outputs.value == 'true') }}
       - id: ipfs
         name: Fetch IPFS CID for current wrapper
         run: echo ::set-output name=value::$(node ./scripts/release/getIpfsCid.js "$(cat ./deployments/${{ steps.package.outputs.name }}-${{ matrix.language }}.ipfs.txt)")
+        if: ${{ (steps.shouldRun.outputs.value == 'true') }}
 
       # Deploy wrappers to ENS
       - id: ensExists
         name: Check if ens uri exists
         run: 'echo ::set-output name=value::$(node ./scripts/release/checkEnsExists.js "$(ethers-ens lookup ${{ steps.package.outputs.uri }} --rpc https://goerli.infura.io/v3/${{ secrets.INFURA_KEY }})")'
+        if: ${{ (steps.shouldRun.outputs.value == 'true') }}
 
       - name: Create ens subdomain uri
         uses: Wandalen/wretry.action@v1.0.11
@@ -149,7 +161,7 @@ jobs:
           command: ethers-ens set-subnode "${{ steps.package.outputs.uri }}" --account ${{ secrets.PRIVATE_KEY }} --rpc https://goerli.infura.io/v3/${{ secrets.INFURA_KEY }} --yes --wait
           attempt_limit: 3
           attempt_delay: 20000
-        if: ${{ (steps.ensExists.outputs.value == 'false') }}
+        if: ${{ (steps.ensExists.outputs.value == 'false') && (steps.shouldRun.outputs.value == 'true') }}
 
       - name: Set Resolver for created ens subdomain
         uses: Wandalen/wretry.action@v1.0.11
@@ -157,7 +169,7 @@ jobs:
           command: "ethers-ens set-resolver ${{ steps.package.outputs.uri }} --account ${{ secrets.PRIVATE_KEY }} --rpc https://goerli.infura.io/v3/${{ secrets.INFURA_KEY }} --yes --wait"
           attempt_limit: 3
           attempt_delay: 20000
-        if: ${{ (steps.ensExists.outputs.value == 'false') }}
+        if: ${{ (steps.ensExists.outputs.value == 'false') && (steps.shouldRun.outputs.value == 'true') }}
 
       - name: Publish current wrapper to ENS
         uses: Wandalen/wretry.action@v1.0.11
@@ -165,3 +177,4 @@ jobs:
           command: "ethers-ens set-content ${{ steps.package.outputs.uri }} ${{ steps.ipfs.outputs.value }} --account ${{ secrets.PRIVATE_KEY }} --rpc https://goerli.infura.io/v3/${{ secrets.INFURA_KEY }} --yes --wait"
           attempt_limit: 3
           attempt_delay: 20000
+        if: ${{ (steps.shouldRun.outputs.value == 'true') }}

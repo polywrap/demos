@@ -2,14 +2,15 @@
   "name": "@polywrap/demo-simple-storage-dapp",
   "description": "Polywrap SimpleStorage dApp Demo",
   "private": true,
-  "version": "0.1.2",
+  "version": "0.2.1",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/polywrap/monorepo.git"
+    "url": "https://github.com/polywrap/integrations.git"
   },
   "dependencies": {
-    "@polywrap/client-js": "0.2.0",
+    "@polywrap/client-js": "0.9.5",
+    "@polywrap/client-config-builder-js": "0.9.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"

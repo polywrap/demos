@@ -12,18 +12,18 @@
     "deploy": "npx polywrap deploy",
     "test": "yarn test:e2e && yarn test:workflow",
     "test:e2e": "yarn test:e2e:codegen && jest --passWithNoTests --runInBand --verbose",
-    "test:e2e:codegen": "npx polywrap app codegen -m ./src/__tests__/types/polywrap.app.yaml -g ./src/__tests__/types/wrap",
-    "test:workflow": "yarn test:env:up && sleep 7 && npx polywrap run ./workflows/e2e.yaml -c ./workflows/config.ts -v ./workflows/validator.cue && yarn test:env:down"
+    "test:e2e:codegen": "npx polywrap codegen -m ./src/__tests__/types/polywrap.yaml -g ./src/__tests__/types/wrap",
+    "test:workflow": "yarn test:env:up && sleep 7 && npx polywrap run -c ./client-config.ts && yarn test:env:down"
   },
   "devDependencies": {
-    "@polywrap/wasm-as": "0.2.0",
+    "@polywrap/wasm-as": "0.9.5",
     "@types/jest": "27.0.3",
     "@types/node": "16.11.11",
     "assemblyscript": "0.19.1",
     "jest": "26.6.3",
-    "polywrap": "0.2.0",
+    "polywrap": "0.9.5",
     "solc": "0.8.3",
-    "ts-jest": "26.5.4",
+    "ts-jest": "26.5.5",
     "ts-node": "8.10.2",
     "typescript": "4.0.7"
   }

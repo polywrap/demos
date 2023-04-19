@@ -1,0 +1,4 @@
+type Module {
+  helloWorld(message: String!): String!
+  helloWorldSpawnLocal(message: String!): String!
+}

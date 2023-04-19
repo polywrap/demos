@@ -1,0 +1,16 @@
+format: 0.2.0
+project:
+  name: wrapper-a
+  type: wasm/assemblyscript
+source:
+  module: ./src/index.ts
+  schema: ./src/schema.graphql
+  import_abis:
+    - uri: wrap://ens/interface.common.eth
+      abi: ../../interface/schema.graphql
+      # NOTE: if the interface schema gets more complex
+      # and needs to be built using the CLI first, you
+      # can reference the ../interface/build/wrap.info
+      # manifest file instead of schema.graphql
+extensions:
+  deploy: ./polywrap.deploy.yaml

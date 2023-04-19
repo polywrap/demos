@@ -1,0 +1,14 @@
+{
+  "name": "template-wasm-rs",
+  "description": "Polywrap Rust Wrapper Template",
+  "private": true,
+  "version": "0.2.1",
+  "scripts": {
+    "build": "npx polywrap build",
+    "deploy": "npx polywrap deploy",
+    "test": "npx polywrap run -o ./workflows/output.json -v ./workflows/validator.cue ./workflows/e2e.yaml"
+  },
+  "devDependencies": {
+    "polywrap": "0.5.0"
+  }
+}
