@@ -7,3 +7,4 @@ source:
   schema: ./schema.graphql
 extensions:
   build: ./polywrap.build.yaml
+resources: ./resources
