@@ -1,0 +1,9 @@
+format: 0.2.0
+project:
+  name: rust-async-support
+  type: wasm/rust
+source:
+  module: ./Cargo.toml
+  schema: ./schema.graphql
+extensions:
+  build: ./polywrap.build.yaml

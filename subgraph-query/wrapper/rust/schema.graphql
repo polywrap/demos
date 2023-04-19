@@ -1,4 +1,4 @@
-#import { Module } into Subgraph from "ens/graph-node.polywrap.eth"
+#import { Module } into Subgraph from "ens/wraps.eth:graph-node@1.0.0"
 
 type Module {
   subgraphQuery(

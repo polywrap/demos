@@ -2,27 +2,27 @@
   "name": "templates-app-vanilla-typescript",
   "description": "Polywrap dApp Vanilla Typescript Template",
   "private": true,
-  "version": "0.1.2",
+  "version": "0.2.1",
   "scripts": {
     "start": "serve ./dist",
     "build": "yarn codegen && tsc && webpack && cp -r public/* dist",
     "prestart": "yarn codegen && tsc && webpack && cp -r public/* dist",
-    "codegen": "polywrap app codegen"
+    "codegen": "polywrap codegen"
   },
   "dependencies": {
-    "@polywrap/client-js": "0.2.0",
+    "@polywrap/client-js": "0.10.0",
     "serve": "13.0.2",
     "toastify-js": "1.11.2"
   },
   "devDependencies": {
+    "browserify-fs": "^1.0.0",
     "@babel/core": "7.17.12",
     "@babel/preset-env": "7.17.10",
     "@types/toastify-js": "1.11.0",
-    "polywrap": "0.2.0",
     "babel-cli": "6.26.0",
     "babel-loader": "8.2.5",
-    "browserify-fs": "^1.0.0",
-    "node-polyfill-webpack-plugin": "1.1.4",
+    "node-polyfill-webpack-plugin": "2.0.1",
+    "polywrap": "0.10.0",
     "typescript": "4.6.4",
     "webpack": "5.72.1",
     "webpack-cli": "4.9.2"

@@ -30,8 +30,7 @@ describe("SubgraphQuery", () => {
       wrapperUri
     );
 
-    expect(response).toBeTruthy();
-    expect(response.error).toBeFalsy();
-    expect(response.data).not.toBeNull();
+    if (!response.ok) throw response.error;
+    expect(response.value).not.toBeNull();
   });
 });

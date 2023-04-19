@@ -1,8 +1,9 @@
-format: 0.1.0
-name: hello-world-as
-language: wasm/assemblyscript
-schema: ./src/schema.graphql
-module: ./src/index.ts
-deploy: ./polywrap.deploy.yaml
-meta: ./polywrap.meta.yaml
-build: ./polywrap.build.yaml
+format: 0.3.0
+project:
+  name: hello-world-as
+  type: wasm/assemblyscript
+source:
+  schema: ./src/schema.graphql
+  module: ./src/index.ts
+extensions:
+  build: ./polywrap.build.yaml

@@ -1,0 +1,24 @@
+{
+  "name": "rust-async-support",
+  "description": "",
+  "version": "0.1.0",
+  "license": "MIT",
+  "files": [
+    "build",
+    "schema.graphql"
+  ],
+  "scripts": {
+    "test": "jest --passWithNoTests --runInBand --verbose",
+    "codegen": "polywrap codegen",
+    "build": "polywrap build"
+  },
+  "devDependencies": {
+    "polywrap": "0.7.0",
+    "@types/jest": "27.0.3",
+    "@polywrap/client-js": "0.7.0",
+    "jest": "29.0.3",
+    "ts-jest": "29.0.1",
+    "ts-node": "10.9.1",
+    "typescript": "4.8.3"
+  }
+}

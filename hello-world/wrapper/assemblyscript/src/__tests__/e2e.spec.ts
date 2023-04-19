@@ -6,13 +6,14 @@ describe("Hello world wrapper", () => {
   const client = new PolywrapClient()
   it("Should log as warning", async () => {
 
-    const invocation = await client.invoke({
+    const result = await client.invoke<boolean>({
       uri: "fs/./build",
       method: "logMessage",
       args: {
         message: "Invocation being executed from wrapper!"
       }
     })
-    expect(invocation).toBeTruthy()
+    if (!result.ok) throw result.error
+    expect(result.value).toBeTruthy()
   });
 })

@@ -1,5 +1,5 @@
 use polywrap_wasm_rs::JSON;
-use crate::{HttpResponse, Request, Response, RpcError};
+use crate::{HttpHttpResponse, Request, Response, RpcError};
 
 pub fn request_to_json_string(request: &Request) -> String {
     let json_request = JSON::to_value(request).unwrap();
@@ -14,7 +14,7 @@ pub fn response_from_json_string(string_val: &str) -> Response {
     json_val
 }
 
-pub fn handle_unspecified_rpc_error(http_response: &HttpResponse) -> RpcError {
+pub fn handle_unspecified_rpc_error(http_response: &HttpHttpResponse) -> RpcError {
     match http_response.status {
         400 => RpcError {
             code: -32600,

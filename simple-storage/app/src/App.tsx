@@ -62,7 +62,6 @@ function App() {
         <img src={Logo} className='App-logo' />
       ))}
       <header className='App-body'>
-        Pre-Alpha
         <h3 className='App-title'>
           Polywrap Demo:
           <br />
@@ -70,7 +69,7 @@ function App() {
             <>api.simplestorage.eth</>
           ))}
           {link(
-            'https://bafybeihsk2ivvcrye7bqtdukxjtmfevfxgidebqqopoqdfpucbgzyy2edu.ipfs.dweb.link/',
+            'https://wrappers.io/v/ipfs/QmSpiQhe8xptgYmmpgmkmEnfzr8GEvNnW1zNT1sKkqH8EE',
             () => (
               <> -&gt; IPFS</>
             )
@@ -83,7 +82,7 @@ function App() {
             Let's get started...
             <br />
             <br />
-            {emoji('🔌')} Set Metamask to Rinkeby
+            {emoji('🔌')} Set Metamask to Goerli
             <br />
             <button
               className='App-btn'
@@ -97,11 +96,11 @@ function App() {
             </button>
             <div className='Code-Block'>
               {syntax.class(() => (
-                <>Client</>
+                <>client</>
               ))}
               .
               {syntax.prop(() => (
-                <>query</>
+                <>invoke</>
               ))}
               {'({'}
               <br />
@@ -109,65 +108,36 @@ function App() {
                 <>&nbsp;&nbsp;&nbsp;&nbsp;uri: </>
               ))}
               {syntax.string(() => (
-                <>"ens/rinkeby/api.simplestorage.eth"</>
+                <>"ens/goerli/api.simplestorage.eth"</>
               ))}
               ,<br />
               {syntax.value(() => (
-                <>&nbsp;&nbsp;&nbsp;&nbsp;query: </>
+                <>&nbsp;&nbsp;&nbsp;&nbsp;method: </>
               ))}
               {syntax.string(() => (
-                <>{'`mutation {'}</>
+                <>"deployContract"</>
+              ))}
+              ,<br />
+              {syntax.value(() => (
+                <>&nbsp;&nbsp;&nbsp;&nbsp;args: </>
+              ))}
+              {"{"}
+              <br />
+              {syntax.value(() => (
+                <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connection: </>
+              ))}
+              {"{"}
+              <br />
+              {syntax.value(() => (
+                <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;networkNameOrChainId: </>
+              ))}
+              {syntax.string(() => (
+                <>"goerli"</>
               ))}
               <br />
-              {syntax.string(() => (
-                <>
-                  {tab()}
-                  {tab()}
-                  {'deployContract('}
-                </>
-              ))}
+              <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"}"}</>
               <br />
-              {syntax.string(() => (
-                <>
-                  {tab()}
-                  {tab()}
-                  {tab()}
-                  {'connection: {'}
-                  <br />
-                  {syntax.string(() => (
-                    <>
-                      {tab()}
-                      {tab()}
-                      {tab()}
-                      {tab()}
-                      {'networkNameOrChainId: '}
-                      {syntax.variable(() => (
-                        <>{'"rinkeby"'}</>
-                      ))}
-                      <br />
-                      {tab()}
-                      {tab()}
-                      {tab()}
-                      {'}'}
-                      <br />
-                    </>
-                  ))}
-                </>
-              ))}
-              {syntax.string(() => (
-                <>
-                  {tab()}
-                  {tab()}
-                  {')'}
-                </>
-              ))}
-              <br />
-              {syntax.string(() => (
-                <>
-                  {tab()}
-                  {'}`'}
-                </>
-              ))}
+              <>&nbsp;&nbsp;&nbsp;&nbsp;{"}"}</>
               <br />
               {'})'}
             </div>
@@ -177,7 +147,7 @@ function App() {
           <>
             <p>
               {emoji('✔️')} Deployed SimpleStorage (
-              {link(`https://rinkeby.etherscan.io/address/${contract}`, () => (
+              {link(`https://goerli.etherscan.io/address/${contract}`, () => (
                 <>{contract.substr(0, 7)}...</>
               ))}
               )
@@ -215,101 +185,62 @@ function App() {
             </button>
             <div className='Code-Block'>
               {syntax.class(() => (
-                <>Client</>
+                <>client</>
               ))}
               .
               {syntax.prop(() => (
-                <>query</>
+                <>invoke</>
               ))}
               {'({'}
               <br />
               {syntax.value(() => (
-                <>{tab()}uri: </>
+                <>&nbsp;&nbsp;&nbsp;&nbsp;uri: </>
               ))}
               {syntax.string(() => (
-                <>"w3://ens/rinkeby/api.simplestorage.eth"</>
+                <>"ens/goerli/api.simplestorage.eth"</>
               ))}
               ,<br />
               {syntax.value(() => (
-                <>{tab()}query: </>
+                <>&nbsp;&nbsp;&nbsp;&nbsp;method: </>
               ))}
               {syntax.string(() => (
-                <>{'`mutation {'}</>
+                <>"setData"</>
+              ))}
+              ,<br />
+              {syntax.value(() => (
+                <>&nbsp;&nbsp;&nbsp;&nbsp;args: </>
+              ))}
+              {"{"}
+              <br />
+              {syntax.value(() => (
+                <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;address: </>
+              ))}
+              {syntax.value(() => (
+                <>{contract.substring(0, 5)}...{contract.substring(37, 42)}</>
               ))}
               <br />
-              {syntax.string(() => (
-                <>
-                  {tab()}
-                  {tab()}
-                  {'setData('}
-                </>
+              {syntax.value(() => (
+                <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value: </>
+              ))}
+              {syntax.value(() => (
+                <>{inputValue}</>
               ))}
               <br />
+              {syntax.value(() => (
+                <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connection: </>
+              ))}
+              {"{"}
+              <br />
+              {syntax.value(() => (
+                <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;networkNameOrChainId: </>
+              ))}
               {syntax.string(() => (
-                <>
-                  {tab()}
-                  {tab()}
-                  {tab()}
-                  {'address: '}
-                  {syntax.variable(() => (
-                    <>"{contract.substr(0, 7)}..."</>
-                  ))}
-                </>
+                <>"goerli"</>
               ))}
               <br />
-              {syntax.string(() => (
-                <>
-                  {tab()}
-                  {tab()}
-                  {tab()}
-                  {'value: '}
-                  {syntax.variable(() => (
-                    <>{inputValue}</>
-                  ))}
-                  <br />
-                </>
-              ))}
-              {syntax.string(() => (
-                <>
-                  {tab()}
-                  {tab()}
-                  {tab()}
-                  {'connection: {'}
-                  <br />
-                  {syntax.string(() => (
-                    <>
-                      {tab()}
-                      {tab()}
-                      {tab()}
-                      {tab()}
-                      {'networkNameOrChainId: '}
-                      {syntax.variable(() => (
-                        <>{'"rinkeby"'}</>
-                      ))}
-                      <br />
-                      {tab()}
-                      {tab()}
-                      {tab()}
-                      {'}'}
-                      <br />
-                    </>
-                  ))}
-                </>
-              ))}
-              {syntax.string(() => (
-                <>
-                  {tab()}
-                  {tab()}
-                  {')'}
-                </>
-              ))}
+              <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"}"}</>
               <br />
-              {syntax.string(() => (
-                <>
-                  {tab()}
-                  {'}`'}
-                </>
-              ))}
+              <>&nbsp;&nbsp;&nbsp;&nbsp;{"}"}</>
               <br />
               {'})'}
             </div>
@@ -327,7 +258,7 @@ function App() {
                   <>
                     #{index} | value: {set.value} | tx:{' '}
                     {link(
-                      `https://rinkeby.etherscan.io/tx/${set.txReceipt}`,
+                      `https://goerli.etherscan.io/tx/${set.txReceipt}`,
                       () => (
                         <>{set.txReceipt.substr(0, 7)}...</>
                       )
