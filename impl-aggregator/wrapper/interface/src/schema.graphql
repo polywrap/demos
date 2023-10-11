@@ -1,0 +1,19 @@
+type Module {
+  getAnimalName: String!
+  getAnimalDimensions(size: Size!): Dimensions!
+  getAnimalVelocity(size: Size!): UInt32!
+
+  speak: String!
+}
+
+enum Size {
+  SMALL,
+  MEDIUM,
+  LARGE
+}
+
+type Dimensions {
+  height: UInt32!
+  length: UInt32!
+  width: UInt32!
+}

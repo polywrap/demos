@@ -1,0 +1,12 @@
+format: 0.1.0
+stages:
+  ipfs_deploy:
+    package: ipfs
+    uri: fs/./build
+  ens_publish:
+    package: local-dev-ens
+    depends_on: ipfs_deploy
+    config:
+      domainName: dog.impls.animals.eth
+      ports:
+        ethereum: 8545

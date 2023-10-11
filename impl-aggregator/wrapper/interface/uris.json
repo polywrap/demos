@@ -1,0 +1,24 @@
+[
+  {
+    "id": "ipfs_deploy",
+    "name": "ipfs_deploy",
+    "input": {
+      "uri": "wrap://fs/./build"
+    },
+    "result": "wrap://ipfs/QmPjcNC4P1smKRxiSjnRAus6ntmjrYwn5tyVA3v7jxVB8E"
+  },
+  {
+    "id": "ipfs_deploy.ens_publish",
+    "name": "ens_publish",
+    "input": {
+      "uri": "wrap://ipfs/QmPjcNC4P1smKRxiSjnRAus6ntmjrYwn5tyVA3v7jxVB8E",
+      "config": {
+        "domainName": "interface.aggregator.eth",
+        "ports": {
+          "ethereum": 8545
+        }
+      }
+    },
+    "result": "wrap://ens/interface.aggregator.eth"
+  }
+]

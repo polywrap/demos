@@ -1,0 +1,9 @@
+format: 0.1.0
+name: template-wasm-as
+language: wasm/assemblyscript
+deploy: ./polywrap.deploy.yaml
+module: ./src/index.ts
+schema: ./src/schema.graphql
+import_redirects:
+  - uri: "wrap://ens/interface.animals.eth"
+    schema: "../../interface/build/schema.graphql"
